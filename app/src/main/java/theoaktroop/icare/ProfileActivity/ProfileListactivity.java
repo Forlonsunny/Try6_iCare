@@ -27,6 +27,7 @@ public class ProfileListactivity extends ActionBarActivity {
     private ListProfileAdapter mAdapter;
     private ProfileDataBase mprofileDataBase;
     private Context context;
+    long ePID=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,13 @@ public class ProfileListactivity extends ActionBarActivity {
                 iTemIntent.putExtra("id",String.valueOf(id));
                 startActivity(iTemIntent);
 
+            }
+        });
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ePID=id;
+                return false;
             }
         });
 
@@ -139,7 +147,8 @@ public class ProfileListactivity extends ActionBarActivity {
         switch(item.getItemId()){
             case R.id.action_viewHealthCondition:
                 Intent HIntent=new Intent(ProfileListactivity.this,HealthConditionViewer.class);
-
+                HIntent.putExtra("id",String.valueOf(ePID));
+                startActivity(HIntent);
                 break;
 
 

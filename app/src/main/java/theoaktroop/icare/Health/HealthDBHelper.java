@@ -31,7 +31,6 @@ public class HealthDBHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_HEALTH= "CREATE TABLE "+TABLE_HEALTH
             +"("
             +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            +ProfileDBHelper.COLUMN_PROFILE_ID + " INTEGER NOT NULL, "
             +COLUMN_HEALTH_HEIGHT+" TEXT NOT NULL, "
             +COLUMN_HEALTH_WEIGHT+" TEXT NOT NULL, "
             +COLUMN_HEALTH_BLOOD_GROUP+" TEXT NOT NULL, "

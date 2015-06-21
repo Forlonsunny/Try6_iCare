@@ -18,12 +18,12 @@ public class HealthDatabaseQuery {
     private SQLiteDatabase mSqLiteDatabase;
     private Context mContext;
     private String[] allColumns={
-            healthDBHelper.COLUMN_ID,
-            healthDBHelper.COLUMN_HEALTH_HEIGHT,
-            healthDBHelper.COLUMN_HEALTH_WEIGHT,
-            healthDBHelper.COLUMN_HEALTH_BLOOD_GROUP,
-            healthDBHelper.COLUMN_HEALTH_BLOOD_PRESSURE,
-            healthDBHelper.COLUMN_HEALTH_BLOOD_SUGAR
+            HealthDBHelper.COLUMN_ID,
+            HealthDBHelper.COLUMN_HEALTH_HEIGHT,
+            HealthDBHelper.COLUMN_HEALTH_WEIGHT,
+            HealthDBHelper.COLUMN_HEALTH_BLOOD_GROUP,
+            HealthDBHelper.COLUMN_HEALTH_BLOOD_PRESSURE,
+            HealthDBHelper.COLUMN_HEALTH_BLOOD_SUGAR
     };
 
     public HealthDatabaseQuery(Context context) {
@@ -50,15 +50,15 @@ public class HealthDatabaseQuery {
     public HealthClass createNewHealth(String mHeight, String mWeight, String mBloodGroup, String mBloodPressure, String mBloodSugar) {
         ContentValues values = new ContentValues();
 
-        values.put(healthDBHelper.COLUMN_HEALTH_HEIGHT, mHeight);
-        values.put(healthDBHelper.COLUMN_HEALTH_WEIGHT, mWeight);
-        values.put(healthDBHelper.COLUMN_HEALTH_BLOOD_GROUP, mBloodGroup);
-        values.put(healthDBHelper.COLUMN_HEALTH_BLOOD_PRESSURE, mBloodPressure);
-        values.put(healthDBHelper.COLUMN_HEALTH_BLOOD_SUGAR, mBloodSugar);
+        values.put(HealthDBHelper.COLUMN_HEALTH_HEIGHT, mHeight);
+        values.put(HealthDBHelper.COLUMN_HEALTH_WEIGHT, mWeight);
+        values.put(HealthDBHelper.COLUMN_HEALTH_BLOOD_GROUP, mBloodGroup);
+        values.put(HealthDBHelper.COLUMN_HEALTH_BLOOD_PRESSURE, mBloodPressure);
+        values.put(HealthDBHelper.COLUMN_HEALTH_BLOOD_SUGAR, mBloodSugar);
 
-        long insertId=mSqLiteDatabase.insert(healthDBHelper.TABLE_HEALTH,null,values);
+        long insertId=mSqLiteDatabase.insert(HealthDBHelper.TABLE_HEALTH,null,values);
 
-        Cursor cursor=mSqLiteDatabase.query(healthDBHelper.TABLE_HEALTH,allColumns,healthDBHelper.COLUMN_ID+" = "+insertId,null,null,null,null);
+        Cursor cursor=mSqLiteDatabase.query(HealthDBHelper.TABLE_HEALTH,allColumns,HealthDBHelper.COLUMN_ID+" = "+insertId,null,null,null,null);
         cursor.moveToFirst();
         HealthClass newHealth = cursorToHealth(cursor);
         cursor.close();

@@ -34,14 +34,17 @@ public class HealthCreateActivity extends Activity {
         getGetEtBlSl=(EditText)findViewById(R.id.etBloodSugar);
     }
     public void SubmitHeBt(View view){
-        Editable prHeight=getEtHegith.getText();
-        Editable prWeght=getGetEtWeight.getText();
-        Editable prBloodGropup=getGetEtBlGropup.getText();
-        Editable prBlPre=getGetEtBlPl.getText();
-        Editable prBlSl=getGetEtBlSl.getText();
+
 
 
         try {
+            Editable prHeight=getEtHegith.getText();
+            Editable prWeght=getGetEtWeight.getText();
+            Editable prBloodGropup=getGetEtBlGropup.getText();
+            Editable prBlPre=getGetEtBlPl.getText();
+            Editable prBlSl=getGetEtBlSl.getText();
+
+
             if (!TextUtils.isEmpty(prHeight) && !TextUtils.isEmpty(prWeght) && !TextUtils.isEmpty(prBloodGropup) &&
                     !TextUtils.isEmpty(prBlPre) && !TextUtils.isEmpty(prBlSl)) {
                 HealthClass createNewHealth = mHealthDatabaseQuery.createNewHealth(prHeight.toString(),prWeght.toString(),prBloodGropup.toString(),prBlPre.toString(),prBlSl.toString());
@@ -56,7 +59,7 @@ public class HealthCreateActivity extends Activity {
         {
             Toast.makeText(this, "You Must Fill all Requirement  ", Toast.LENGTH_LONG).show();
         }
-        finish();
+        //finish();
     }
 
 }
