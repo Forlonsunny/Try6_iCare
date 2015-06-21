@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="theoaktroop.icare" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".SplashActivity.MainSplashScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+       <activity android:name=".ProfileActivity.ProfileListactivity"></activity>
+
+    <activity android:name=".ProfileActivity.CreateiCareProfile"></activity>
+    <activity android:name=".ProfileActivity.ProfileDetails"></activity>
+    <activity android:name=".Health.HealthCreateActivity"></activity>
+        <activity android:name=".Health.HealthConditionViewer"></activity>
+
+
+</application>
+
+</manifest>
