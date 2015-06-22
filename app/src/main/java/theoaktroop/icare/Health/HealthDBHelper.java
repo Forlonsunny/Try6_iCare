@@ -9,7 +9,7 @@ import theoaktroop.icare.ProfileActivity.ProfileDBHelper;
 
 public class HealthDBHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "profile.db";
+    public static final String DATABASE_NAME = "Health.db";
     public static final int DATABASE_VERSION = 1;
 
 

@@ -22,7 +22,7 @@ public class HealthCreateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.health_condition);
         intilizationOfViews();
-        this.mHealthDatabaseQuery=new HealthDatabaseQuery(this);
+        mHealthDatabaseQuery=new HealthDatabaseQuery(this);
     }
 
     private void intilizationOfViews() {
@@ -51,6 +51,7 @@ public class HealthCreateActivity extends Activity {
 //                Intent intent = new Intent();
 //                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
 //                setResult(RESULT_OK, intent);
+                finish();
             } else {
                 Toast.makeText(this, "You Must Fill all Requirement  ", Toast.LENGTH_LONG).show();
             }
@@ -59,7 +60,7 @@ public class HealthCreateActivity extends Activity {
         {
             Toast.makeText(this, "You Must Fill all Requirement  ", Toast.LENGTH_LONG).show();
         }
-        //finish();
+
     }
 
 }

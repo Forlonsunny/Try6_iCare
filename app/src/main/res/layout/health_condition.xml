@@ -32,7 +32,7 @@
                 android:ems="10"
 
                 android:hint="CM/INCH:"
-                android:inputType="number" >
+                android:inputType="text" >
 
                 <requestFocus />
             </EditText>
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="KG/Pound"
-            android:inputType="number" />
+            android:inputType="text" />
 
     </LinearLayout>
 
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="text" />
 
         </LinearLayout>
         <LinearLayout
@@ -125,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="text" />
 
         </LinearLayout>
 

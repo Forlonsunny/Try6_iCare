@@ -20,7 +20,16 @@ public class HealthClass implements Serializable {
     private String bloodPressure;
     private String bloodSugar;
 
+    public HealthClass(String height, String wight, String bloodGroup, String bloodPressure, String bloodSugar) {
+        this.height = height;
+        this.wight = wight;
+        this.bloodGroup = bloodGroup;
+        this.bloodPressure = bloodPressure;
+        this.bloodSugar = bloodSugar;
+    }
 
+    public HealthClass() {
+    }
 
     public String getHeight() {
         return height;
