@@ -60,7 +60,16 @@ public class ProfileDetails extends Activity {
             case R.id.buttonHealth:
                 startActivity(new Intent(ProfileDetails.this, HealthCreateActivity.class));
                 break;
+            case R.id.buttonDiet:
+                startActivity(new Intent(ProfileDetails.this,DietCreateActivity.class));
+break;
+            case R.id.buttonVciNation:
+                startActivity(new Intent(ProfileDetails.this,VaciCreateActivity.class));
+                break;
 
+            case R.id.buttonDoctor:
+                startActivity(new Intent(ProfileDetails.this,DoctorCreateActivity.class));
+                break;
         }
         finish();
     }

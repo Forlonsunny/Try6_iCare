@@ -127,7 +127,8 @@
                     android:paddingRight="5dp"
                     android:paddingLeft="5dp"
                     android:paddingBottom="2dp"
-                    android:id="@+id/button"
+                    android:id="@+id/buttonDoctor"
+                    android:onClick="BtForActionAces"
                     />
 
                 <Button
@@ -137,9 +138,10 @@
                     android:text="Vaccination"
                     android:paddingTop="2dp"
                     android:paddingRight="5dp"
+                    android:onClick="BtForActionAces"
                     android:paddingLeft="5dp"
                     android:paddingBottom="2dp"
-                    android:id="@+id/buttonB4" />
+                    android:id="@+id/buttonVciNation" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

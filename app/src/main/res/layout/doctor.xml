@@ -1,16 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="greendust.sqllite.icare.ConditionHealth">
+    >
 
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,68 +21,22 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Hight: "
-                android:id="@+id/textHight" >
+                android:text="Name: "
+                android:id="@+id/textDoctorName" >
 
             </TextView>
 
             <EditText
-                android:id="@+id/etHight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-
-                android:hint="CM/INCH:"
-                android:inputType="numberDecimal" >
+                android:inputType="text"
+                android:id="@+id/doctor_type">
 
                 <requestFocus />
             </EditText>
 
-             />
-        </LinearLayout>
-
-         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3">
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Weight: "
-            android:id="@+id/textWeight" >
-
-        </TextView>
-
-        <EditText
-            android:id="@+id/etWeight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="KG/Pound"
-            android:inputType="numberDecimal" />
-
-    </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3">
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Blood Group: "
-                android:id="@+id/textBloodGroup" >
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/etBloodGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text" />
+            />
 
         </LinearLayout>
 
@@ -93,56 +48,86 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Blood Pressure: "
-                android:id="@+id/textBloodPressure" >
+                android:text="Type: "
+                android:id="@+id/textType" >
 
             </TextView>
 
             <EditText
-                android:id="@+id/etBloodPressure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="text" />
+                android:inputType="text"
+                android:id="@+id/doctor_name">
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="3">
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Blood Sugar: "
-                android:id="@+id/textBloodSugar" >
-
-            </TextView>
-
-            <EditText
-                android:id="@+id/etBloodSugar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="text" />
-
-        </LinearLayout>
-
-
-        <Button
-            android:paddingTop="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Submit"
-            android:layout_marginLeft="150dp"
-            android:onClick="SubmitHeBt"
+                <requestFocus />
+            </EditText>
 
             />
 
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Address: "
+                android:id="@+id/texAddress" >
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/etReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Appointment Date:"
+                android:id="@+id/textVdate" >
+
+            </TextView>
+
+            <EditText
+                android:id="@+id/etDinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="date" />
+
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addProfileBt"
+        android:text="Submit"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-</LinearLayout>
 
+</RelativeLayout>

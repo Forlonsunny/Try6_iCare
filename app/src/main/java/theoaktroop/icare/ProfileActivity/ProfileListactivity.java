@@ -14,7 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,29 +79,36 @@ public class ProfileListactivity extends ActionBarActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==REQUEST_CODE_ADD_PROFILE){
-            Profile createdProfile=(Profile) data.getSerializableExtra(EXTRA_ADDED_PROFILE);
-            if(mProfileList==null) {
-                mProfileList = new ArrayList<Profile>();
-                mProfileList.add(createdProfile);
-            }
 
-            if (mListView.getVisibility() != View.VISIBLE) {
-                mListView.setVisibility(View.VISIBLE);
+        try {
 
-            }
 
-            if (mAdapter == null) {
-                mAdapter = new ListProfileAdapter(this, mProfileList);
-                mListView.setAdapter(mAdapter);
-                contextRegister();
+            if (requestCode == REQUEST_CODE_ADD_PROFILE) {
+                Profile createdProfile = (Profile) data.getSerializableExtra(EXTRA_ADDED_PROFILE);
+                if (mProfileList == null) {
+                    mProfileList = new ArrayList<Profile>();
+                    mProfileList.add(createdProfile);
+                }
+
+                if (mListView.getVisibility() != View.VISIBLE) {
+                    mListView.setVisibility(View.VISIBLE);
+
+                }
+
+                if (mAdapter == null) {
+                    mAdapter = new ListProfileAdapter(this, mProfileList);
+                    mListView.setAdapter(mAdapter);
+                    contextRegister();
+                } else {
+                    // mAdapter.setItems(mListEmployess);
+                    //mAdapter.notifyDataSetChanged();
+                }
             } else {
-                // mAdapter.setItems(mListEmployess);
-                //mAdapter.notifyDataSetChanged();
+
             }
         }
-        else {
-
+        catch (Exception e){
+//            Toast.makeText(getApplicationContext(),"Enter Data!", Toast.LENGTH_SHORT).show();
         }
 
     }
