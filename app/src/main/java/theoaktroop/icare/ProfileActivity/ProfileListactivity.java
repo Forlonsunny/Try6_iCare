@@ -1,9 +1,4 @@
 package theoaktroop.icare.ProfileActivity;
-/**
- * Created by Sunny_PC on 6/21/2015.
- *
- *
- */
 
 import android.content.Context;
 import android.content.Intent;
@@ -40,6 +35,8 @@ public class ProfileListactivity extends ActionBarActivity {
         mprofileDataBase=new ProfileDataBase(this);
         mProfileList=mprofileDataBase.getAllProfiles();
         mListView=(ListView)findViewById(R.id.list_item_forProfile);
+
+        System.out.println(ProfileDBHelper.COLUMN_PROFILE_ID);
 
 
         if (mProfileList!=null && !mProfileList.isEmpty()){

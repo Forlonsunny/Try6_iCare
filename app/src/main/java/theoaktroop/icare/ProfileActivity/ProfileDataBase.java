@@ -46,11 +46,10 @@ public class ProfileDataBase {
     public Profile createNewProfile(String mName, String mRelation, String mAge) {
         ContentValues values = new ContentValues();
 
-
         values.put(ProfileDBHelper.COLUMN_PROFILE_NAME, mName);
         values.put(ProfileDBHelper.COLUMN_PROFILE_RELATION, mRelation);
         values.put(ProfileDBHelper.COLUMN_PROFILE_AGE, mAge);
-        long insertId=mSqLiteDatabase.insert(ProfileDBHelper.TABLE_PROFILE,null,values);
+                long insertId=mSqLiteDatabase.insert(ProfileDBHelper.TABLE_PROFILE,null,values);
 
         Cursor cursor=mSqLiteDatabase.query(ProfileDBHelper.TABLE_PROFILE,allColumns,ProfileDBHelper.COLUMN_PROFILE_ID +" = "+insertId,null,null,null,null);
         cursor.moveToFirst();

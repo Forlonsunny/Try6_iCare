@@ -35,15 +35,12 @@ public class HealthCreateActivity extends Activity {
     }
     public void SubmitHeBt(View view){
 
-
-
         try {
             Editable prHeight=getEtHegith.getText();
             Editable prWeght=getGetEtWeight.getText();
             Editable prBloodGropup=getGetEtBlGropup.getText();
             Editable prBlPre=getGetEtBlPl.getText();
             Editable prBlSl=getGetEtBlSl.getText();
-
 
             if (!TextUtils.isEmpty(prHeight) && !TextUtils.isEmpty(prWeght) && !TextUtils.isEmpty(prBloodGropup) &&
                     !TextUtils.isEmpty(prBlPre) && !TextUtils.isEmpty(prBlSl)) {
@@ -53,12 +50,12 @@ public class HealthCreateActivity extends Activity {
 //                setResult(RESULT_OK, intent);
                 finish();
             } else {
-                Toast.makeText(this, "You Must Fill all Requirement  ", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "You Must Fill all Fields", Toast.LENGTH_LONG).show();
             }
         }
         catch (Exception e)
         {
-            Toast.makeText(this, "You Must Fill all Requirement  ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "You Must Fill all Fields", Toast.LENGTH_LONG).show();
         }
 
     }

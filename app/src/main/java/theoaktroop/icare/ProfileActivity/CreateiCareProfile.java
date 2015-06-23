@@ -38,30 +38,31 @@ public class CreateiCareProfile extends Activity {
         getTxt_pAge=(EditText)findViewById(R.id.et_p_age);
 
     }
+
     public void AddbtAction(View view){
 
-     try {
+         try {
 
-         Editable prName=getTxt_pName.getText();
+             Editable prName=getTxt_pName.getText();
+             Editable prRelation=getTxt_pRelation.getText();
+             Editable prAge=getTxt_pAge.getText();
 
-         Editable prRelation=getTxt_pRelation.getText();
+             if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
+                !TextUtils.isEmpty(prAge)) {
+                Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString());
+                Intent intent = new Intent();
+                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+            else {
+                Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+            }
 
-         Editable prAge=getTxt_pAge.getText();
-    if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
-            !TextUtils.isEmpty(prAge)) {
-        Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString());
-        Intent intent = new Intent();
-        intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
-        setResult(RESULT_OK, intent);
-        finish();
-    } else {
-        Toast.makeText(this, "You Must Fill all Requirement  ", Toast.LENGTH_LONG).show();
-    }
-       }
-     catch (Exception e)
-   {
-    Toast.makeText(this, "You Must Fill all Requirement  ", Toast.LENGTH_LONG).show();
-   }
+         }
+         catch (Exception e) {
+            Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+        }
 
     }
 

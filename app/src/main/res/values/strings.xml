@@ -17,4 +17,22 @@
     <string name="alarm">Set Alarm</string>
 
     <string name="add">Add To Diet Chart</string>
+
+    <string-array name="meal_arrays">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snacks</item>
+    </string-array>
+
+    <string-array name="day_arrays">
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+
 </resources>

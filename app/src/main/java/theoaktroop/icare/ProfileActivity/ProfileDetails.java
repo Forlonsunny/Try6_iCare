@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import theoaktroop.icare.DietChart.DietCreateActivity;
 import theoaktroop.icare.Health.HealthCreateActivity;
 import theoaktroop.icare.R;
 
@@ -22,27 +23,20 @@ public class ProfileDetails extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.profile_details_with_aces);
 
-
         intilizationOfViews();
-
 
         Intent mEIntent = getIntent();
         flag = mEIntent.getStringExtra("id");
         if (flag != null) {
             eMid = Long.parseLong(flag);
 
-
             mProfileDataBase = new ProfileDataBase(this);
             mProfile = mProfileDataBase.getAllProfilesById(eMid);
             getTxt_pName.setText(mProfile.getProfileName());
             getTxt_pRelation.setText(mProfile.getRelation());
             getTxt_pAge.setText(mProfile.getAge());
-
-
 
         }
     }
@@ -61,8 +55,10 @@ public class ProfileDetails extends Activity {
                 startActivity(new Intent(ProfileDetails.this, HealthCreateActivity.class));
                 break;
             case R.id.buttonDiet:
-                startActivity(new Intent(ProfileDetails.this,DietCreateActivity.class));
-break;
+                Intent intent = new Intent(ProfileDetails.this,DietCreateActivity.class);
+                intent.putExtra("profile_id",eMid);
+                startActivity(intent);
+                break;
             case R.id.buttonVciNation:
                 startActivity(new Intent(ProfileDetails.this,VaciCreateActivity.class));
                 break;

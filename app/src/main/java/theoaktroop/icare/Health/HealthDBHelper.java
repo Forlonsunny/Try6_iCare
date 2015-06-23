@@ -21,13 +21,6 @@ public class HealthDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_HEALTH_BLOOD_PRESSURE="blood_pressure";
     public static final String COLUMN_HEALTH_BLOOD_SUGAR="blood_sugar";
 
-//    private static final String SQL_CREATE_TABLE_PROFILE= "CREATE TABLE "+ TABLE_PROFILE
-//            +"("
-//            + COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            +COLUMN_PROFILE_NAME+" TEXT NOT NULL, "
-//            +COLUMN_PROFILE_RELATION+" TEXT NOT NULL, "
-//            +COLUMN_PROFILE_AGE+" TEXT NOT NULL "
-//            +");";
     private static final String SQL_CREATE_TABLE_HEALTH= "CREATE TABLE "+TABLE_HEALTH
             +"("
             +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "

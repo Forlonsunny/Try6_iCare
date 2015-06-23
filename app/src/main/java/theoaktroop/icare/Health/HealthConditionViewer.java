@@ -27,13 +27,13 @@ public class HealthConditionViewer extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.health_condition_viewer);
         initilizationOfViews();
-       mHealthDatabaseQuery=new HealthDatabaseQuery(this);
+//       mHealthDatabaseQuery=new HealthDatabaseQuery(this);
 
         Intent mEIntent = getIntent();
         flag = mEIntent.getStringExtra("id");
         if (flag != null) {
             eMid = Long.parseLong(flag);
-System.out.println("From Condition Viewer "+eMid);
+    System.out.println("From Condition Viewer "+eMid);
 
 
             mHealthDatabaseQuery = new HealthDatabaseQuery(this);
