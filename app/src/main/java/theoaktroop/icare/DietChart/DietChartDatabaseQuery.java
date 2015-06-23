@@ -89,7 +89,7 @@ public class DietChartDatabaseQuery {
 
     public DietChartClass getAllDietsById(long id) {
         Cursor cursor = mSqLiteDatabase.query(DietChartDBHelper.TABLE_DIET, allColumns,
-                DietChartDBHelper.COLUMN_ID + " = ?",
+                ProfileDBHelper.COLUMN_PROFILE_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -108,6 +108,9 @@ public class DietChartDatabaseQuery {
         dietChart.setDay(cursor.getString(2));
         dietChart.setMealType(cursor.getString(3));
         dietChart.setFoodMenu(cursor.getString(4));
+        System.out.println("From DietChartDatabase "+cursor.getString(3));
+
+
 
         return dietChart;
     }

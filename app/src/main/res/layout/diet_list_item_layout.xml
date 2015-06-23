@@ -20,13 +20,13 @@
 
         ></ListView>
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Diet"
-        android:id="@+id/bt_add_dier"
-        android:layout_weight="1"
-        android:onClick="Add Diet" />
+    <!--<Button-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Add Diet"-->
+        <!--android:id="@+id/bt_add_dier"-->
+        <!--android:layout_weight="1"-->
+        <!--android:onClick="Add Diet" />-->
 
 
 

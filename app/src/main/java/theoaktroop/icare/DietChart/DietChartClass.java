@@ -43,4 +43,10 @@ public class DietChartClass extends Profile {
         this.foodMenu = foodMenu;
     }
 
+
+
+    /**
+     * Created by Sunny_PC on 6/23/2015.
+     */
+
 }

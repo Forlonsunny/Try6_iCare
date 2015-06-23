@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
 
-    <item android:id="@+id/action_ViewDiet" android:title="Add Diet" android:orderInCategory="100" />
+    <item android:id="@+id/action_ViewDiet" android:title="View Diet" android:orderInCategory="100" />
     <item android:id="@+id/action_viewHealthCondition" android:title="View Health Condition" android:orderInCategory="99" />
     <item android:id="@+id/action_viewDoctor" android:title="View Doctor" android:orderInCategory="102" />
 </menu>

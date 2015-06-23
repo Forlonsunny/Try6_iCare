@@ -9,7 +9,7 @@ import theoaktroop.icare.ProfileActivity.ProfileDBHelper;
 
 public class DietChartDBHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "profile.db";
+    public static final String DATABASE_NAME = "diet.db";
     public static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_DIET="diet_chart";
@@ -19,14 +19,14 @@ public class DietChartDBHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DIET_FOOD_MENU="food_menu";
 
 
-    private static final String SQL_CREATE_TABLE_DIET="CREATE TABLE "+TABLE_DIET
+    private static final String SQL_CREATE_TABLE_DIET= "CREATE TABLE "+TABLE_DIET
             +"("
             +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ProfileDBHelper.COLUMN_PROFILE_ID +" TEXT NOT NULL, "
             +COLUMN_DIET_DAY +" TEXT NOT NULL, "
             +COLUMN_DIET_MEAL_TYPE +" TEXT NOT NULL, "
-            +COLUMN_DIET_FOOD_MENU +" TEXT NOT NULL, "
-            +";)";
+            +COLUMN_DIET_FOOD_MENU +" TEXT NOT NULL "
+            +");";
 
 
     public DietChartDBHelper(Context context) {
@@ -37,6 +37,8 @@ public class DietChartDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_DIET);
+        System.out.println("From DietChartDbHelper ");
+
 
     }
 

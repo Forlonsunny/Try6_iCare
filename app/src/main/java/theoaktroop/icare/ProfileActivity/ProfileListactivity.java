@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
+import theoaktroop.icare.DietChart.DietChartClass;
+import theoaktroop.icare.DietChart.DietViewer;
 import theoaktroop.icare.Health.HealthConditionViewer;
 import theoaktroop.icare.R;
 
@@ -157,6 +157,11 @@ public class ProfileListactivity extends ActionBarActivity {
                 Intent HIntent=new Intent(ProfileListactivity.this,HealthConditionViewer.class);
                 HIntent.putExtra("id",String.valueOf(ePID));
                 startActivity(HIntent);
+                break;
+            case R.id.action_ViewDiet:
+                Intent dIntent=new Intent(ProfileListactivity.this,DietViewer.class);
+                dIntent.putExtra("id",String.valueOf(ePID));
+                startActivity(dIntent);
                 break;
 
 
