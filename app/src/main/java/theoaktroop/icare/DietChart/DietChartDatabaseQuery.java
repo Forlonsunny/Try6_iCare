@@ -9,30 +9,29 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import theoaktroop.icare.ProfileActivity.Profile;
-import theoaktroop.icare.ProfileActivity.ProfileDBHelper;
+import theoaktroop.icare.DbHelper.DbHelper;
 
 /**
  * Created by Hasan Abdullah on 21-Jun-15.
  */
 public class DietChartDatabaseQuery {
 
-    private DietChartDBHelper dietChartDBHelper;
+    private DbHelper dietChartDBHelper;
     private SQLiteDatabase mSqLiteDatabase;
     private Context mContext;
     private String[] allColumns={
-            DietChartDBHelper.COLUMN_ID,
-            ProfileDBHelper.COLUMN_PROFILE_ID,
-            DietChartDBHelper.COLUMN_DIET_DAY,
-            DietChartDBHelper.COLUMN_DIET_MEAL_TYPE,
-            DietChartDBHelper.COLUMN_DIET_FOOD_MENU
+            DbHelper.COLUMN_DIET_ID,
+            DbHelper.COLUMN_PROFILE_ID,
+            DbHelper.COLUMN_DIET_DAY,
+            DbHelper.COLUMN_DIET_MEAL_TYPE,
+            DbHelper.COLUMN_DIET_FOOD_MENU
     };
 
     public DietChartDatabaseQuery(Context context) {
 
         this.mContext = context;
 
-        dietChartDBHelper = new DietChartDBHelper(mContext);
+        dietChartDBHelper = new DbHelper(mContext);
         // open the database
         try {
             open();
@@ -52,14 +51,14 @@ public class DietChartDatabaseQuery {
     public DietChartClass createNewDietChart(String profileID, String dayName, String mealType,  String foodMenu) {
         ContentValues values = new ContentValues();
 
-        values.put(ProfileDBHelper.COLUMN_PROFILE_ID, profileID);
-        values.put(DietChartDBHelper.COLUMN_DIET_DAY, dayName);
-        values.put(DietChartDBHelper.COLUMN_DIET_MEAL_TYPE, mealType);
-        values.put(DietChartDBHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
+        values.put(DbHelper.COLUMN_PROFILE_ID, profileID);
+        values.put(DbHelper.COLUMN_DIET_DAY, dayName);
+        values.put(DbHelper.COLUMN_DIET_MEAL_TYPE, mealType);
+        values.put(DbHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
 
-        long insertId=mSqLiteDatabase.insert(DietChartDBHelper.TABLE_DIET,null,values);
+        long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_DIET,null,values);
 
-        Cursor cursor=mSqLiteDatabase.query(DietChartDBHelper.TABLE_DIET,allColumns,DietChartDBHelper.COLUMN_ID+" = "+insertId,null,null,null,null);
+        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_DIET,allColumns, DbHelper.COLUMN_DIET_ID+" = "+insertId,null,null,null,null);
         cursor.moveToFirst();
         DietChartClass newDietChart = cursorToDiet(cursor);
         cursor.close();
@@ -71,7 +70,7 @@ public class DietChartDatabaseQuery {
 
     public List<DietChartClass> getAllDiets(){
         List<DietChartClass>listDiets=new ArrayList<DietChartClass>();
-        Cursor cursor=mSqLiteDatabase.query(DietChartDBHelper.TABLE_DIET, allColumns, null, null, null, null, null);
+        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_DIET, allColumns, null, null, null, null, null);
         if(cursor!=null)
         {
             cursor.moveToFirst();
@@ -88,8 +87,8 @@ public class DietChartDatabaseQuery {
     }
 
     public DietChartClass getAllDietsById(long id) {
-        Cursor cursor = mSqLiteDatabase.query(DietChartDBHelper.TABLE_DIET, allColumns,
-                ProfileDBHelper.COLUMN_PROFILE_ID + " = ?",
+        Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_DIET, allColumns,
+                DbHelper.COLUMN_PROFILE_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

@@ -9,28 +9,30 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import theoaktroop.icare.DbHelper.DbHelper;
+
 /**
  * Created by Hasan Abdullah on 21-Jun-15.
  */
 public class HealthDatabaseQuery {
 
-    private HealthDBHelper healthDBHelper;
+    private DbHelper healthDBHelper;
     private SQLiteDatabase mSqLiteDatabase;
     private Context mContext;
     private String[] allColumns={
-            HealthDBHelper.COLUMN_ID,
-            HealthDBHelper.COLUMN_HEALTH_HEIGHT,
-            HealthDBHelper.COLUMN_HEALTH_WEIGHT,
-            HealthDBHelper.COLUMN_HEALTH_BLOOD_GROUP,
-            HealthDBHelper.COLUMN_HEALTH_BLOOD_PRESSURE,
-            HealthDBHelper.COLUMN_HEALTH_BLOOD_SUGAR
+            DbHelper.COLUMN_HEALTH_ID,
+            DbHelper.COLUMN_HEALTH_HEIGHT,
+            DbHelper.COLUMN_HEALTH_WEIGHT,
+            DbHelper.COLUMN_HEALTH_BLOOD_GROUP,
+            DbHelper.COLUMN_HEALTH_BLOOD_PRESSURE,
+            DbHelper.COLUMN_HEALTH_BLOOD_SUGAR
     };
 
     public HealthDatabaseQuery(Context context) {
 
         this.mContext = context;
 
-        healthDBHelper = new HealthDBHelper(mContext);
+        healthDBHelper = new DbHelper(mContext);
         // open the database
         try {
             open();
@@ -50,15 +52,15 @@ public class HealthDatabaseQuery {
     public HealthClass createNewHealth(String mHeight, String mWeight, String mBloodGroup, String mBloodPressure, String mBloodSugar) {
         ContentValues values = new ContentValues();
 
-        values.put(HealthDBHelper.COLUMN_HEALTH_HEIGHT, mHeight);
-        values.put(HealthDBHelper.COLUMN_HEALTH_WEIGHT, mWeight);
-        values.put(HealthDBHelper.COLUMN_HEALTH_BLOOD_GROUP, mBloodGroup);
-        values.put(HealthDBHelper.COLUMN_HEALTH_BLOOD_PRESSURE, mBloodPressure);
-        values.put(HealthDBHelper.COLUMN_HEALTH_BLOOD_SUGAR, mBloodSugar);
+        values.put(DbHelper.COLUMN_HEALTH_HEIGHT, mHeight);
+        values.put(DbHelper.COLUMN_HEALTH_WEIGHT, mWeight);
+        values.put(DbHelper.COLUMN_HEALTH_BLOOD_GROUP, mBloodGroup);
+        values.put(DbHelper.COLUMN_HEALTH_BLOOD_PRESSURE, mBloodPressure);
+        values.put(DbHelper.COLUMN_HEALTH_BLOOD_SUGAR, mBloodSugar);
 
-        long insertId=mSqLiteDatabase.insert(HealthDBHelper.TABLE_HEALTH,null,values);
+        long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_HEALTH,null,values);
 
-        Cursor cursor=mSqLiteDatabase.query(HealthDBHelper.TABLE_HEALTH,allColumns,HealthDBHelper.COLUMN_ID+" = "+insertId,null,null,null,null);
+        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_HEALTH,allColumns, DbHelper.COLUMN_HEALTH_ID+" = "+insertId,null,null,null,null);
         cursor.moveToFirst();
         HealthClass newHealth = cursorToHealth(cursor);
         cursor.close();
@@ -70,7 +72,7 @@ public class HealthDatabaseQuery {
 
     public List<HealthClass> getAllHealths(){
         List<HealthClass>listHealths=new ArrayList<HealthClass>();
-        Cursor cursor=mSqLiteDatabase.query(HealthDBHelper.TABLE_HEALTH, allColumns, null, null, null, null, null);
+        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_HEALTH, allColumns, null, null, null, null, null);
         if(cursor!=null)
         {
             cursor.moveToFirst();
@@ -87,8 +89,8 @@ public class HealthDatabaseQuery {
     }
 
     public HealthClass getAllHealthsById(long id) {
-        Cursor cursor = mSqLiteDatabase.query(HealthDBHelper.TABLE_HEALTH, allColumns,
-                HealthDBHelper.COLUMN_ID + " = ?",
+        Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_HEALTH, allColumns,
+                DbHelper.COLUMN_HEALTH_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

@@ -9,24 +9,26 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import theoaktroop.icare.DbHelper.DbHelper;
+
 
 public class ProfileDataBase {
 
-    private ProfileDBHelper mProfileDbHelper;
+    private DbHelper mProfileDbHelper;
     private SQLiteDatabase mSqLiteDatabase;
     private Context mContext;
     private String[] allColumns={
-            ProfileDBHelper.COLUMN_PROFILE_ID,
-            ProfileDBHelper.COLUMN_PROFILE_NAME,
-            ProfileDBHelper.COLUMN_PROFILE_RELATION,
-            ProfileDBHelper.COLUMN_PROFILE_AGE
+            DbHelper.COLUMN_PROFILE_ID,
+            DbHelper.COLUMN_PROFILE_NAME,
+            DbHelper.COLUMN_PROFILE_RELATION,
+            DbHelper.COLUMN_PROFILE_AGE
     };
 
     public ProfileDataBase(Context context) {
 
         this.mContext = context;
 
-        mProfileDbHelper = new ProfileDBHelper(mContext);
+        mProfileDbHelper = new DbHelper(mContext);
         // open the database
         try {
             open();
@@ -46,12 +48,12 @@ public class ProfileDataBase {
     public Profile createNewProfile(String mName, String mRelation, String mAge) {
         ContentValues values = new ContentValues();
 
-        values.put(ProfileDBHelper.COLUMN_PROFILE_NAME, mName);
-        values.put(ProfileDBHelper.COLUMN_PROFILE_RELATION, mRelation);
-        values.put(ProfileDBHelper.COLUMN_PROFILE_AGE, mAge);
-                long insertId=mSqLiteDatabase.insert(ProfileDBHelper.TABLE_PROFILE,null,values);
+        values.put(DbHelper.COLUMN_PROFILE_NAME, mName);
+        values.put(DbHelper.COLUMN_PROFILE_RELATION, mRelation);
+        values.put(DbHelper.COLUMN_PROFILE_AGE, mAge);
+                long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_PROFILE,null,values);
 
-        Cursor cursor=mSqLiteDatabase.query(ProfileDBHelper.TABLE_PROFILE,allColumns,ProfileDBHelper.COLUMN_PROFILE_ID +" = "+insertId,null,null,null,null);
+        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_PROFILE,allColumns, DbHelper.COLUMN_PROFILE_ID +" = "+insertId,null,null,null,null);
         cursor.moveToFirst();
         Profile newProfile = cursorToProfile(cursor);
         cursor.close();
@@ -63,7 +65,7 @@ public class ProfileDataBase {
 
     public List<Profile> getAllProfiles(){
         List<Profile>listProfiles=new ArrayList<Profile>();
-        Cursor cursor=mSqLiteDatabase.query(ProfileDBHelper.TABLE_PROFILE,allColumns, null, null, null, null, null);
+        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_PROFILE,allColumns, null, null, null, null, null);
         if(cursor!=null)
         {
             cursor.moveToFirst();
@@ -80,8 +82,8 @@ public class ProfileDataBase {
     }
 
     public Profile getAllProfilesById(long id) {
-        Cursor cursor = mSqLiteDatabase.query(ProfileDBHelper.TABLE_PROFILE, allColumns,
-                ProfileDBHelper.COLUMN_PROFILE_ID + " = ?",
+        Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_PROFILE, allColumns,
+                DbHelper.COLUMN_PROFILE_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

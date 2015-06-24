@@ -22,6 +22,7 @@ public class DietCreateActivity extends Activity{
     private DietChartDatabaseQuery mDietChartDatabaseQuery;
     private Long profileID;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
