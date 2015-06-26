@@ -28,7 +28,9 @@
         <activity android:name=".DietChart.DietViewer"></activity>
 
         <activity android:name=".ProfileActivity.VaciCreateActivity"></activity>
-        <activity android:name=".ProfileActivity.DoctorCreateActivity"></activity>
+
+        <activity android:name=".Doctor.DoctorCreateActivity"></activity>
+        <activity android:name=".Doctor.DoctorViewer"></activity>
 
 
 </application>

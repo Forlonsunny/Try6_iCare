@@ -1,4 +1,4 @@
-package theoaktroop.icare.DietChart;
+package theoaktroop.icare.Doctor;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,11 +14,11 @@ import theoaktroop.icare.R;
 /**
  * Created by Sunny_PC on 6/23/2015.
  */
-public class DietViewer extends Activity {
+public class DoctorViewer extends Activity {
     ListView listViewDiet;
-    DietChartDatabaseQuery mDietChartDatabaseQuery;
-    private List<DietChartClass> mDierchartclass;
-    private ListDietAdapter mAdapter;
+    DoctorDatabaseQuery mDoctorDatabaseQuery;
+    private List<DoctorClass> mDoctorClassList;
+    private ListDoctorAdapter mAdapter;
     private long profileID;
 
 
@@ -29,7 +29,7 @@ public class DietViewer extends Activity {
         setContentView(R.layout.diet_list_item_layout);
         listViewDiet = (ListView) findViewById(R.id.list_item_forD);
 
-        mDietChartDatabaseQuery = new DietChartDatabaseQuery(this);
+        mDoctorDatabaseQuery = new DoctorDatabaseQuery(this);
         Intent intent = getIntent();
         profileID = Long.parseLong(intent.getStringExtra("profile_id"));
 
@@ -39,9 +39,9 @@ public class DietViewer extends Activity {
     }
     public void setListView()
     {
-        mDierchartclass =mDietChartDatabaseQuery.getAllDietsById(profileID);
-        System.out.println("For setList"+mDierchartclass);
-        mAdapter = new ListDietAdapter(this, mDierchartclass);
+        mDoctorClassList =mDoctorDatabaseQuery.getAllDoctorsById(profileID);
+       // System.out.println("For setList"+mDierchartclass);
+        mAdapter = new ListDoctorAdapter(this,mDoctorClassList);
         listViewDiet.setAdapter(mAdapter);
         System.out.println("From Viewer inside setListView "+profileID);
 //        if (mDierchartclass != null && mDierchartclass.isEmpty()) {
@@ -53,7 +53,7 @@ public class DietViewer extends Activity {
     }
     public void AddDiet(View view)
     {
-        Intent intent = new Intent(DietViewer.this,DietCreateActivity.class);
+        Intent intent = new Intent(DoctorViewer.this,DoctorCreateActivity.class);
         intent.putExtra("profile_id",String.valueOf(profileID));
         startActivity(intent);
     }

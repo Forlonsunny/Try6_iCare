@@ -70,7 +70,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     //For DocTor table
     public static final String TABLE_DOCTOR="doctor";
-    public static final String COLUMN_DOCTOR_ID="_id";
+    public static final String COLUMN_DOCTOR_ID="_id_doc";
     public static final String COLUMN_DOCTOR_NAME="doctor_name";
     public static final String COLUMN_DOCTOR_ADDRESS="doctor_address";
     public static final String COLUMN_DOCTOR_PHONE="doctor_phone";
@@ -117,7 +117,7 @@ public static final String TABLE_VACCINE="vaccine";
         db.execSQL(SQL_CREATE_TABLE_PROFILE);
         db.execSQL(SQL_CREATE_TABLE_HEALTH);
         db.execSQL(SQL_CREATE_TABLE_DIET);
-        //db.execSQL(SQL_CREATE_TABLE_DOCTOR);
+        db.execSQL(SQL_CREATE_TABLE_DOCTOR);
        // db.execSQL(SQL_CREATE_TABLE_VACCINE);
 
 

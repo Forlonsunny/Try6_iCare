@@ -85,7 +85,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/etAddress"
+                android:id="@+id/doctor_Address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -105,7 +105,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/etPhone"
+                android:id="@+id/doctor_Phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone" />
@@ -126,7 +126,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/etAppDate"
+                android:id="@+id/doctor_AppDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date" />
@@ -143,6 +143,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/addDoctorBt"
         android:text="Submit"
+        android:onClick="addDoctorBt"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

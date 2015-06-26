@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello Diet Helper"
-        android:id="@+id/diet_helper_tv"
+        android:id="@+id/doctor_helper_tv"
         />
 
 </LinearLayout>

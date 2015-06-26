@@ -1,17 +1,14 @@
 package theoaktroop.icare.ProfileActivity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import theoaktroop.icare.DietChart.DietCreateActivity;
 import theoaktroop.icare.DietChart.DietViewer;
+import theoaktroop.icare.Doctor.DoctorViewer;
 import theoaktroop.icare.Health.HealthConditionViewer;
-import theoaktroop.icare.Health.HealthCreateActivity;
 import theoaktroop.icare.R;
 
 /**
@@ -72,7 +69,10 @@ public class ProfileDetails extends Activity {
                 break;
 
             case R.id.buttonDoctor:
-                startActivity(new Intent(ProfileDetails.this,DoctorCreateActivity.class));
+                Intent fintent =new Intent(ProfileDetails.this, DoctorViewer.class);
+                fintent.putExtra("profile_id", String.valueOf(eMid));
+                startActivity(fintent);
+
                 break;
         }
        // finish();
