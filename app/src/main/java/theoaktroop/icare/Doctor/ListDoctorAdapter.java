@@ -50,7 +50,7 @@ public class ListDoctorAdapter extends BaseAdapter {
             v = mInflater.inflate(R.layout.doctor_helper_xml, parent, false);
             holder = new ViewHolder();
             holder.txtDoctorClass = (TextView) v.findViewById(R.id.doctor_helper_tv);
-            holder.txtDoctorTypeClass =(TextView) v.findViewById(R.id.doctor_helper_tv);
+            holder.txtDoctorTypeClass =(TextView) v.findViewById(R.id.doctor_helper_ty);
 
             v.setTag(holder);
         }
