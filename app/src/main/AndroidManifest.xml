@@ -20,12 +20,16 @@
 
     <activity android:name=".ProfileActivity.CreateiCareProfile"></activity>
     <activity android:name=".ProfileActivity.ProfileDetails"></activity>
+
     <activity android:name=".Health.HealthCreateActivity"></activity>
         <activity android:name=".Health.HealthConditionViewer"></activity>
+
 <activity android:name=".DietChart.DietCreateActivity"></activity>
+        <activity android:name=".DietChart.DietViewer"></activity>
+
         <activity android:name=".ProfileActivity.VaciCreateActivity"></activity>
         <activity android:name=".ProfileActivity.DoctorCreateActivity"></activity>
-        <activity android:name=".DietChart.DietViewer"></activity>
+
 
 </application>
 

@@ -57,7 +57,7 @@ public class DietChartDatabaseQuery {
         values.put(DbHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
 
         long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_DIET,null,values);
-
+        System.out.println("From the diet database "+insertId+" "+dayName);
         Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_DIET,allColumns, DbHelper.COLUMN_DIET_ID+" = "+insertId,null,null,null,null);
         cursor.moveToFirst();
         DietChartClass newDietChart = cursorToDiet(cursor);
@@ -86,16 +86,32 @@ public class DietChartDatabaseQuery {
 
     }
 
-    public DietChartClass getAllDietsById(long id) {
+    public List<DietChartClass> getAllDietsById(long id) {
+        List<DietChartClass>listDiets=new ArrayList<DietChartClass>();
+
         Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_DIET, allColumns,
                 DbHelper.COLUMN_PROFILE_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
-        if (cursor != null) {
+        //Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_DIET,allColumns,null,null, null, null, null);
+        if(cursor!=null)
+        {
             cursor.moveToFirst();
+            while (!cursor.isAfterLast()){
+                DietChartClass dietChart =cursorToDiet(cursor);
+                listDiets.add(dietChart);
+                cursor.moveToNext();
+            }
+            cursor.close();
         }
 
-        DietChartClass dietChart = cursorToDiet(cursor);
-        return dietChart;
+        return listDiets;
+
+//        if (cursor != null) {
+//            cursor.moveToFirst();
+//        }
+//
+//        DietChartClass dietChart = cursorToDiet(cursor);
+//        return dietChart;
     }
 
 

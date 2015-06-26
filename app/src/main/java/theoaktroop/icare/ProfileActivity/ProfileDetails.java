@@ -1,12 +1,16 @@
 package theoaktroop.icare.ProfileActivity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import theoaktroop.icare.DietChart.DietCreateActivity;
+import theoaktroop.icare.DietChart.DietViewer;
+import theoaktroop.icare.Health.HealthConditionViewer;
 import theoaktroop.icare.Health.HealthCreateActivity;
 import theoaktroop.icare.R;
 
@@ -34,6 +38,7 @@ public class ProfileDetails extends Activity {
 
             mProfileDataBase = new ProfileDataBase(this);
             mProfile = mProfileDataBase.getAllProfilesById(eMid);
+
             getTxt_pName.setText(mProfile.getProfileName());
             getTxt_pRelation.setText(mProfile.getRelation());
             getTxt_pAge.setText(mProfile.getAge());
@@ -52,11 +57,14 @@ public class ProfileDetails extends Activity {
 
         switch (view.getId()){
             case R.id.buttonHealth:
-                startActivity(new Intent(ProfileDetails.this, HealthCreateActivity.class));
+                Intent hIntent=new Intent(ProfileDetails.this, HealthConditionViewer.class);
+                hIntent.putExtra("profile_id", String.valueOf(eMid));
+                startActivity(hIntent);
+
                 break;
             case R.id.buttonDiet:
-                Intent intent = new Intent(ProfileDetails.this,DietCreateActivity.class);
-                intent.putExtra("profile_id",eMid);
+                Intent intent = new Intent(ProfileDetails.this,DietViewer.class);
+                intent.putExtra("profile_id",String.valueOf(eMid));
                 startActivity(intent);
                 break;
             case R.id.buttonVciNation:
@@ -67,7 +75,7 @@ public class ProfileDetails extends Activity {
                 startActivity(new Intent(ProfileDetails.this,DoctorCreateActivity.class));
                 break;
         }
-        finish();
+       // finish();
     }
 
 }

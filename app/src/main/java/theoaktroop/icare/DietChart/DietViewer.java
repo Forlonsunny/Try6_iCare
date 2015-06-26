@@ -1,16 +1,14 @@
 package theoaktroop.icare.DietChart;
 
 import android.app.Activity;
-
-import theoaktroop.icare.DbHelper.*;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
-
 
 import java.util.List;
 
+import theoaktroop.icare.DbHelper.DbHelper;
 import theoaktroop.icare.R;
 
 /**
@@ -23,6 +21,8 @@ public class DietViewer extends Activity {
     private ListDietAdapter mAdapter;
     private long profileID;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,27 +31,33 @@ public class DietViewer extends Activity {
 
         mDietChartDatabaseQuery = new DietChartDatabaseQuery(this);
         Intent intent = getIntent();
-        profileID = intent.getLongExtra("profile_id", 0);
+        profileID = Long.parseLong(intent.getStringExtra("profile_id"));
 
-
+      setListView();
 
         System.out.println(DbHelper.COLUMN_PROFILE_ID);
+    }
+    public void setListView()
+    {
+        mDierchartclass =mDietChartDatabaseQuery.getAllDietsById(profileID);
+        System.out.println("For setList"+mDierchartclass);
 
-       //try {
-           //it should be mDierchartclass =  mDietChartDatabaseQuery.getAllDietsByProfileId();
-           mDierchartclass = (List<DietChartClass>) mDietChartDatabaseQuery.getAllDietsById(profileID);
+        if (mDierchartclass != null && mDierchartclass.isEmpty()) {
+            mAdapter = new ListDietAdapter(this, mDierchartclass);
+            listViewDiet.setAdapter(mAdapter);
+            System.out.println("From Viewer inside setListView "+profileID);
+        }
+    }
+    public void AddDiet(View view)
+    {
+        Intent intent = new Intent(DietViewer.this,DietCreateActivity.class);
+        intent.putExtra("profile_id",String.valueOf(profileID));
+        startActivity(intent);
+    }
 
-
-           if (mDierchartclass != null && mDierchartclass.isEmpty()) {
-               mAdapter = new ListDietAdapter(this, mDierchartclass);
-               listViewDiet.setAdapter(mAdapter);
-               System.out.println(profileID);
-           }
-      // }
-
-       //catch (Exception e)
-      // {
-         //  Toast.makeText(getBaseContext(),"Something is Worng",Toast.LENGTH_SHORT).show();
-      // }
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        setListView();
     }
 }

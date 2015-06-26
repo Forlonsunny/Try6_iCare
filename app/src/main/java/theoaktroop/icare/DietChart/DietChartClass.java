@@ -1,11 +1,23 @@
 package theoaktroop.icare.DietChart;
 
 
+import java.io.Serializable;
+
 import theoaktroop.icare.ProfileActivity.Profile;
 
 
-public class DietChartClass extends Profile {
+public class DietChartClass implements Serializable {
+    private static final long serialVersionUID = -7406082437623008161L;
 
+    public long getId() {
+        return Id;
+    }
+
+    public void setId(long id) {
+        Id = id;
+    }
+
+    private long Id;
     private String profileID;
     private String mealType;
     private String day;

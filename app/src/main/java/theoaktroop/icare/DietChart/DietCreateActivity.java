@@ -31,7 +31,7 @@ public class DietCreateActivity extends Activity{
         viewInitialize();
         mDietChartDatabaseQuery = new DietChartDatabaseQuery(this);
         Intent intent = getIntent();
-        profileID = intent.getLongExtra("profile_id",0);
+        profileID = Long.parseLong(intent.getStringExtra("profile_id"));
 
 
     }
@@ -43,6 +43,7 @@ public class DietCreateActivity extends Activity{
             String mealString = mealSpinner.getSelectedItem().toString();
             String menuString = menuEditText.getText().toString();
             DietChartClass createNewDiet = mDietChartDatabaseQuery.createNewDietChart(profileID.toString(),dayString, mealString, menuString);
+       finish();
         }
         catch (Exception e){
             Toast.makeText(getApplicationContext(),"Input food menu",Toast.LENGTH_SHORT).show();

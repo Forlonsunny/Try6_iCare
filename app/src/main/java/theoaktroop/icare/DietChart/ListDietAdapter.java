@@ -60,7 +60,7 @@ public class ListDietAdapter extends BaseAdapter {
         DietChartClass currentItem = getItem(position);
         if(currentItem != null) {
             holder.txtDietChartClassName.setText(currentItem.getDay()+"\n\n"+currentItem.getMealType()+"\n\n"+currentItem.getFoodMenu());
-
+             System.out.println(currentItem.getDay()+"\n\n"+currentItem.getMealType()+"\n\n"+currentItem.getFoodMenu());
         }
 
         return v;

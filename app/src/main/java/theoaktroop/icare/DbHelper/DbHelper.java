@@ -60,7 +60,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_DIET= "CREATE TABLE "+TABLE_DIET
             +"("
             +COLUMN_DIET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_PROFILE_ID +" TEXT , "
+            + COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
             +COLUMN_DIET_DAY +" TEXT , "
             +COLUMN_DIET_MEAL_TYPE +" TEXT , "
             +COLUMN_DIET_FOOD_MENU +" TEXT  "
