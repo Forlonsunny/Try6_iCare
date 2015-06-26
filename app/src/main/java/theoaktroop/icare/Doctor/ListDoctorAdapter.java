@@ -49,7 +49,7 @@ public class ListDoctorAdapter extends BaseAdapter {
         if(v == null) {
             v = mInflater.inflate(R.layout.doctor_helper_xml, parent, false);
             holder = new ViewHolder();
-            holder.txtDietChartClassName = (TextView) v.findViewById(R.id.doctor_helper_tv);
+            holder.txtDoctorClass = (TextView) v.findViewById(R.id.doctor_helper_tv);
 
             v.setTag(holder);
         }
@@ -60,8 +60,7 @@ public class ListDoctorAdapter extends BaseAdapter {
         // fill row data
         DoctorClass currentItem = getItem(position);
         if(currentItem != null) {
-            holder.txtDietChartClassName.setText("Name :" + currentItem.getDoctorName() + "\n\n" + "Type: " + currentItem.getDoctorType() + "\n\n" + "Address: " + currentItem.getDoctorAddress() + "\n\n"
-                    + "Phone: " + currentItem.getDoctorPhone() + "\n\n" + "Appointment Date: "+currentItem.getAppointmentDate()+"\n\n");
+            holder.txtDoctorClass.setText("Name :" + currentItem.getDoctorName() + "\n\n" + "Type: " + currentItem.getDoctorType() + "\n\n" + "Address: " + currentItem.getDoctorAddress() + "\n\n"+ "Phone: " + currentItem.getDoctorPhone() + "\n\n" + "Appointment Date: "+currentItem.getAppointmentDate()+"\n\n");
 
         }
 
@@ -77,7 +76,7 @@ public class ListDoctorAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        TextView txtDietChartClassName;
+        TextView txtDoctorClass;
 
     }
 }

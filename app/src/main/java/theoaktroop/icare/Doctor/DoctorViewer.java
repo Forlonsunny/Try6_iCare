@@ -26,8 +26,8 @@ public class DoctorViewer extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.diet_list_item_layout);
-        listViewDiet = (ListView) findViewById(R.id.list_item_forD);
+        setContentView(R.layout.doctor_list_item_layout);
+        listViewDiet = (ListView) findViewById(R.id.list_item_forDoc);
 
         mDoctorDatabaseQuery = new DoctorDatabaseQuery(this);
         Intent intent = getIntent();
@@ -51,7 +51,7 @@ public class DoctorViewer extends Activity {
 //        }
 
     }
-    public void AddDiet(View view)
+    public void AddDoctor(View view)
     {
         Intent intent = new Intent(DoctorViewer.this,DoctorCreateActivity.class);
         intent.putExtra("profile_id",String.valueOf(profileID));
