@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Hight: "
+        android:textSize="@dimen/textsize"
          >
 
     </TextView>
@@ -24,6 +25,7 @@
         android:id="@+id/tvHight"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+       android:textSize="@dimen/textsize"
          >
     </TextView>
 
@@ -39,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Weight: "
+                android:textSize="@dimen/textsize"
                 android:id="@+id/textHight" >
 
             </TextView>
@@ -47,6 +50,7 @@
                 android:id="@+id/tvWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/textsize"
                 >
             </TextView>
     </LinearLayout>
@@ -62,7 +66,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Blood Group: "
-            android:id="@+id/textBloodGroup"  >
+            android:id="@+id/textBloodGroup"
+            android:textSize="@dimen/textsize">
 
         </TextView>
 
@@ -70,6 +75,7 @@
             android:id="@+id/tvBlGroop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
             >
         </TextView>
     </LinearLayout>
@@ -84,7 +90,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Blood Pressure: "
-            android:id="@+id/textBloodPressure"  >
+            android:id="@+id/textBloodPressure"
+            android:textSize="@dimen/textsize">
 
         </TextView>
 
@@ -92,6 +99,7 @@
             android:id="@+id/tvBlPr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
             >
         </TextView>
     </LinearLayout>
@@ -107,7 +115,8 @@
 
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Blood Sugar: "
-            android:id="@+id/textBloodSugar"  >
+            android:id="@+id/textBloodSugar"
+            android:textSize="@dimen/textsize">
 
         </TextView>
 
@@ -115,6 +124,7 @@
             android:id="@+id/tvBlSr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize"
             >
         </TextView>
     </LinearLayout>
@@ -126,6 +136,7 @@
         android:text="Edit"
         android:layout_marginLeft="150dp"
         android:onClick="SubmitHeBt"
+        android:textSize="@dimen/textsize"
 
         />
 

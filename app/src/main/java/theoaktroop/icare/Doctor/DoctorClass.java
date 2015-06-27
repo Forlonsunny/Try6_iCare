@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 public class DoctorClass
         implements Serializable {
-    private static final long serialVersionUID = -7406082437623008161L;
+    private static final long serialVersionUID = -7426082437623008161L;
 
     private String doctorName;
     private String doctorAddress;
@@ -18,6 +18,8 @@ public class DoctorClass
     private String appointmentDate;
     private String latitude;
     private String longitude;
+    private String profileID;
+    private long Id;
     public long getId() {
         return Id;
     }
@@ -25,8 +27,14 @@ public class DoctorClass
     public void setId(long id) {
         Id = id;
     }
+    public String getProfileID() {
+        return profileID;
+    }
 
-    private long Id;
+    public void setProfileID(String profileID) {
+        this.profileID = profileID;
+    }
+
     public String getDoctorType() {
         return doctorType;
     }

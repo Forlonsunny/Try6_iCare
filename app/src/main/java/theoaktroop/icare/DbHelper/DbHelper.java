@@ -60,7 +60,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_DIET= "CREATE TABLE "+TABLE_DIET
             +"("
             +COLUMN_DIET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
+            +COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
             +COLUMN_DIET_DAY +" TEXT , "
             +COLUMN_DIET_MEAL_TYPE +" TEXT , "
             +COLUMN_DIET_FOOD_MENU +" TEXT  "
@@ -78,10 +78,10 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DOCTOR_APPOINTMENT="doctor_appointment";
 
 
-    private static final String SQL_CREATE_TABLE_DOCTOR="CREATE TABLE "+TABLE_DOCTOR
+    private static final String SQL_CREATE_TABLE_DOCTOR= "CREATE TABLE "+TABLE_DOCTOR
             +"("
             +COLUMN_DOCTOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_PROFILE_ID +" TEXT , "
+            +COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
             +COLUMN_DOCTOR_NAME +" TEXT , "
             +COLUMN_DOCTOR_TYPE +" TEXT , "
             +COLUMN_DOCTOR_ADDRESS +" TEXT , "
@@ -92,15 +92,15 @@ public class DbHelper extends SQLiteOpenHelper {
 
 //For vaccination  Table
 public static final String TABLE_VACCINE="vaccine";
-    public static final String COLUMN_VACCINE_ID="_id";
+    public static final String COLUMN_VACCINE_ID="_id_vc";
     public static final String COLUMN_VACCINE_NAME="vaccine_name";
     public static final String COLUMN_VACCINE_REASON="vaccine_reason";
     public static final String COLUMN_VACCINE_DATE="vaccine_date";
 
-    private static final String SQL_CREATE_TABLE_VACCINE="CREATE TABLE "+TABLE_VACCINE
+    private static final String SQL_CREATE_TABLE_VACCINE= "CREATE TABLE "+TABLE_VACCINE
             +"("
             +COLUMN_VACCINE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_PROFILE_ID +" TEXT , "
+            +COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
             +COLUMN_VACCINE_NAME +" TEXT , "
             +COLUMN_VACCINE_REASON +" TEXT , "
             +COLUMN_VACCINE_DATE +" TEXT  "
@@ -118,7 +118,7 @@ public static final String TABLE_VACCINE="vaccine";
         db.execSQL(SQL_CREATE_TABLE_HEALTH);
         db.execSQL(SQL_CREATE_TABLE_DIET);
         db.execSQL(SQL_CREATE_TABLE_DOCTOR);
-       // db.execSQL(SQL_CREATE_TABLE_VACCINE);
+        db.execSQL(SQL_CREATE_TABLE_VACCINE);
 
 
     }

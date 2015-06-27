@@ -10,6 +10,7 @@ import theoaktroop.icare.DietChart.DietViewer;
 import theoaktroop.icare.Doctor.DoctorViewer;
 import theoaktroop.icare.Health.HealthConditionViewer;
 import theoaktroop.icare.R;
+import theoaktroop.icare.Vaccine.VaciViewerActivity;
 
 /**
  * Created by Mobile App Develop on 17-6-15.
@@ -64,14 +65,17 @@ public class ProfileDetails extends Activity {
                 intent.putExtra("profile_id",String.valueOf(eMid));
                 startActivity(intent);
                 break;
-            case R.id.buttonVciNation:
-                startActivity(new Intent(ProfileDetails.this,VaciCreateActivity.class));
-                break;
 
             case R.id.buttonDoctor:
                 Intent fintent =new Intent(ProfileDetails.this, DoctorViewer.class);
                 fintent.putExtra("profile_id", String.valueOf(eMid));
                 startActivity(fintent);
+
+                break;
+            case R.id.buttonVciNation:
+                Intent vintent =new Intent(ProfileDetails.this, VaciViewerActivity.class);
+                vintent.putExtra("profile_id", String.valueOf(eMid));
+                startActivity(vintent);
 
                 break;
         }

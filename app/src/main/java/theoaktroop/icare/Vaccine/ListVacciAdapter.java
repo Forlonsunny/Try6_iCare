@@ -1,4 +1,4 @@
-package theoaktroop.icare.DietChart;
+package theoaktroop.icare.Vaccine;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,14 +14,14 @@ import theoaktroop.icare.R;
 /**
  * Created by Sunny_PC on 6/23/2015.
  */
-public class ListDietAdapter extends BaseAdapter {
-    public static final String TAG = "ListDietChartClasssAdapter";
+public class ListVacciAdapter extends BaseAdapter {
+    public static final String TAG = "ListVacciAdapter";
 
-    private List<DietChartClass> mItems;
+    private List<VaccinationClass> mItems;
     private LayoutInflater mInflater;
 
-    public ListDietAdapter(Context context, List<DietChartClass> listDietChartClasss) {
-        this.setItems(listDietChartClasss);
+    public ListVacciAdapter(Context context, List<VaccinationClass> listvVaccinationClasses) {
+        this.setItems(listvVaccinationClasses);
         this.mInflater = LayoutInflater.from(context);
     }
 
@@ -32,7 +32,7 @@ public class ListDietAdapter extends BaseAdapter {
     }
 
     @Override
-    public DietChartClass getItem(int position) {
+    public VaccinationClass getItem(int position) {
         return (getItems() != null && !getItems().isEmpty()) ? getItems().get(position) : null ;
     }
 
@@ -46,11 +46,11 @@ public class ListDietAdapter extends BaseAdapter {
         View v = convertView;
         ViewHolder holder;
         if(v == null) {
-            v = mInflater.inflate(R.layout.diet_helper_xml, parent, false);
+            v = mInflater.inflate(R.layout.vacci_helper_xml, parent, false);
             holder = new ViewHolder();
-            holder.txtDietDay=(TextView)v.findViewById(R.id.tv_diet_day);
-            holder.txtDietMtype=(TextView)v.findViewById(R.id.tv_diet_mealType);
-            holder.txtDietMenu=(TextView)v.findViewById(R.id.tv_diet_menu);
+            holder.txtVacciName=(TextView)v.findViewById(R.id.tv_vacci_name);
+            holder.txtVacciReason=(TextView)v.findViewById(R.id.tv_vacci_reason);
+            holder.txtVacciDate=(TextView)v.findViewById(R.id.tv_vacci_date);
 
             v.setTag(holder);
         }
@@ -59,26 +59,27 @@ public class ListDietAdapter extends BaseAdapter {
         }
 
         // fill row data
-        DietChartClass currentItem = getItem(position);
+        VaccinationClass currentItem = getItem(position);
         if(currentItem != null) {
-           holder.txtDietDay.setText(currentItem.getDay());
-            holder.txtDietMtype.setText(currentItem.getMealType());
-            holder.txtDietMenu.setText(currentItem.getFoodMenu());
+           holder.txtVacciName.setText(currentItem.getVaccineName());
+            holder.txtVacciReason.setText(currentItem.getReason());
+            holder.txtVacciDate.setText(currentItem.getVaccineDate());
+            System.out.println(" From List Vaccine Name= "+currentItem.getVaccineName());
         }
 
         return v;
     }
 
-    public List<DietChartClass> getItems() {
+    public List<VaccinationClass> getItems() {
         return mItems;
     }
 
-    public void setItems(List<DietChartClass> mItems) {
+    public void setItems(List<VaccinationClass> mItems) {
         this.mItems = mItems;
     }
 
     class ViewHolder {
-        TextView txtDietDay,txtDietMtype,txtDietMenu;
+        TextView txtVacciName,txtVacciReason,txtVacciDate;
 
     }
 }

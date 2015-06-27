@@ -1,4 +1,4 @@
-package theoaktroop.icare.Doctor;
+package theoaktroop.icare.Vaccine;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,37 +12,38 @@ import theoaktroop.icare.DbHelper.DbHelper;
 import theoaktroop.icare.R;
 
 /**
- * Created by Sunny_PC on 6/23/2015.
+ * Created by Hasan Abdullah on 22-Jun-15.
  */
-public class DoctorViewer extends Activity {
-    ListView listViewDiet;
-    DoctorDatabaseQuery mDoctorDatabaseQuery;
-    private List<DoctorClass> mDoctorClassList;
-    private ListDoctorAdapter mAdapter;
-    private Long profileID;
+public class VaciViewerActivity extends Activity{
+    ListView listViewVacci;
+    VaccineDatabaseQuery mVaccineDatabaseQuery;
+    private List<VaccinationClass> mVaccinationClasses;
+    private ListVacciAdapter mAdapter;
+    private long profileID;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.doctor_list_item_layout);
-        listViewDiet = (ListView) findViewById(R.id.list_item_forDoc);
+        setContentView(R.layout.vacci_list_item_layout);
+        listViewVacci = (ListView) findViewById(R.id.list_item_forVacci);
 
+        mVaccineDatabaseQuery = new VaccineDatabaseQuery(this);
 
         Intent intent = getIntent();
         profileID = Long.parseLong(intent.getStringExtra("profile_id"));
 
-      setListView();
+        setListView();
 
         System.out.println(DbHelper.COLUMN_PROFILE_ID);
     }
     public void setListView()
-    {  mDoctorDatabaseQuery = new DoctorDatabaseQuery(this);
-        mDoctorClassList =mDoctorDatabaseQuery.getAllDoctorsById(profileID);
-       // System.out.println("For setList"+mDierchartclass);
-        mAdapter = new ListDoctorAdapter(this,mDoctorClassList);
-        listViewDiet.setAdapter(mAdapter);
+    {
+        mVaccinationClasses =mVaccineDatabaseQuery.getAllVaccinesById(profileID);
+        System.out.println("For setList"+mVaccinationClasses);
+        mAdapter = new ListVacciAdapter(this, mVaccinationClasses);
+        listViewVacci.setAdapter(mAdapter);
         System.out.println("From Viewer inside setListView "+profileID);
 //        if (mDierchartclass != null && mDierchartclass.isEmpty()) {
 //            mAdapter = new ListDietAdapter(this, mDierchartclass);
@@ -51,9 +52,9 @@ public class DoctorViewer extends Activity {
 //        }
 
     }
-    public void AddDoctor(View view)
+    public void AddVaccine(View view)
     {
-        Intent intent = new Intent(DoctorViewer.this,DoctorCreateActivity.class);
+        Intent intent = new Intent(VaciViewerActivity.this,VacciCreateActivity.class);
         intent.putExtra("profile_id",String.valueOf(profileID));
         startActivity(intent);
     }
@@ -64,3 +65,4 @@ public class DoctorViewer extends Activity {
         setListView();
     }
 }
+

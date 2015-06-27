@@ -14,7 +14,7 @@ import theoaktroop.icare.R;
  */
 public class DoctorCreateActivity extends Activity {
     EditText getTxtdName,getTxtdType,getTxtdAddress,getTxtdPhone,getTxtdAppDate;
-   private long profileID;
+   private Long profileID;
     private DoctorDatabaseQuery mDoctorDatabaseQuery;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class DoctorCreateActivity extends Activity {
     {
         try {
 
-            DoctorClass newDoctorClass = mDoctorDatabaseQuery.createNewDoctor(profileID+"",getTxtdName.toString(), getTxtdType.toString(), getTxtdAddress.toString(),getTxtdPhone.toString(),getTxtdAppDate.toString());
+            DoctorClass newDoctorClass = mDoctorDatabaseQuery.createNewDoctor(profileID.toString(),getTxtdName.getText().toString(), getTxtdType.getText().toString(), getTxtdAddress.getText().toString(),getTxtdPhone.getText().toString(),getTxtdAppDate.getText().toString());
             finish();
         }
         catch (Exception e){

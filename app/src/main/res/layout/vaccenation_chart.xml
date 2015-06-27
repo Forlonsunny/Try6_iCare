@@ -74,7 +74,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/etDinner"
+                android:id="@+id/etDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -88,6 +88,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/addProfileBt"
             android:text="Submit"
+            android:onClick="SubmitVacciBt"
             
             />
         

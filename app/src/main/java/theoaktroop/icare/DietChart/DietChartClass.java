@@ -3,8 +3,6 @@ package theoaktroop.icare.DietChart;
 
 import java.io.Serializable;
 
-import theoaktroop.icare.ProfileActivity.Profile;
-
 
 public class DietChartClass implements Serializable {
     private static final long serialVersionUID = -7406082437623008161L;
@@ -18,11 +16,11 @@ public class DietChartClass implements Serializable {
     }
 
     private long Id;
-    private String profileID;
+
     private String mealType;
     private String day;
     private String foodMenu;
-
+    private String profileID;
     public String getProfileID() {
         return profileID;
     }

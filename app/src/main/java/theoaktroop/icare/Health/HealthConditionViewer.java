@@ -2,13 +2,11 @@ package theoaktroop.icare.Health;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import theoaktroop.icare.ProfileActivity.Profile;
-import theoaktroop.icare.ProfileActivity.ProfileDataBase;
 import theoaktroop.icare.R;
 
 /**
@@ -26,47 +24,41 @@ int flagForPostResume=0;
 
     String flag;
     long eMid;
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.health_condition_viewer);
+
         Intent mEIntent = getIntent();
         flag = mEIntent.getStringExtra("profile_id");
         eMid = Long.parseLong(flag);
-        System.out.println(flag+" EMid = "+eMid);
+        System.out.println(flag + " EMid = " + eMid);
+       ViewSet();
 
-        mHealthDatabaseQuery = new HealthDatabaseQuery(this);
-
-        if(mHealthClass==null)
-        {
-
-            startActivity(new Intent(HealthConditionViewer.this, HealthCreateActivity.class));
-
-        }
-        else {
-
-
-            ViewSet();
-            flagForPostResume=1;
-        }
-
-
-        if (flag != null) {
-            System.out.println("From Condition Viewer " + eMid);
-        }
     }
 
-
+private void Seter()
+{
+    mHealthClass = mHealthDatabaseQuery.getAllHealthsById(eMid);
+    tvHight.setText(mHealthClass.getHeight());
+    tvWeight.setText(mHealthClass.getWight());
+    tvBlg.setText(mHealthClass.getBloodGroup());
+    tvBlPr.setText(mHealthClass.getBloodPressure());
+    tvBlSr.setText(mHealthClass.getBloodSugar());
+}
     private  void ViewSet()
-    {
+    {  setContentView(R.layout.health_condition_viewer);
         initilizationOfViews();
-        mHealthClass = mHealthDatabaseQuery.getAllHealthsById(eMid);
-        tvHight.setText(mHealthClass.getHeight());
-        tvWeight.setText(mHealthClass.getWight());
-        tvBlg.setText(mHealthClass.getBloodGroup());
-        tvBlPr.setText(mHealthClass.getBloodPressure());
-        tvBlSr.setText(mHealthClass.getBloodSugar());
+        mHealthDatabaseQuery = new HealthDatabaseQuery(this);
+        try {
+           Seter();
+        }
+        catch (Exception e)
+        {
+            startActivity(new Intent(HealthConditionViewer.this,HealthCreateActivity.class));
+        }
+
     }
 
     private void initilizationOfViews() {
@@ -79,13 +71,21 @@ int flagForPostResume=0;
 
     }
    public void SubmitHeBt(View view){
-        startActivity(new Intent(HealthConditionViewer.this, HealthCreateActivity.class));
+       Intent hIntent=new Intent(HealthConditionViewer.this, HealthEditActivity.class);
+       hIntent.putExtra("profile_id", String.valueOf(eMid));
+       startActivity(hIntent);
+
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        if(flagForPostResume==1)
-        ViewSet();
+        try {
+            Seter();
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 }

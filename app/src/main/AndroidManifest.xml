@@ -23,11 +23,14 @@
 
     <activity android:name=".Health.HealthCreateActivity"></activity>
         <activity android:name=".Health.HealthConditionViewer"></activity>
+        <activity android:name=".Health.HealthEditActivity"></activity>
 
 <activity android:name=".DietChart.DietCreateActivity"></activity>
         <activity android:name=".DietChart.DietViewer"></activity>
 
-        <activity android:name=".ProfileActivity.VaciCreateActivity"></activity>
+       <activity android:name=".Vaccine.VacciCreateActivity"></activity>
+        <activity android:name=".Vaccine.VaciViewerActivity"></activity>
+
 
         <activity android:name=".Doctor.DoctorCreateActivity"></activity>
         <activity android:name=".Doctor.DoctorViewer"></activity>

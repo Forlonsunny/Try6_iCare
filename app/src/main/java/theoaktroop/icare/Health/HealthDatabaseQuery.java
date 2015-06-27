@@ -87,7 +87,21 @@ public class HealthDatabaseQuery {
         return listHealths;
 
     }
+public void upDateHealth(long insertId,String mHeight, String mWeight, String mBloodGroup, String mBloodPressure, String mBloodSugar)
+    {  open();
+        ContentValues values = new ContentValues();
 
+        values.put(DbHelper.COLUMN_HEALTH_HEIGHT, mHeight);
+        values.put(DbHelper.COLUMN_HEALTH_WEIGHT, mWeight);
+        values.put(DbHelper.COLUMN_HEALTH_BLOOD_GROUP, mBloodGroup);
+        values.put(DbHelper.COLUMN_HEALTH_BLOOD_PRESSURE, mBloodPressure);
+        values.put(DbHelper.COLUMN_HEALTH_BLOOD_SUGAR, mBloodSugar);
+
+
+
+        mSqLiteDatabase.update(DbHelper.TABLE_HEALTH,values, DbHelper.COLUMN_HEALTH_ID+" = "+insertId,null);
+      close();
+    }
     public HealthClass getAllHealthsById(long id) {
         Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_HEALTH, allColumns,
                 DbHelper.COLUMN_HEALTH_ID + " = ?",
