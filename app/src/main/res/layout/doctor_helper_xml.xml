@@ -31,6 +31,31 @@
         />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
+
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="Address"
+                android:id="@+id/doctor_helper_add"
+                />
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="Phone"
+                android:id="@+id/doctor_helper_ph"
+                />
+
+        </LinearLayout>
     </LinearLayout>
+
 
 </LinearLayout>

@@ -51,6 +51,8 @@ public class ListDoctorAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.txtDoctorClass = (TextView) v.findViewById(R.id.doctor_helper_tv);
             holder.txtDoctorTypeClass =(TextView) v.findViewById(R.id.doctor_helper_ty);
+            holder.txtDoctorAddClass =(TextView) v.findViewById(R.id.doctor_helper_add);
+            holder.txtDoctorPhClass =(TextView) v.findViewById(R.id.doctor_helper_ph);
 
             v.setTag(holder);
         }
@@ -63,6 +65,7 @@ public class ListDoctorAdapter extends BaseAdapter {
         if(currentItem != null) {
             holder.txtDoctorClass.setText("Name :" + currentItem.getDoctorName() + "\n\n" + "Type: " + currentItem.getDoctorType() + "\n\n" + "Address: " + currentItem.getDoctorAddress() + "\n\n"+ "Phone: " + currentItem.getDoctorPhone() + "\n\n" + "Appointment Date: "+currentItem.getAppointmentDate()+"\n\n");
             holder.txtDoctorTypeClass.setText("Name :" + currentItem.getDoctorName() + "\n\n" + "Type: " + currentItem.getDoctorType() + "\n\n" + "Address: " + currentItem.getDoctorAddress() + "\n\n"+ "Phone: " + currentItem.getDoctorPhone() + "\n\n" + "Appointment Date: "+currentItem.getAppointmentDate()+"\n\n");
+            holder.txtDoctorAddClass.setText("Name :" + currentItem.getDoctorName() + "\n\n" + "Type: " + currentItem.getDoctorType() + "\n\n" + "Address: " + currentItem.getDoctorAddress() + "\n\n"+ "Phone: " + currentItem.getDoctorPhone() + "\n\n" + "Appointment Date: "+currentItem.getAppointmentDate()+"\n\n");
 
         }
 
@@ -80,6 +83,8 @@ public class ListDoctorAdapter extends BaseAdapter {
     class ViewHolder {
         TextView txtDoctorClass;
         TextView txtDoctorTypeClass;
+        TextView txtDoctorAddClass;
+        TextView txtDoctorPhClass;
 
     }
 }
