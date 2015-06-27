@@ -74,6 +74,7 @@ private void Seter()
        Intent hIntent=new Intent(HealthConditionViewer.this, HealthEditActivity.class);
        hIntent.putExtra("profile_id", String.valueOf(eMid));
        startActivity(hIntent);
+       System.out.println("From HealthConditionViewer ");
 
     }
 

@@ -3,7 +3,6 @@ package theoaktroop.icare.Health;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,22 +21,25 @@ public class HealthEditActivity extends Activity {
     private HealthClass mHealthClass;
     String flag;
   private   long eMid;
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        setContentView(R.layout.health_condition);
-        intilizationOfViews();
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Intent mEIntent = getIntent();
         flag = mEIntent.getStringExtra("profile_id");
         eMid = Long.parseLong(flag);
         System.out.println(flag + " EMid = " + eMid);
         Seter();
-
     }
 
+
+
     private void Seter()
-    { mHealthDatabaseQuery=new HealthDatabaseQuery(this);
+
+    {
+        setContentView(R.layout.health_condition);
+        intilizationOfViews();
+        mHealthDatabaseQuery=new HealthDatabaseQuery(this);
         mHealthClass = mHealthDatabaseQuery.getAllHealthsById(eMid);
         getEtHegith.setText(mHealthClass.getHeight());
         getGetEtWeight.setText(mHealthClass.getWight());
