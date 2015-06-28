@@ -16,7 +16,8 @@
         android:layout_height="413dp"
         android:id="@+id/list_item_forProfile"
         android:layout_weight="5"
-        android:dividerHeight="5dp"
+        android:dividerHeight="11dp"
+
 
         ></ListView>
 

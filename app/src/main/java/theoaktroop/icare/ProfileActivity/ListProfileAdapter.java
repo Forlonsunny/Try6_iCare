@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class ListProfileAdapter extends BaseAdapter {
 			v = mInflater.inflate(R.layout.list_item_profile, parent, false);
 			holder = new ViewHolder();
 			holder.txtProfileName = (TextView) v.findViewById(R.id.txt_profile_name);
-
+            holder.imageView=(ImageView)v.findViewById(R.id.profile_picinListAdapter);
 			v.setTag(holder);
 		}
 		else {
@@ -75,7 +76,7 @@ public class ListProfileAdapter extends BaseAdapter {
 
 	class ViewHolder {
 		TextView txtProfileName;
-
+          ImageView imageView;
 			}
 
 }

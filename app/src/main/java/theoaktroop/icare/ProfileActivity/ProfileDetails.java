@@ -25,7 +25,7 @@ public class ProfileDetails extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile_details_with_aces);
+        setContentView(R.layout.chisty_profile_de);
 
         intilizationOfViews();
 
