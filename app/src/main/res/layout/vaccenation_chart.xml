@@ -10,17 +10,26 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vaccination"
+            android:textSize="30sp"
+            android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3">
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Name: "
+                android:padding="5dp"
                 android:id="@+id/textVccenationName" >
 
             </TextView>
@@ -29,7 +38,6 @@
                 android:id="@+id/etVname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="text" >
 
                 <requestFocus />
@@ -43,10 +51,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="3">
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Reason: "
+                android:padding="5dp"
                 android:id="@+id/texReason" >
 
             </TextView>
@@ -55,7 +64,6 @@
                 android:id="@+id/etReason"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:inputType="text" />
 
         </LinearLayout>
@@ -65,20 +73,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="3">
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Date: "
+                android:padding="5dp"
                 android:id="@+id/textVdate" >
 
             </TextView>
 
-            <EditText
+            <Button
                 android:id="@+id/etDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date" />
+                android:text="SET DATE"
+                android:onClick="datePickerVaccination"/>
 
 
 
@@ -88,6 +97,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/addProfileBt"
             android:text="Submit"
+            android:layout_marginTop="20dp"
             android:onClick="SubmitVacciBt"
             
             />
