@@ -51,6 +51,7 @@ public class ListDietAdapter extends BaseAdapter {
             holder.txtDietDay=(TextView)v.findViewById(R.id.tv_diet_day);
             holder.txtDietMtype=(TextView)v.findViewById(R.id.tv_diet_mealType);
             holder.txtDietMenu=(TextView)v.findViewById(R.id.tv_diet_menu);
+            holder.txDietTime = (TextView)v.findViewById(R.id.tv_diet_time);
 
             v.setTag(holder);
         }
@@ -64,6 +65,7 @@ public class ListDietAdapter extends BaseAdapter {
            holder.txtDietDay.setText(currentItem.getDay());
             holder.txtDietMtype.setText(currentItem.getMealType());
             holder.txtDietMenu.setText(currentItem.getFoodMenu());
+            holder.txDietTime.setText(currentItem.getDietTime());
         }
 
         return v;
@@ -78,7 +80,7 @@ public class ListDietAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-        TextView txtDietDay,txtDietMtype,txtDietMenu;
+        TextView txtDietDay,txtDietMtype,txtDietMenu,txDietTime;
 
     }
 }

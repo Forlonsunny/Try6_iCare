@@ -6,6 +6,13 @@ import java.io.Serializable;
 
 public class DietChartClass implements Serializable {
     private static final long serialVersionUID = -7406082437623008161L;
+    private long Id;
+
+    private String mealType;
+    private String day;
+    private String foodMenu;
+    private String dietTime;
+    private String profileID;
 
     public long getId() {
         return Id;
@@ -15,12 +22,7 @@ public class DietChartClass implements Serializable {
         Id = id;
     }
 
-    private long Id;
 
-    private String mealType;
-    private String day;
-    private String foodMenu;
-    private String profileID;
     public String getProfileID() {
         return profileID;
     }
@@ -53,7 +55,13 @@ public class DietChartClass implements Serializable {
         this.foodMenu = foodMenu;
     }
 
+    public String getDietTime() {
+        return dietTime;
+    }
 
+    public void setDietTime(String dietTime) {
+        this.dietTime = dietTime;
+    }
 
     /**
      * Created by Sunny_PC on 6/23/2015.

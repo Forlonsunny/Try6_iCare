@@ -51,11 +51,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
 
    //For Diet Table
-   public static final String TABLE_DIET="diet_chart";
+    public static final String TABLE_DIET="diet_chart";
     public static final String COLUMN_DIET_ID="_id_diet";
     public static final String COLUMN_DIET_MEAL_TYPE="meal_type";
     public static final String COLUMN_DIET_DAY="day";
     public static final String COLUMN_DIET_FOOD_MENU="food_menu";
+    public static final String COLUMN_DIET_TIME = "time";
 
     private static final String SQL_CREATE_TABLE_DIET= "CREATE TABLE "+TABLE_DIET
             +"("
@@ -63,7 +64,8 @@ public class DbHelper extends SQLiteOpenHelper {
             +COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
             +COLUMN_DIET_DAY +" TEXT , "
             +COLUMN_DIET_MEAL_TYPE +" TEXT , "
-            +COLUMN_DIET_FOOD_MENU +" TEXT  "
+            +COLUMN_DIET_FOOD_MENU +" TEXT , "
+            +COLUMN_DIET_TIME + " TEXT "
             +");";
     //
 

@@ -27,6 +27,7 @@
 
 <activity android:name=".DietChart.DietCreateActivity"></activity>
         <activity android:name=".DietChart.DietViewer"></activity>
+        <activity android:name=".DietChart.DietEditActivity"></activity>
 
        <activity android:name=".Vaccine.VacciCreateActivity"></activity>
         <activity android:name=".Vaccine.VaciViewerActivity"></activity>

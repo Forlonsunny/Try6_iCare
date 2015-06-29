@@ -24,7 +24,8 @@ public class DietChartDatabaseQuery {
             DbHelper.COLUMN_PROFILE_ID,
             DbHelper.COLUMN_DIET_DAY,
             DbHelper.COLUMN_DIET_MEAL_TYPE,
-            DbHelper.COLUMN_DIET_FOOD_MENU
+            DbHelper.COLUMN_DIET_FOOD_MENU,
+            DbHelper.COLUMN_DIET_TIME
     };
 
     public DietChartDatabaseQuery(Context context) {
@@ -48,13 +49,14 @@ public class DietChartDatabaseQuery {
         dietChartDBHelper.close();
     }
 
-    public DietChartClass createNewDietChart(String profileID, String dayName, String mealType,  String foodMenu) {
+    public DietChartClass createNewDietChart(String profileID, String dayName, String mealType,  String foodMenu, String timeString) {
         ContentValues values = new ContentValues();
 
         values.put(DbHelper.COLUMN_PROFILE_ID, profileID);
         values.put(DbHelper.COLUMN_DIET_DAY, dayName);
         values.put(DbHelper.COLUMN_DIET_MEAL_TYPE, mealType);
         values.put(DbHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
+        values.put(DbHelper.COLUMN_DIET_TIME, timeString);
 
         long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_DIET,null,values);
         System.out.println("From the diet database "+insertId+" "+dayName);
@@ -65,6 +67,27 @@ public class DietChartDatabaseQuery {
 
         return newDietChart;
 
+    }
+
+    public void updateDiet(long insertId, String profileID, String dayName, String mealType,  String foodMenu, String timeString)
+    {  open();
+        ContentValues values = new ContentValues();
+
+        values.put(DbHelper.COLUMN_PROFILE_ID, profileID);
+        values.put(DbHelper.COLUMN_DIET_DAY, dayName);
+        values.put(DbHelper.COLUMN_DIET_MEAL_TYPE, mealType);
+        values.put(DbHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
+        values.put(DbHelper.COLUMN_DIET_TIME, timeString);
+
+        mSqLiteDatabase.update(DbHelper.TABLE_DIET, values, DbHelper.COLUMN_DIET_ID + " = " + insertId, null);
+        close();
+    }
+
+    public void deleteDiet(long insertId){
+
+        open();
+        mSqLiteDatabase.delete(DbHelper.TABLE_DIET, DbHelper.COLUMN_DIET_ID + " = " + insertId, null);
+        close();
     }
 
 
@@ -114,6 +137,22 @@ public class DietChartDatabaseQuery {
 //        return dietChart;
     }
 
+    public DietChartClass getDietById(long id) {
+
+
+        Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_DIET, allColumns,
+                DbHelper.COLUMN_DIET_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null);
+
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        DietChartClass dietChart = cursorToDiet(cursor);
+        return dietChart;
+    }
+
 
     protected DietChartClass cursorToDiet(Cursor cursor) {
 
@@ -123,6 +162,7 @@ public class DietChartDatabaseQuery {
         dietChart.setDay(cursor.getString(2));
         dietChart.setMealType(cursor.getString(3));
         dietChart.setFoodMenu(cursor.getString(4));
+        dietChart.setDietTime(cursor.getString(5));
         System.out.println("From DietChartDatabase "+cursor.getString(3));
 
 

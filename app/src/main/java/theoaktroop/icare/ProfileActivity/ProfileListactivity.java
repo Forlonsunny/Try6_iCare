@@ -68,7 +68,7 @@ public class ProfileListactivity extends ActionBarActivity {
 
 
     }
-    public void CreaNewProfile(View view){
+    public void CreateNewProfile(View view){
         Intent newIntent=new Intent(ProfileListactivity.this,CreateiCareProfile.class);
         startActivityForResult(newIntent,REQUEST_CODE_ADD_PROFILE);
     }

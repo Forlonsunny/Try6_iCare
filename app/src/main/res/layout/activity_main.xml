@@ -26,7 +26,7 @@
         android:layout_height="63dp"
         android:text="@string/txt_create_new_profile"
         android:id="@+id/bt_createProfile"
-        android:onClick="CreaNewProfile"
+        android:onClick="CreateNewProfile"
         android:background="@drawable/button" />
 
 
