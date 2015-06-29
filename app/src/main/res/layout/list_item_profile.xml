@@ -18,7 +18,7 @@
             android:layout_height="200dp"
 
             android:id="@+id/profile_picinListAdapter"
-            android:background="@drawable/per_son" />
+            />
 
         <TextView
             android:id="@+id/txt_profile_name"

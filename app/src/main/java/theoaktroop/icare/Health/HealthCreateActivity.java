@@ -42,8 +42,8 @@ public class HealthCreateActivity extends Activity {
             Editable prBlPre=getGetEtBlPl.getText();
             Editable prBlSl=getGetEtBlSl.getText();
 
-            if (!TextUtils.isEmpty(prHeight) && !TextUtils.isEmpty(prWeght) && !TextUtils.isEmpty(prBloodGropup) &&
-                    !TextUtils.isEmpty(prBlPre) && !TextUtils.isEmpty(prBlSl)) {
+            if (!TextUtils.isEmpty(prHeight) || !TextUtils.isEmpty(prWeght) || !TextUtils.isEmpty(prBloodGropup) ||
+                    !TextUtils.isEmpty(prBlPre) || !TextUtils.isEmpty(prBlSl)) {
                 HealthClass createNewHealth = mHealthDatabaseQuery.createNewHealth(prHeight.toString(),prWeght.toString(),prBloodGropup.toString(),prBlPre.toString(),prBlSl.toString());
 //                Intent intent = new Intent();
 //                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);

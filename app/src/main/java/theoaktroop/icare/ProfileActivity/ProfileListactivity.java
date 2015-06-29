@@ -1,5 +1,4 @@
 package theoaktroop.icare.ProfileActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import theoaktroop.icare.DbHelper.DbHelper;
-import theoaktroop.icare.DietChart.DietViewer;
-import theoaktroop.icare.Health.HealthConditionViewer;
 import theoaktroop.icare.R;
 
 public class ProfileListactivity extends ActionBarActivity {
@@ -115,10 +112,8 @@ public class ProfileListactivity extends ActionBarActivity {
         registerForContextMenu(mListView);
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-
+    private void forRefresh()
+    {
         mprofileDataBase=new ProfileDataBase(this);
         mProfileList=mprofileDataBase.getAllProfiles();
         mListView=(ListView)findViewById(R.id.list_item_forProfile);
@@ -133,6 +128,13 @@ public class ProfileListactivity extends ActionBarActivity {
         else {
             mListView.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+       forRefresh();
     }
     /** This will be invoked when an item in the listview is long pressed */
     @Override
@@ -153,16 +155,20 @@ public class ProfileListactivity extends ActionBarActivity {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
         switch(item.getItemId()){
-            case R.id.action_viewHealthCondition:
-                Intent HIntent=new Intent(ProfileListactivity.this,HealthConditionViewer.class);
+            case R.id.action_UpdateP:
+                Intent HIntent=new Intent(ProfileListactivity.this,CreateiCareProfile.class);
                 HIntent.putExtra("id",String.valueOf(ePID));
                 startActivity(HIntent);
                 break;
-            case R.id.action_ViewDiet:
-                Intent dIntent=new Intent(ProfileListactivity.this,DietViewer.class);
-                dIntent.putExtra("id",String.valueOf(ePID));
-                startActivity(dIntent);
+            case R.id.action_DeleteP:
+                mprofileDataBase.deleteById(ePID);
+                forRefresh();
                 break;
+            case R.id.action_DeleteAllP:
+               mprofileDataBase.deleteTable();
+                forRefresh();
+                break;
+
 
 
 

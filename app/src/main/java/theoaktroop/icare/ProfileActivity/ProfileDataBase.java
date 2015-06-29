@@ -47,6 +47,7 @@ public class ProfileDataBase {
     }
 
     public Profile createNewProfile(String mName, String mRelation, String mAge, byte[] finlaImage) {
+
         ContentValues values = new ContentValues();
 
         values.put(DbHelper.COLUMN_PROFILE_NAME, mName);
@@ -67,7 +68,7 @@ public class ProfileDataBase {
 
     public List<Profile> getAllProfiles(){
         List<Profile>listProfiles=new ArrayList<Profile>();
-        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_PROFILE,allColumns, null, null, null, null, null);
+        Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_PROFILE, allColumns, null, null, null, null, null);
         if(cursor!=null)
         {
             cursor.moveToFirst();
@@ -105,5 +106,37 @@ public class ProfileDataBase {
         profile.setFinalImages(cursor.getBlob(4));
 
         return profile;
+    }
+
+    public void deleteById(long ePID) {
+        open();
+        mSqLiteDatabase.delete(DbHelper.TABLE_PROFILE,
+                DbHelper.COLUMN_PROFILE_ID + " = " + ePID, null);
+                close();
+    }
+    public void deleteTable()
+    {
+
+
+        mSqLiteDatabase.delete(DbHelper.TABLE_PROFILE,null,null);
+        mSqLiteDatabase.delete(DbHelper.TABLE_HEALTH,null,null);
+        mSqLiteDatabase.delete(DbHelper.TABLE_DIET, null, null);
+        mSqLiteDatabase.delete(DbHelper.TABLE_DOCTOR,null,null);
+        mSqLiteDatabase.delete(DbHelper.TABLE_VACCINE, null, null);
+
+    }
+
+    public void upDateProfile(long insertId,String mName, String mRelation, String mAge, byte[] finlaImage) {
+        open();
+        ContentValues values = new ContentValues();
+
+        values.put(DbHelper.COLUMN_PROFILE_NAME, mName);
+        values.put(DbHelper.COLUMN_PROFILE_RELATION, mRelation);
+        values.put(DbHelper.COLUMN_PROFILE_AGE, mAge);
+        values.put(DbHelper.COLUMN_PROFILE_PIC, finlaImage);
+
+
+         mSqLiteDatabase.update(DbHelper.TABLE_PROFILE, values, DbHelper.COLUMN_PROFILE_ID + " = " + insertId,  null);
+        close();
     }
 }

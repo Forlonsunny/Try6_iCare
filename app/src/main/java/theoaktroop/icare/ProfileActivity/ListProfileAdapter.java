@@ -71,7 +71,7 @@ public class ListProfileAdapter extends BaseAdapter {
                 holder.imageView.setImageBitmap(theImages);
             }
             else {
-                holder.imageView.setImageResource(R.drawable.hasanvhai);
+                holder.imageView.setImageResource(R.drawable.per_son);
             }
 
 		}

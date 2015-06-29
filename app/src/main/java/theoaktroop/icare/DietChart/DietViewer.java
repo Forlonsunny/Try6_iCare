@@ -12,9 +12,6 @@ import android.widget.ListView;
 import java.util.List;
 
 import theoaktroop.icare.DbHelper.DbHelper;
-import theoaktroop.icare.Health.HealthConditionViewer;
-import theoaktroop.icare.ProfileActivity.ProfileDetails;
-import theoaktroop.icare.ProfileActivity.ProfileListactivity;
 import theoaktroop.icare.R;
 
 /**
@@ -70,9 +67,14 @@ public class DietViewer extends Activity {
     public void setListView()
     {
         mDietChartclass =mDietChartDatabaseQuery.getAllDietsById(profileID);
-        System.out.println("For setList"+mDietChartclass);
-        mAdapter = new ListDietAdapter(this, mDietChartclass);
-        listViewDiet.setAdapter(mAdapter);
+        if(mDietChartclass!=null) {
+            System.out.println("For setList" + mDietChartclass);
+            mAdapter = new ListDietAdapter(this, mDietChartclass);
+            listViewDiet.setAdapter(mAdapter);
+        }
+        else {
+            listViewDiet.setVisibility(View.GONE);
+        }
         System.out.println("From Viewer inside setListView " + profileID);
 
 
@@ -140,6 +142,7 @@ public class DietViewer extends Activity {
         switch(item.getItemId()){
             case R.id.action_deletDiet:
                 mDietChartDatabaseQuery.deleteDiet(dietID);
+                setListView();
                 break;
 
 

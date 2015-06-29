@@ -3,6 +3,7 @@ package theoaktroop.icare.DbHelper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 /**
@@ -44,6 +45,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_TABLE_HEALTH= "CREATE TABLE "+TABLE_HEALTH
             +"("
             +COLUMN_HEALTH_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            +COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
             +COLUMN_HEALTH_HEIGHT+" TEXT , "
             +COLUMN_HEALTH_WEIGHT+" TEXT , "
             +COLUMN_HEALTH_BLOOD_GROUP+" TEXT , "
@@ -132,6 +134,18 @@ public static final String TABLE_VACCINE="vaccine";
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.w("iCare Db helper",
+                "Upgrading the database from version " + oldVersion + " to " + newVersion);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROFILE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HEALTH);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DIET);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DOCTOR);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_VACCINE);
+
+
+        // recreate the tables
+        onCreate(db);
 
     }
 

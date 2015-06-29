@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
 
                     android:id="@+id/et_p_age"
-                   android:inputType="number"
+                    android:inputType="number"
                     />
             </LinearLayout>
             <LinearLayout
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addProfileBt"
                 android:text="Add Profile"
-                android:onClick="AddbtAction"
+
                 />
 
         </LinearLayout>

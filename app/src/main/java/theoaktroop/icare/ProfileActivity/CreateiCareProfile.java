@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -29,52 +30,137 @@ public class CreateiCareProfile extends Activity {
     private String selectedImagePath;
     private ImageView img;
     byte[] finalImages;
-   int  checkSelectedImage=0;
+    int  checkSelectedImage=0;
+    String flag;
+    long eMid;
+    private Profile mProfile;
+    private Button AddUpbuttProfile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createi_crea_profile_xml);
-
+        mProfileDataBase = new ProfileDataBase(this);
 
         intilizationOfViews();
-        this.mProfileDataBase=new ProfileDataBase(this);
+        Intent mEIntent = getIntent();
+        flag = mEIntent.getStringExtra("id");
+
+        if (flag != null) {
+            eMid = Long.parseLong(flag);
+            AddUpbuttProfile.setText("Update Profile");
+
+            mProfile = mProfileDataBase.getAllProfilesById(eMid);
+
+            getTxt_pName.setText(mProfile.getProfileName());
+            getTxt_pRelation.setText(mProfile.getRelation());
+            getTxt_pAge.setText(mProfile.getAge());
+
+        }
+        AddUpbuttProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button b=(Button)v;
+                String btText=b.getText().toString();
+                if(btText.equals("Add Profile"))
+                {
+                    try {
+                         System.out.println("From add ");
+
+                        Editable prName=getTxt_pName.getText();
+                        Editable prRelation=getTxt_pRelation.getText();
+                        Editable prAge=getTxt_pAge.getText();
+
+                        if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prAge)  ) {
+                            Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
+                            Intent intent = new Intent();
+                            intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+                   }
+
+                }
+                else if(btText.equals("Update Profile"))
+                {
+                    try {
+                        System.out.println("From update ");
+
+                        Editable prName=getTxt_pName.getText();
+                        Editable prRelation=getTxt_pRelation.getText();
+                        Editable prAge=getTxt_pAge.getText();
+
+                        if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
+                                !TextUtils.isEmpty(prAge)  ) {
+
+                            mProfileDataBase.upDateProfile( eMid,prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
+                           // mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
+//                            Intent intent = new Intent();
+//                            intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
+//                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(getApplicationContext(), "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+                    }
+                }
+                else
+                    System.out.println("From else ");
+            }
+        });
 
     }
 
     private void intilizationOfViews() {
+        AddUpbuttProfile=(Button)findViewById(R.id.addProfileBt);
         img = (ImageView)findViewById(R.id.profile_pic_input);
         getTxt_pName=(EditText)findViewById(R.id.et_p_name);
         getTxt_pRelation=(EditText)findViewById(R.id.et_p_relation);
         getTxt_pAge=(EditText)findViewById(R.id.et_p_age);
 
-    }
-
-    public void AddbtAction(View view){
-
-         try {
-
-             Editable prName=getTxt_pName.getText();
-             Editable prRelation=getTxt_pRelation.getText();
-             Editable prAge=getTxt_pAge.getText();
-
-             if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
-                !TextUtils.isEmpty(prAge)  ) {
-                Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
-                Intent intent = new Intent();
-                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-            else {
-                Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
-            }
-
-         }
-         catch (Exception e) {
-            Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
-        }
 
     }
+
+
+
+//    public void AddbtAction(View view){
+//
+//         try {
+//
+//             Editable prName=getTxt_pName.getText();
+//             Editable prRelation=getTxt_pRelation.getText();
+//             Editable prAge=getTxt_pAge.getText();
+//
+//             if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
+//                !TextUtils.isEmpty(prAge)  ) {
+//                Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
+//                Intent intent = new Intent();
+//                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
+//                setResult(RESULT_OK, intent);
+//                finish();
+//            }
+//            else {
+//                Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+//            }
+//
+//         }
+//         catch (Exception e) {
+//            Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
+//        }
+//
+//    }
   public void SetImagesBt(View view)
   {
       Intent intent = new Intent();
