@@ -21,7 +21,8 @@ public class ProfileDataBase {
             DbHelper.COLUMN_PROFILE_ID,
             DbHelper.COLUMN_PROFILE_NAME,
             DbHelper.COLUMN_PROFILE_RELATION,
-            DbHelper.COLUMN_PROFILE_AGE
+            DbHelper.COLUMN_PROFILE_AGE,
+            DbHelper.COLUMN_PROFILE_PIC
     };
 
     public ProfileDataBase(Context context) {
@@ -45,12 +46,13 @@ public class ProfileDataBase {
         mProfileDbHelper.close();
     }
 
-    public Profile createNewProfile(String mName, String mRelation, String mAge) {
+    public Profile createNewProfile(String mName, String mRelation, String mAge, byte[] finlaImage) {
         ContentValues values = new ContentValues();
 
         values.put(DbHelper.COLUMN_PROFILE_NAME, mName);
         values.put(DbHelper.COLUMN_PROFILE_RELATION, mRelation);
         values.put(DbHelper.COLUMN_PROFILE_AGE, mAge);
+        values.put(DbHelper.COLUMN_PROFILE_PIC ,finlaImage);
                 long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_PROFILE,null,values);
 
         Cursor cursor=mSqLiteDatabase.query(DbHelper.TABLE_PROFILE,allColumns, DbHelper.COLUMN_PROFILE_ID +" = "+insertId,null,null,null,null);
@@ -100,6 +102,7 @@ public class ProfileDataBase {
         profile.setProfileName(cursor.getString(1));
         profile.setRelation(cursor.getString(2));
         profile.setAge(cursor.getString(3));
+        profile.setFinalImages(cursor.getBlob(4));
 
         return profile;
     }

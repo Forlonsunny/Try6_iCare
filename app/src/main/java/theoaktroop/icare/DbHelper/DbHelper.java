@@ -14,18 +14,21 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     //For Profile Table
-        public static final String TABLE_PROFILE = "profile";
-        public static final String COLUMN_PROFILE_ID = "_id";
-        public static final String COLUMN_PROFILE_NAME = "profile_name";
-        public static final String COLUMN_PROFILE_RELATION = "relation";
-        public static final String COLUMN_PROFILE_AGE = "age";
+    public static final String TABLE_PROFILE = "profile";
+    public static final String COLUMN_PROFILE_ID = "_id";
+    public static final String COLUMN_PROFILE_NAME = "profile_name";
+    public static final String COLUMN_PROFILE_RELATION = "relation";
+    public static final String COLUMN_PROFILE_AGE = "age";
+    public static final String COLUMN_PROFILE_PIC = "picture";
+
 
     private static final String SQL_CREATE_TABLE_PROFILE= "CREATE TABLE "+ TABLE_PROFILE
             +"("
             + COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             +COLUMN_PROFILE_NAME+" TEXT NOT NULL, "
             +COLUMN_PROFILE_RELATION+" TEXT NOT NULL, "
-            +COLUMN_PROFILE_AGE+" TEXT NOT NULL "
+            +COLUMN_PROFILE_AGE+" TEXT NOT NULL, "
+            +COLUMN_PROFILE_PIC+" BLOB "
             +");";
     //
 

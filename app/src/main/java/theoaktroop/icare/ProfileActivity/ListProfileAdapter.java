@@ -1,6 +1,8 @@
 package theoaktroop.icare.ProfileActivity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import theoaktroop.icare.R;
@@ -60,6 +63,16 @@ public class ListProfileAdapter extends BaseAdapter {
 		Profile currentItem = getItem(position);
 		if(currentItem != null) {
 			holder.txtProfileName.setText(currentItem.getProfileName());
+            if(currentItem.getFinalImages()!=null)
+            {
+                byte[] outImages=currentItem.getFinalImages();
+                ByteArrayInputStream imagesStream= new ByteArrayInputStream(outImages);
+                Bitmap theImages= BitmapFactory.decodeStream(imagesStream);
+                holder.imageView.setImageBitmap(theImages);
+            }
+            else {
+                holder.imageView.setImageResource(R.drawable.hasanvhai);
+            }
 
 		}
 		

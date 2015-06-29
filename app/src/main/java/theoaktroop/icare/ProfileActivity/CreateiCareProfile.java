@@ -2,11 +2,9 @@ package theoaktroop.icare.ProfileActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.File;
+import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 
 import theoaktroop.icare.R;
@@ -30,6 +28,8 @@ public class CreateiCareProfile extends Activity {
 
     private String selectedImagePath;
     private ImageView img;
+    byte[] finalImages;
+   int  checkSelectedImage=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +58,8 @@ public class CreateiCareProfile extends Activity {
              Editable prAge=getTxt_pAge.getText();
 
              if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
-                !TextUtils.isEmpty(prAge)) {
-                Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString());
+                !TextUtils.isEmpty(prAge)  ) {
+                Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
                 Intent intent = new Intent();
                 intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
                 setResult(RESULT_OK, intent);
@@ -84,34 +84,43 @@ public class CreateiCareProfile extends Activity {
   }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            if (requestCode == SELECT_PICTURE) {
-                Uri selectedImageUri = data.getData();
+//            if (requestCode == SELECT_PICTURE) {
+               img.setImageURI(data.getData());
+                BitmapDrawable d=(BitmapDrawable)img.getDrawable();
+                Bitmap image=d.getBitmap();
+                ByteArrayOutputStream stream=new ByteArrayOutputStream();
+                image.compress(Bitmap.CompressFormat.JPEG,10,stream);
+                finalImages=stream.toByteArray();
+                 checkSelectedImage=1;
 
-                selectedImagePath = getPath(selectedImageUri);
-                System.out.println("Image Path : " + selectedImagePath);
-               // img.setImageURI(selectedImageUri);
-                //img.setImageURI(Uri.parse(selectedImagePath));
-                if(selectedImagePath!=null && selectedImagePath!="")// <--CHECK FILENAME IS NOT NULL
-                {
-                    File f = new File(selectedImagePath);
-                    if(f.exists()) // <-- CHECK FILE EXISTS OR NOT
-                    {
-                        Drawable d = Drawable.createFromPath(selectedImagePath);
-                        img.setImageDrawable(d);
 
-                    }
-                }
-            }
+//                Uri selectedImageUri = data.getData();
+//
+//                selectedImagePath = getPath(selectedImageUri);
+//                System.out.println("Image Path : " + selectedImagePath);
+//               // img.setImageURI(selectedImageUri);
+//                //img.setImageURI(Uri.parse(selectedImagePath));
+//                if(selectedImagePath!=null && selectedImagePath!="")// <--CHECK FILENAME IS NOT NULL
+//                {
+//                    File f = new File(selectedImagePath);
+//                    if(f.exists()) // <-- CHECK FILE EXISTS OR NOT
+//                    {
+//                        Drawable d = Drawable.createFromPath(selectedImagePath);
+//                        img.setImageDrawable(d);
+//
+//                    }
+//                }
+            //}
         }
     }
 
-    public String getPath(Uri uri) {
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
+//    public String getPath(Uri uri) {
+//        String[] projection = { MediaStore.Images.Media.DATA };
+//        Cursor cursor = managedQuery(uri, projection, null, null, null);
+//        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//        cursor.moveToFirst();
+//        return cursor.getString(column_index);
+//    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

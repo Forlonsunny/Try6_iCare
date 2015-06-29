@@ -1,5 +1,5 @@
 package theoaktroop.icare.ProfileActivity;
-import theoaktroop.icare.DbHelper.*;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import theoaktroop.icare.DietChart.DietChartClass;
+import theoaktroop.icare.DbHelper.DbHelper;
 import theoaktroop.icare.DietChart.DietViewer;
 import theoaktroop.icare.Health.HealthConditionViewer;
 import theoaktroop.icare.R;

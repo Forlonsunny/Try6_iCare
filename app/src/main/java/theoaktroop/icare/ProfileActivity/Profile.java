@@ -8,6 +8,16 @@ import java.io.Serializable;
 public class Profile implements Serializable {
     private static final long serialVersionUID = -7406082437623008161L;
 
+    private  byte[] finalImages;
+
+    public byte[] getFinalImages() {
+
+        return finalImages;
+    }
+
+    public void setFinalImages(byte[] finalImages) {
+        this.finalImages = finalImages;
+    }
 
     private String profileName;
     private String relation;
@@ -15,11 +25,12 @@ public class Profile implements Serializable {
     private String age;
 
 
-    public Profile(String profileName, String relation, String age){
+    public Profile(String profileName, String relation, String age,byte[] finalImages ){
 
         this.profileName = profileName;
         this.relation = relation;
         this.age = age;
+        this.finalImages=finalImages;
 
     }
 
