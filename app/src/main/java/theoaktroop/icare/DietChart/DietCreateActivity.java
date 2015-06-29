@@ -25,7 +25,7 @@ public class DietCreateActivity extends Activity{
     private Spinner mealSpinner;
     private EditText menuEditText;
     private Button timeButton;
-    private EditText timeEditText;
+    private String  timeString;
     private DietChartDatabaseQuery mDietChartDatabaseQuery;
     private Long profileID;
 
@@ -53,6 +53,12 @@ public class DietCreateActivity extends Activity{
 //                timeImageView.setVisibility(View.GONE);
                 int convertedHour;
                 String AM_PM;
+                String minute;
+
+                if(selectedMinute<10)
+                    minute = "0" + String.valueOf(selectedMinute);
+                else
+                    minute = String.valueOf(selectedMinute);
 
                 if(selectedHour>12)
                     convertedHour = selectedHour-12;
@@ -63,12 +69,14 @@ public class DietCreateActivity extends Activity{
                     AM_PM = "PM";
                 else
                     AM_PM = "AM";
+                timeString = String.valueOf(convertedHour) + ": " + minute + AM_PM;
+                timeButton.setText(timeString);
 
-                timeButton.setText( convertedHour + ":" + selectedMinute + " " + AM_PM);
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
+
     }
 
     public void saveDietChart(View view){
@@ -77,7 +85,6 @@ public class DietCreateActivity extends Activity{
             String dayString = daySpinner.getSelectedItem().toString();
             String mealString = mealSpinner.getSelectedItem().toString();
             String menuString = menuEditText.getText().toString();
-            String timeString = timeEditText.getText().toString();
             DietChartClass createNewDiet = mDietChartDatabaseQuery.createNewDietChart(profileID.toString(),dayString, mealString, menuString, timeString);
             finish();
         }
@@ -93,6 +100,6 @@ public class DietCreateActivity extends Activity{
         mealSpinner = (Spinner) findViewById(R.id.mealSpinner);
         menuEditText = (EditText) findViewById(R.id.menuEditText);
         timeButton = (Button) findViewById(R.id.timeButton);
-        timeEditText = (EditText) findViewById(R.id.timeEditText);
+
     }
 }

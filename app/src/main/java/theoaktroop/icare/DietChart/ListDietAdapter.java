@@ -62,7 +62,7 @@ public class ListDietAdapter extends BaseAdapter {
         // fill row data
         DietChartClass currentItem = getItem(position);
         if(currentItem != null) {
-           holder.txtDietDay.setText(currentItem.getDay());
+            holder.txtDietDay.setText(currentItem.getDay());
             holder.txtDietMtype.setText(currentItem.getMealType());
             holder.txtDietMenu.setText(currentItem.getFoodMenu());
             holder.txDietTime.setText(currentItem.getDietTime());

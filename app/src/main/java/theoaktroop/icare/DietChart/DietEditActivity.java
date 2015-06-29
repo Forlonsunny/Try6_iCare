@@ -26,7 +26,7 @@ public class DietEditActivity extends Activity {
     private Spinner mealSpinner;
     private EditText menuEditText;
     private Button timeButton;
-    private EditText timeEditText;
+    private String timeString;
     private DietChartDatabaseQuery mDietChartDatabaseQuery;
     private DietChartClass dietChartClass;
     private Long profileID;
@@ -60,7 +60,7 @@ public class DietEditActivity extends Activity {
             String dayString = daySpinner.getSelectedItem().toString();
             String mealString = mealSpinner.getSelectedItem().toString();
             String menuString = menuEditText.getText().toString();
-            String timeString = timeEditText.getText().toString();
+//            String timeString = timeEditText.getText().toString();
             mDietChartDatabaseQuery.updateDiet(insertID, profileID.toString(), dayString, mealString, menuString, timeString);
             finish();
         }
@@ -76,7 +76,7 @@ public class DietEditActivity extends Activity {
         mealSpinner = (Spinner) findViewById(R.id.mealSpinner);
         menuEditText = (EditText) findViewById(R.id.menuEditText);
         timeButton = (Button) findViewById(R.id.timeButton);
-        timeEditText = (EditText) findViewById(R.id.timeEditText);
+//        timeEditText = (EditText) findViewById(R.id.timeEditText);
     }
 
     private void setter(){
@@ -119,6 +119,12 @@ public class DietEditActivity extends Activity {
 //                timeImageView.setVisibility(View.GONE);
                 int convertedHour;
                 String AM_PM;
+                String minute;
+
+                if(selectedMinute<10)
+                    minute = "0" + String.valueOf(selectedMinute);
+                else
+                    minute = String.valueOf(selectedMinute);
 
                 if(selectedHour>12)
                     convertedHour = selectedHour-12;
@@ -129,8 +135,8 @@ public class DietEditActivity extends Activity {
                     AM_PM = "PM";
                 else
                     AM_PM = "AM";
-
-                timeButton.setText( convertedHour + ":" + selectedMinute + " " + AM_PM);
+                timeString = String.valueOf(convertedHour) + ": " + minute + AM_PM;
+                timeButton.setText(timeString);
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
