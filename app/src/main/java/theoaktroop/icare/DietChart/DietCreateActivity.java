@@ -24,7 +24,7 @@ public class DietCreateActivity extends Activity{
     private Spinner daySpinner;
     private Spinner mealSpinner;
     private EditText menuEditText;
-    private ImageView timeImageView;
+    private Button timeButton;
     private EditText timeEditText;
     private DietChartDatabaseQuery mDietChartDatabaseQuery;
     private Long profileID;
@@ -50,7 +50,7 @@ public class DietCreateActivity extends Activity{
         mTimePicker = new TimePickerDialog(DietCreateActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                timeImageView.setVisibility(View.GONE);
+//                timeImageView.setVisibility(View.GONE);
                 int convertedHour;
                 String AM_PM;
 
@@ -64,7 +64,7 @@ public class DietCreateActivity extends Activity{
                 else
                     AM_PM = "AM";
 
-                timeEditText.setText( convertedHour + ":" + selectedMinute + " " + AM_PM);
+                timeButton.setText( convertedHour + ":" + selectedMinute + " " + AM_PM);
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
@@ -92,7 +92,7 @@ public class DietCreateActivity extends Activity{
         daySpinner = (Spinner) findViewById(R.id.daySpinner);
         mealSpinner = (Spinner) findViewById(R.id.mealSpinner);
         menuEditText = (EditText) findViewById(R.id.menuEditText);
-        timeImageView = (ImageView) findViewById(R.id.timeImage);
+        timeButton = (Button) findViewById(R.id.timeButton);
         timeEditText = (EditText) findViewById(R.id.timeEditText);
     }
 }
