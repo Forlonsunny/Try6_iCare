@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import theoaktroop.icare.DbHelper.DbHelper;
+import theoaktroop.icare.DietChart.DietChartClass;
 
 /**
  * Created by Hasan Abdullah on 21-Jun-15.
@@ -26,7 +27,8 @@ public class DoctorDatabaseQuery {
             DbHelper.COLUMN_DOCTOR_TYPE,
             DbHelper.COLUMN_DOCTOR_ADDRESS,
             DbHelper.COLUMN_DOCTOR_PHONE,
-            DbHelper.COLUMN_DOCTOR_APPOINTMENT
+            DbHelper.COLUMN_DOCTOR_APPOINTMENT,
+            DbHelper.COLUMN_DOCTOR_APPOINTMENT_TIME
     };
 
     public DoctorDatabaseQuery(Context context) {
@@ -50,15 +52,15 @@ public class DoctorDatabaseQuery {
         mDbhelper.close();
     }
 
-    public DoctorClass createNewDoctor(String profile_id,String mName, String mType, String mAddress, String mPhone, String mAppointment) {
+    public DoctorClass createNewDoctor(String profile_id,String mName, String mType, String mAddress, String mPhone, String mAppointment, String mAppointmentTime) {
         ContentValues values = new ContentValues();
         values.put(DbHelper.COLUMN_PROFILE_ID,profile_id);
         values.put(DbHelper.COLUMN_DOCTOR_NAME, mName);
         values.put(DbHelper.COLUMN_DOCTOR_TYPE, mType);
         values.put(DbHelper.COLUMN_DOCTOR_ADDRESS, mAddress);
         values.put(DbHelper.COLUMN_DOCTOR_PHONE, mPhone);
-
         values.put(DbHelper.COLUMN_DOCTOR_APPOINTMENT, mAppointment);
+        values.put(DbHelper.COLUMN_DOCTOR_APPOINTMENT_TIME, mAppointmentTime);
 
         long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_DOCTOR,null,values);
 
@@ -71,6 +73,28 @@ public class DoctorDatabaseQuery {
 
     }
 
+    public void updateDoctor(long insertId, long mProfileId, String mName, String mType, String mAddress, String mPhone, String mAppointment, String mAppointmentTime)
+    {  open();
+        ContentValues values = new ContentValues();
+
+        values.put(DbHelper.COLUMN_PROFILE_ID, mProfileId);
+        values.put(DbHelper.COLUMN_DOCTOR_NAME, mName);
+        values.put(DbHelper.COLUMN_DOCTOR_TYPE, mType);
+        values.put(DbHelper.COLUMN_DOCTOR_ADDRESS, mAddress);
+        values.put(DbHelper.COLUMN_DOCTOR_PHONE, mPhone);
+        values.put(DbHelper.COLUMN_DOCTOR_APPOINTMENT, mAppointment);
+        values.put(DbHelper.COLUMN_DOCTOR_APPOINTMENT_TIME, mAppointmentTime);
+
+        mSqLiteDatabase.update(DbHelper.TABLE_DOCTOR, values, DbHelper.COLUMN_DOCTOR_ID + " = " + insertId, null);
+        close();
+    }
+
+    public void deleteDoctor(long insertId){
+
+        open();
+        mSqLiteDatabase.delete(DbHelper.TABLE_DOCTOR, DbHelper.COLUMN_DOCTOR_ID + " = " + insertId, null);
+        close();
+    }
 
     public List<DoctorClass> getAllDoctors(){
         List<DoctorClass>listDoctors=new ArrayList<DoctorClass>();
@@ -94,7 +118,7 @@ public class DoctorDatabaseQuery {
 
         List<DoctorClass> listDoctor=new ArrayList<DoctorClass>();
         Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_DOCTOR, allColumns,
-                DbHelper.COLUMN_PROFILE_ID+ " = ?",
+                DbHelper.COLUMN_PROFILE_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
 
 
@@ -117,6 +141,23 @@ public class DoctorDatabaseQuery {
     }
 
 
+    public DoctorClass getDoctorById(long id) {
+
+
+        Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_DOCTOR, allColumns,
+                DbHelper.COLUMN_DOCTOR_ID + " = ?",
+                new String[]{String.valueOf(id)}, null, null, null);
+
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        DoctorClass doctorClass = cursorToDoctor(cursor);
+        return doctorClass;
+    }
+
+
     protected DoctorClass cursorToDoctor(Cursor cursor) {
         DoctorClass mDoctorClass = new DoctorClass();
         mDoctorClass.setId(cursor.getLong(0));
@@ -125,9 +166,27 @@ public class DoctorDatabaseQuery {
         mDoctorClass.setDoctorType(cursor.getString(3));
         mDoctorClass.setDoctorAddress(cursor.getString(4));
         mDoctorClass.setDoctorPhone(cursor.getString(5));
-
         mDoctorClass.setAppointmentDate(cursor.getString(6));
+        mDoctorClass.setAppointmentTime(cursor.getString(7));
+
         System.out.println("From Doctor Database "+cursor.getString(2));
         return mDoctorClass;
     }
+
+
+//    public void updateDoctor(String insertId, String profile_id,String mName, String mType, String mAddress, String mPhone, String mAppointment)
+//    {  open();
+//        ContentValues values = new ContentValues();
+//+
+//        values.put(DbHelper.COLUMN_PROFILE_ID, profileID);
+//        values.put(DbHelper.COLUMN_DIET_DAY, dayName);
+//        values.put(DbHelper.COLUMN_DIET_MEAL_TYPE, mealType);
+//        values.put(DbHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
+//        values.put(DbHelper.COLUMN_DIET_TIME, timeString);
+//
+//        mSqLiteDatabase.update(DbHelper.TABLE_DIET, values, DbHelper.COLUMN_DIET_ID + " = " + insertId, null);
+//        close();
+//    }
+
+
 }

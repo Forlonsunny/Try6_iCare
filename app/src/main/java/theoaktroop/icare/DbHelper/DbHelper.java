@@ -81,6 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DOCTOR_PHONE="doctor_phone";
     public static final String COLUMN_DOCTOR_TYPE="doctor_type";
     public static final String COLUMN_DOCTOR_APPOINTMENT="doctor_appointment";
+    public static final String COLUMN_DOCTOR_APPOINTMENT_TIME="doctor_appointment_time";
 
 
     private static final String SQL_CREATE_TABLE_DOCTOR= "CREATE TABLE "+TABLE_DOCTOR
@@ -91,7 +92,8 @@ public class DbHelper extends SQLiteOpenHelper {
             +COLUMN_DOCTOR_TYPE +" TEXT , "
             +COLUMN_DOCTOR_ADDRESS +" TEXT , "
             +COLUMN_DOCTOR_PHONE +" TEXT , "
-            +COLUMN_DOCTOR_APPOINTMENT +" TEXT  "
+            +COLUMN_DOCTOR_APPOINTMENT +" TEXT , "
+            +COLUMN_DOCTOR_APPOINTMENT_TIME +" TEXT  "
             +");";
 
 

@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Doctor"
+            android:text="Edit Doctor Info"
             android:textSize="30sp"
             android:layout_marginBottom="10dp"
             android:layout_gravity="center"/>
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:id="@+id/doctor_name">
+                android:id="@+id/doctor_name_edit">
 
 
                 <requestFocus />
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:id="@+id/doctor_type">
+                android:id="@+id/doctor_type_edit">
 
 
 
@@ -94,7 +94,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/doctor_Address"
+                android:id="@+id/doctor_Address_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -114,7 +114,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/doctor_Phone"
+                android:id="@+id/doctor_Phone_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone" />
@@ -134,11 +134,10 @@
             </TextView>
 
             <Button
-                android:id="@+id/doctor_AppDate"
+                android:id="@+id/doctor_AppDate_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Set Date"
-                android:onClick="datePick"/>
+                android:onClick="datePickEdit"/>
 
 
 
@@ -158,11 +157,10 @@
             </TextView>
 
             <Button
-                android:id="@+id/doctor_AppTime"
+                android:id="@+id/doctor_AppTime_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Set Time"
-                android:onClick="timePick"/>
+                android:onClick="timePickEdit"/>
 
 
 
@@ -175,8 +173,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addDoctorBt"
-        android:text="Submit"
-        android:onClick="addDoctorBt"
+        android:text="Save"
+        android:onClick="editDoctorSave"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

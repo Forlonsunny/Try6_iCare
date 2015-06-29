@@ -55,6 +55,7 @@ public class ListDoctorAdapter extends BaseAdapter {
            holder.txtDoctorAddress=(TextView)v.findViewById(R.id.tvdoctor_Address);
            holder.txtDoctorPhone=(TextView)v.findViewById(R.id.tvdoctor_phone);
            holder.txtAppDate=(TextView)v.findViewById(R.id.tvdoctor_AppDate);
+           holder.txtAppTime=(TextView)v.findViewById(R.id.tvdoctor_AppTime);
 
             v.setTag(holder);
         }
@@ -71,6 +72,7 @@ public class ListDoctorAdapter extends BaseAdapter {
             holder.txtDoctorAddress.setText(currentItem.getDoctorAddress());
             holder.txtDoctorPhone.setText(currentItem.getDoctorPhone());
             holder.txtAppDate.setText(currentItem.getAppointmentDate());
+            holder.txtAppTime.setText(currentItem.getAppointmentTime());
 
         }
 
@@ -91,6 +93,7 @@ public class ListDoctorAdapter extends BaseAdapter {
         TextView txtDoctorAddress;
         TextView txtDoctorPhone;
         TextView txtAppDate;
+        TextView txtAppTime;
 
     }
 }

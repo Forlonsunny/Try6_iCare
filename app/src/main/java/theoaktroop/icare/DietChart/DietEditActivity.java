@@ -40,8 +40,6 @@ public class DietEditActivity extends Activity {
 
         mDietChartDatabaseQuery = new  DietChartDatabaseQuery(this);
 
-
-
         Intent intent = getIntent();
         profileID = Long.parseLong(intent.getStringExtra("profile_id"));
         insertID = Long.parseLong(intent.getStringExtra("diet_id"));

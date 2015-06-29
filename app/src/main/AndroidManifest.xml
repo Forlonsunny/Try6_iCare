@@ -35,6 +35,7 @@
 
         <activity android:name=".Doctor.DoctorCreateActivity"></activity>
         <activity android:name=".Doctor.DoctorViewer"></activity>
+        <activity android:name=".Doctor.DoctorEditActivity"></activity>
 
 
 </application>

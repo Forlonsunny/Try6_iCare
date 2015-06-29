@@ -16,6 +16,7 @@ public class DoctorClass
     private String doctorPhone;
     private String doctorType;
     private String appointmentDate;
+    private String appointmentTime;
     private String latitude;
     private String longitude;
     private String profileID;
@@ -73,6 +74,14 @@ public class DoctorClass
 
     public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
     }
 
     public String getLatitude() {

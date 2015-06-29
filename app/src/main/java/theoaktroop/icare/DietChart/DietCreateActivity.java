@@ -62,6 +62,8 @@ public class DietCreateActivity extends Activity{
 
                 if(selectedHour>12)
                     convertedHour = selectedHour-12;
+                else if(selectedHour==0)
+                    convertedHour = 12;
                 else
                     convertedHour = selectedHour;
 
