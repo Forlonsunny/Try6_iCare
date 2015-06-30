@@ -121,7 +121,7 @@
                     android:layout_weight="1"
                     android:id="@+id/buttonHealth"
                     android:onClick="BtForActionAces"
-                    android:background="@drawable/health_condition"
+                    android:background="@drawable/add_buuton"
                     android:clickable="true" />
 
                 <Space

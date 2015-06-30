@@ -127,6 +127,14 @@
             <!--android:clickable="true"-->
             <!--android:onClick="timePicker"/>-->
         </LinearLayout>
+        <CheckBox
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Remainder"
+            android:id="@+id/dietRemainder"
+
+            />
 
         <Button
             android:layout_width="match_parent"
