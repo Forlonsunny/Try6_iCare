@@ -38,7 +38,7 @@ public class ProfileDetails extends Activity {
             mProfile = mProfileDataBase.getAllProfilesById(eMid);
 
             getTxt_pName.setText(mProfile.getProfileName());
-            getTxt_pRelation.setText("Relation : "+mProfile.getRelation());
+            getTxt_pRelation.setText("Identity: "+mProfile.getRelation());
             getTxt_pAge.setText("Age : "+mProfile.getAge());
 
         }

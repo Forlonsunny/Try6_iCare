@@ -73,38 +73,33 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_weight="3"
                 android:layout_gravity="center"
                 android:text="Myself"
                 android:textColor="#818bf3"
                 android:id="@+id/txt_relation"
                 android:gravity="center_horizontal"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:paddingRight="5dp"
-                android:paddingLeft="5dp"
                 android:password="false"
                 android:padding="@dimen/activity_horizontal_margin" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_weight="3"
                 android:layout_gravity="center"
                 android:text="Age 22"
                 android:textColor="#0d8727"
                 android:id="@+id/txt_age"
-                android:gravity="center_horizontal"
-                android:padding="@dimen/activity_horizontal_margin" />
+                android:gravity="center" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_weight="2">
 
             <Space
                 android:layout_width="match_parent"
@@ -113,12 +108,15 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="3"
+                android:gravity="center">
 
 
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:id="@+id/buttonHealth"
@@ -127,11 +125,12 @@
                     android:clickable="true" />
 
                 <Space
-                    android:layout_width="10px"
-                    android:layout_height="match_parent" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"/>
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:id="@+id/buttonDiet"
@@ -151,10 +150,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="3"
+                android:gravity="center">
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:id="@+id/buttonDoctor"
@@ -163,11 +165,12 @@
                     android:clickable="true" />
 
                 <Space
-                    android:layout_width="10px"
-                    android:layout_height="match_parent" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".5"/>
 
                 <ImageView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:id="@+id/buttonVciNation"
