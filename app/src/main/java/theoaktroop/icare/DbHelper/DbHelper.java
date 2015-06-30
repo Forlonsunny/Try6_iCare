@@ -88,6 +88,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DOCTOR_TYPE="doctor_type";
     public static final String COLUMN_DOCTOR_APPOINTMENT="doctor_appointment";
     public static final String COLUMN_DOCTOR_APPOINTMENT_TIME="doctor_appointment_time";
+    public static final String COLUMN_DOCTOR_APPOINTMENT_REMAINDER="doctor_appointment_time_reaminder";
 
 
     private static final String SQL_CREATE_TABLE_DOCTOR= "CREATE TABLE "+TABLE_DOCTOR
@@ -99,7 +100,8 @@ public class DbHelper extends SQLiteOpenHelper {
             +COLUMN_DOCTOR_ADDRESS +" TEXT , "
             +COLUMN_DOCTOR_PHONE +" TEXT , "
             +COLUMN_DOCTOR_APPOINTMENT +" TEXT , "
-            +COLUMN_DOCTOR_APPOINTMENT_TIME +" TEXT  "
+            +COLUMN_DOCTOR_APPOINTMENT_TIME +" TEXT , "
+            +COLUMN_DOCTOR_APPOINTMENT_REMAINDER+" TEXT  "
             +");";
 
 
@@ -109,6 +111,7 @@ public static final String TABLE_VACCINE="vaccine";
     public static final String COLUMN_VACCINE_NAME="vaccine_name";
     public static final String COLUMN_VACCINE_REASON="vaccine_reason";
     public static final String COLUMN_VACCINE_DATE="vaccine_date";
+    public static final String COLUMN_VACCINE_REMAINDER="vaccine_date_remainder";
 
     private static final String SQL_CREATE_TABLE_VACCINE= "CREATE TABLE "+TABLE_VACCINE
             +"("
@@ -116,7 +119,8 @@ public static final String TABLE_VACCINE="vaccine";
             +COLUMN_PROFILE_ID +" INTEGER NOT NULL , "
             +COLUMN_VACCINE_NAME +" TEXT , "
             +COLUMN_VACCINE_REASON +" TEXT , "
-            +COLUMN_VACCINE_DATE +" TEXT  "
+            +COLUMN_VACCINE_DATE +" TEXT,  "
+            +COLUMN_VACCINE_REMAINDER +" TEXT  "
             +");";
 
 

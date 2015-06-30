@@ -5,15 +5,18 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import theoaktroop.icare.R;
 
@@ -33,6 +36,9 @@ public class VaccineEditActivity extends Activity{
     private int startDay=15;
     private String selectedDate;
 
+
+    CheckBox checkBoxVacci;
+    int checkTimpiker=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +64,36 @@ public class VaccineEditActivity extends Activity{
         gettxtVacciName.setText(mVaccinationClass.getVaccineName());
         gettxtVacciReason.setText(mVaccinationClass.getReason());
         gettxtVacciDate.setText(mVaccinationClass.getVaccineDate());
+        if(mVaccinationClass.getVaccinRecheckh().equals("on"))
+            checkBoxVacci.setChecked(true);
     }
 
     private void viewInitialization() {
         gettxtVacciName=(EditText)findViewById(R.id.etVnameEdit);
         gettxtVacciReason=(EditText)findViewById(R.id.etReasonEdit);
         gettxtVacciDate=(Button)findViewById(R.id.etDateEdit);
+        checkBoxVacci=(CheckBox)findViewById(R.id.vacciEditRemainder);
     }
+    public void remainderSet()
+    {
+        Intent calIntent = new Intent(Intent.ACTION_INSERT);
+        calIntent.setType("vnd.android.cursor.item/event");
+        calIntent.putExtra(CalendarContract.Events.TITLE, "Vaccination Remainder");
+        calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "My Desired Clinic ");
+        calIntent.putExtra(CalendarContract.Events.DESCRIPTION, gettxtVacciName.getText().toString() + " for " + gettxtVacciReason.getText().toString());
 
+
+        // long totalMillisecond=setRemainderHour*60*60*1000+SetRemainderminute*60*1000;
+        GregorianCalendar calDate = new GregorianCalendar(startYear, startMonth,startDay-1);
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                calDate.getTimeInMillis());
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                calDate.getTimeInMillis());
+
+        startActivity(calIntent);
+    }
     public void datePickerVaccination(View view)
     {
 
@@ -101,6 +129,7 @@ public class VaccineEditActivity extends Activity{
             = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
+            checkTimpiker=1;
             startYear=selectedYear;
             startMonth=selectedMonth;
             startDay=selectedDay;
@@ -119,7 +148,12 @@ public class VaccineEditActivity extends Activity{
         Editable VccrName=gettxtVacciName.getText();
         try {
         if(!TextUtils.isEmpty(VccrName)) {
-            mVaccinationDatabaseQuery.updateVaccine(insertID, gettxtVacciName.getText().toString(), gettxtVacciReason.getText().toString(), selectedDate);
+            String vacciRemainder="off";
+            if(checkBoxVacci.isChecked()==true && checkTimpiker==1 )
+            {  vacciRemainder="on";
+                remainderSet();
+            }
+            mVaccinationDatabaseQuery.updateVaccine(insertID, gettxtVacciName.getText().toString(), gettxtVacciReason.getText().toString(), selectedDate,vacciRemainder);
             finish();
         }
         else {

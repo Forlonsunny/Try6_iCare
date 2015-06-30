@@ -6,16 +6,19 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import theoaktroop.icare.R;
 /**
@@ -32,6 +35,9 @@ public class DoctorCreateActivity extends Activity {
     private int startYear=2015;
     private int startMonth=7;
     private int startDay=10;
+    CheckBox checkBoxDoc;
+    int checkTimpiker=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +62,43 @@ public class DoctorCreateActivity extends Activity {
         getTxtdPhone=(EditText)findViewById(R.id.doctor_Phone);
         timeButton = (Button) findViewById(R.id.doctor_AppTime);
         dateButton = (Button) findViewById(R.id.doctor_AppDate);
+        checkBoxDoc=(CheckBox)findViewById(R.id.doctorRemainder);
         timeString = " ";
         dateString = " ";
 //        getTxtdAppDate=(EditText)findViewById(R.id.doctor_AppDate);
     }
+    public void remainderSet()
+    {
+        Intent calIntent = new Intent(Intent.ACTION_INSERT);
+        calIntent.setType("vnd.android.cursor.item/event");
+        calIntent.putExtra(CalendarContract.Events.TITLE, "Doctor Appointment  Remainder");
+        calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "My Desired Doctor Clinic ");
+        calIntent.putExtra(CalendarContract.Events.DESCRIPTION, getTxtdName.getText().toString()+" for "+getTxtdType.getText().toString());
 
+
+        // long totalMillisecond=setRemainderHour*60*60*1000+SetRemainderminute*60*1000;
+        GregorianCalendar calDate = new GregorianCalendar(startYear, startMonth,startDay-1);
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                calDate.getTimeInMillis());
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                calDate.getTimeInMillis());
+
+        startActivity(calIntent);
+    }
     public void addDoctorBt(View view)
     {
         try {
            // dateString = "25/12/2015"; // for testx
             Editable drName=getTxtdName.getText();
             if(!TextUtils.isEmpty(drName)) {
-                DoctorClass newDoctorClass = mDoctorDatabaseQuery.createNewDoctor(profileID.toString(), getTxtdName.getText().toString(), getTxtdType.getText().toString(), getTxtdAddress.getText().toString(), getTxtdPhone.getText().toString(), dateString, timeString);
+                String doctorRemainder="off";
+                if(checkBoxDoc.isChecked()==true && checkTimpiker==1 )
+                {  doctorRemainder="on";
+                    remainderSet();
+                }
+                DoctorClass newDoctorClass = mDoctorDatabaseQuery.createNewDoctor(profileID.toString(), getTxtdName.getText().toString(), getTxtdType.getText().toString(), getTxtdAddress.getText().toString(), getTxtdPhone.getText().toString(), dateString, timeString,doctorRemainder);
                 finish();
             }
             else {
@@ -111,7 +142,10 @@ public class DoctorCreateActivity extends Activity {
             = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
-
+            checkTimpiker=1;
+            startYear=selectedYear;
+            startMonth=selectedMonth;
+            startDay=selectedDay;
            dateButton.setText(""+selectedDay+"/"+(startMonth+1)+"/"+startYear);
             dateString=""+selectedDay+"/"+(startMonth+1)+"/"+startYear;
 

@@ -21,7 +21,15 @@ public class DoctorClass
     private String longitude;
     private String profileID;
     private long Id;
+    private String doctoRemaindercheck;
 
+    public String getDoctoRemaindercheck() {
+        return doctoRemaindercheck;
+    }
+
+    public void setDoctoRemaindercheck(String doctoRemaindercheck) {
+        this.doctoRemaindercheck = doctoRemaindercheck;
+    }
 
     public long getId() {
         return Id;

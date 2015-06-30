@@ -36,6 +36,7 @@ public class DietCreateActivity extends Activity{
     private CheckBox checkBoxDiet;
     private int setRemainderHour;
     private  int SetRemainderminute;
+
     int checkTimpiker=0;
     int cuMonth,cudate,cuYear;
 
@@ -66,9 +67,9 @@ public class DietCreateActivity extends Activity{
         calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
 
         calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-                calDate.getTimeInMillis());
+                calDate.getTimeInMillis()-20*60*1000);
         calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
-                calDate.getTimeInMillis());
+                calDate.getTimeInMillis()-20*60*1000);
 
         startActivity(calIntent);
     }

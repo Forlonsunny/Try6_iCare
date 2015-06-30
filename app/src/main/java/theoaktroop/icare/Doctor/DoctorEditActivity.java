@@ -6,14 +6,19 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import theoaktroop.icare.R;
 
@@ -34,6 +39,8 @@ public class DoctorEditActivity extends Activity {
     private int startYear=2015;
     private int startMonth=5;
     private int startDay=1;
+    int checkTimpiker=0;
+    private CheckBox checkBoxDoctor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,19 +57,54 @@ public class DoctorEditActivity extends Activity {
         initilizationOfViews();
         setter();
     }
+    public void remainderSet()
+    {
+        Intent calIntent = new Intent(Intent.ACTION_INSERT);
+        calIntent.setType("vnd.android.cursor.item/event");
+        calIntent.putExtra(CalendarContract.Events.TITLE, "Doctor Appointment  Remainder");
+        calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "My Desired Doctor Clinic ");
+        calIntent.putExtra(CalendarContract.Events.DESCRIPTION, getTxtdName.getText().toString()+" for "+getTxtdType.getText().toString());
 
+
+        // long totalMillisecond=setRemainderHour*60*60*1000+SetRemainderminute*60*1000;
+        GregorianCalendar calDate = new GregorianCalendar(startYear, startMonth,startDay-1);
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+                calDate.getTimeInMillis());
+        calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+                calDate.getTimeInMillis());
+
+        startActivity(calIntent);
+    }
     public void editDoctorSave(View view){
         String docName = getTxtdName.getText().toString();
         String docType = getTxtdType.getText().toString();
         String docAddress = getTxtdAddress.getText().toString();
         String docPhone = getTxtdPhone.getText().toString();
         String docDate = dateString;
-        dateString = "25/12/2015"; //for test
+       // dateString = "25/12/2015"; //for test
 
-        mDoctorDatabaseQuery.updateDoctor(insertID,profileID,docName,docType,docAddress,docPhone,dateString,timeString);
 
-        Toast.makeText(getApplicationContext(),"Edit data have been saved!",Toast.LENGTH_SHORT).show();
-        finish();
+        try {
+            // dateString = "25/12/2015"; // for testx
+            Editable drName=getTxtdName.getText();
+            if(!TextUtils.isEmpty(drName)) {
+                String doctorRemainder="off";
+                if(checkBoxDoctor.isChecked()==true && checkTimpiker==1 )
+                {  doctorRemainder="on";
+                    remainderSet();
+                }
+                mDoctorDatabaseQuery.updateDoctor(insertID,profileID,docName,docType,docAddress,docPhone,dateString,timeString,doctorRemainder);
+                finish();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "You Must Fill Doctor Name", Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (Exception e){
+            Toast.makeText(getApplicationContext(), "You Must Fill Doctor Name", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setter(){
@@ -75,6 +117,8 @@ public class DoctorEditActivity extends Activity {
         String taString=doctorClass.getAppointmentTime().toString();
         timeButton.setText(taString);
         timeString = doctorClass.getAppointmentTime().toString();
+        if(doctorClass.getDoctoRemaindercheck().equals("on"))
+            checkBoxDoctor.setChecked(true);
     }
 
     private void initilizationOfViews() {
@@ -118,7 +162,10 @@ public class DoctorEditActivity extends Activity {
             = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int selectedYear,
                               int selectedMonth, int selectedDay) {
-
+            checkTimpiker=1;
+            startYear=selectedYear;
+            startMonth=selectedMonth;
+            startDay=selectedDay;
             dateButton.setText(""+selectedDay+"/"+(startMonth+1)+"/"+startYear);
             dateString=""+selectedDay+"/"+(startMonth+1)+"/"+startYear;
 

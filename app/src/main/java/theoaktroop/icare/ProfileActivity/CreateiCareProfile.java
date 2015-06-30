@@ -230,18 +230,17 @@ public class CreateiCareProfile extends Activity {
   }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            img.setImageBitmap(null);
-            img.destroyDrawingCache();
-            img.setImageResource(0);
-            img.setImageDrawable(null);
+
 //            if (requestCode == SELECT_PICTURE) {
             img.setImageURI(data.getData());
             BitmapDrawable d = (BitmapDrawable) img.getDrawable();
             Bitmap image = d.getBitmap();
+
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.JPEG, 10, stream);
             finalImages = stream.toByteArray();
             checkSelectedImage = 1;
+            img.setImageBitmap(image);
 
 
         }

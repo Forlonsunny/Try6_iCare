@@ -9,6 +9,16 @@ public class VaccinationClass implements Serializable {
     private String reason;
     private String vaccineDate;
     private String profileID;
+    private String vaccinRecheckh;
+
+    public String getVaccinRecheckh() {
+        return vaccinRecheckh;
+    }
+
+    public void setVaccinRecheckh(String vaccinRecheckh) {
+        this.vaccinRecheckh = vaccinRecheckh;
+    }
+
     public long getId() {
         return Id;
     }

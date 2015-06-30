@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import theoaktroop.icare.DbHelper.DbHelper;
-import theoaktroop.icare.Doctor.DoctorClass;
 
 /**
  * Created by Hasan Abdullah on 21-Jun-15.
@@ -24,7 +24,8 @@ public class VaccineDatabaseQuery {
             DbHelper.COLUMN_PROFILE_ID,
             DbHelper.COLUMN_VACCINE_NAME,
             DbHelper.COLUMN_VACCINE_REASON,
-            DbHelper.COLUMN_VACCINE_DATE
+            DbHelper.COLUMN_VACCINE_DATE,
+            DbHelper.COLUMN_VACCINE_REMAINDER
     };
 
     public VaccineDatabaseQuery(Context context) {
@@ -48,13 +49,15 @@ public class VaccineDatabaseQuery {
         mDbHelper.close();
     }
 
-    public VaccinationClass createNewVaccine(String profile_ID,String mName, String mReason, String mDate) {
+    public VaccinationClass createNewVaccine(String profile_ID,String mName, String mReason, String mDate,String vacciRemainder) {
         ContentValues values = new ContentValues();
 
         values.put(DbHelper.COLUMN_PROFILE_ID,profile_ID);
         values.put(DbHelper.COLUMN_VACCINE_NAME, mName);
         values.put(DbHelper.COLUMN_VACCINE_REASON, mReason);
         values.put(DbHelper.COLUMN_VACCINE_DATE, mDate);
+
+        values.put(DbHelper.COLUMN_VACCINE_REMAINDER, vacciRemainder);
 
         long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_VACCINE,null,values);
 
@@ -67,7 +70,7 @@ public class VaccineDatabaseQuery {
 
     }
 
-    public void updateVaccine(long insertID, String mName, String mReason, String mDate){
+    public void updateVaccine(long insertID, String mName, String mReason, String mDate,String vaccinRemainder){
         open();
         ContentValues values = new ContentValues();
 
@@ -75,6 +78,7 @@ public class VaccineDatabaseQuery {
         values.put(DbHelper.COLUMN_VACCINE_NAME, mName);
         values.put(DbHelper.COLUMN_VACCINE_REASON, mReason);
         values.put(DbHelper.COLUMN_VACCINE_DATE, mDate);
+        values.put(DbHelper.COLUMN_VACCINE_REMAINDER, vaccinRemainder);
 
         mSqLiteDatabase.update(DbHelper.TABLE_VACCINE, values, DbHelper.COLUMN_VACCINE_ID + " = " + insertID, null);
         close();
@@ -131,6 +135,7 @@ public class VaccineDatabaseQuery {
         vaccine.setVaccineName(cursor.getString(2));
         vaccine.setReason(cursor.getString(3));
         vaccine.setVaccineDate(cursor.getString(4));
+        vaccine.setVaccinRecheckh(cursor.getString(5));
 //        System.out.println("From VaccineDataBasequery = "+cursor.getString(2));
         return vaccine;
     }
