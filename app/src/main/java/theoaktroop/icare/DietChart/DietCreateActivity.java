@@ -127,11 +127,13 @@ public class DietCreateActivity extends Activity{
              dayString = daySpinner.getSelectedItem().toString();
              mealString = mealSpinner.getSelectedItem().toString();
              menuString = menuEditText.getText().toString();
-            DietChartClass createNewDiet = mDietChartDatabaseQuery.createNewDietChart(profileID.toString(),dayString, mealString, menuString, timeString);
+            String reMaindercheck="off";
+
             if(checkBoxDiet.isChecked()==true && checkTimpiker==1 )
-            {
+            {  reMaindercheck="on";
                 remainderSet();
             }
+            DietChartClass createNewDiet = mDietChartDatabaseQuery.createNewDietChart(profileID.toString(),dayString, mealString, menuString, timeString,reMaindercheck);
             finish();
         }
         catch (Exception e){

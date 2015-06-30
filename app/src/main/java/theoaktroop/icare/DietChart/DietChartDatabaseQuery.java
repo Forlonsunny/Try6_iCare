@@ -25,7 +25,8 @@ public class DietChartDatabaseQuery {
             DbHelper.COLUMN_DIET_DAY,
             DbHelper.COLUMN_DIET_MEAL_TYPE,
             DbHelper.COLUMN_DIET_FOOD_MENU,
-            DbHelper.COLUMN_DIET_TIME
+            DbHelper.COLUMN_DIET_TIME,
+            DbHelper.COLUMN_DIET_REMAINDER
     };
 
     public DietChartDatabaseQuery(Context context) {
@@ -49,7 +50,7 @@ public class DietChartDatabaseQuery {
         dietChartDBHelper.close();
     }
 
-    public DietChartClass createNewDietChart(String profileID, String dayName, String mealType,  String foodMenu, String timeString) {
+    public DietChartClass createNewDietChart(String profileID, String dayName, String mealType,  String foodMenu, String timeString,String reMaindercheck) {
         ContentValues values = new ContentValues();
 
         values.put(DbHelper.COLUMN_PROFILE_ID, profileID);
@@ -57,6 +58,7 @@ public class DietChartDatabaseQuery {
         values.put(DbHelper.COLUMN_DIET_MEAL_TYPE, mealType);
         values.put(DbHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
         values.put(DbHelper.COLUMN_DIET_TIME, timeString);
+        values.put(DbHelper.COLUMN_DIET_REMAINDER,reMaindercheck);
 
         long insertId=mSqLiteDatabase.insert(DbHelper.TABLE_DIET,null,values);
         System.out.println("From the diet database "+insertId+" "+dayName);
@@ -69,7 +71,7 @@ public class DietChartDatabaseQuery {
 
     }
 
-    public void updateDiet(long insertId, String profileID, String dayName, String mealType,  String foodMenu, String timeString)
+    public void updateDiet(long insertId, String profileID, String dayName, String mealType,  String foodMenu, String timeString,String reMaindercheck)
     {  open();
         ContentValues values = new ContentValues();
 
@@ -78,6 +80,8 @@ public class DietChartDatabaseQuery {
         values.put(DbHelper.COLUMN_DIET_MEAL_TYPE, mealType);
         values.put(DbHelper.COLUMN_DIET_FOOD_MENU, foodMenu);
         values.put(DbHelper.COLUMN_DIET_TIME, timeString);
+
+        values.put(DbHelper.COLUMN_DIET_REMAINDER,reMaindercheck);
 
         mSqLiteDatabase.update(DbHelper.TABLE_DIET, values, DbHelper.COLUMN_DIET_ID + " = " + insertId, null);
         close();
@@ -164,6 +168,7 @@ open();
         dietChart.setMealType(cursor.getString(3));
         dietChart.setFoodMenu(cursor.getString(4));
         dietChart.setDietTime(cursor.getString(5));
+        dietChart.setCheckRe(cursor.getString(6));
         System.out.println("From DietChartDatabase "+cursor.getString(3));
 
 

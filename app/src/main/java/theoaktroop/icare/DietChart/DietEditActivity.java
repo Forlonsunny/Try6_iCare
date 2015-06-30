@@ -84,11 +84,14 @@ public class DietEditActivity extends Activity {
             String mealString = mealSpinner.getSelectedItem().toString();
             String menuString = menuEditText.getText().toString();
 //            String timeString = timeEditText.getText().toString();
-            mDietChartDatabaseQuery.updateDiet(insertID, profileID.toString(), dayString, mealString, menuString, timeString);
+
+            String reMaindercheck="off";
+
             if(checkBoxDiet.isChecked()==true && checkTimpiker==1 )
-            {
+            {  reMaindercheck="on";
                 remainderSet();
             }
+            mDietChartDatabaseQuery.updateDiet(insertID, profileID.toString(), dayString, mealString, menuString, timeString,reMaindercheck);
             finish();
         }
         catch (Exception e){
@@ -133,6 +136,8 @@ public class DietEditActivity extends Activity {
 
         menuEditText.setText(dietChartClass.getFoodMenu());
         timeButton.setText(dietChartClass.getDietTime());
+        if(dietChartClass.getCheckRe().equals("on"))
+        checkBoxDiet.setChecked(true);
 
     }
 

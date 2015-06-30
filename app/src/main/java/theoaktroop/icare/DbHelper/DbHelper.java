@@ -64,6 +64,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DIET_DAY="day";
     public static final String COLUMN_DIET_FOOD_MENU="food_menu";
     public static final String COLUMN_DIET_TIME = "time";
+    public static final String COLUMN_DIET_REMAINDER = "diet_alarm";
 
     private static final String SQL_CREATE_TABLE_DIET= "CREATE TABLE "+TABLE_DIET
             +"("
@@ -72,7 +73,8 @@ public class DbHelper extends SQLiteOpenHelper {
             +COLUMN_DIET_DAY +" TEXT , "
             +COLUMN_DIET_MEAL_TYPE +" TEXT , "
             +COLUMN_DIET_FOOD_MENU +" TEXT , "
-            +COLUMN_DIET_TIME + " TEXT "
+            +COLUMN_DIET_TIME + " TEXT, "
+            +COLUMN_DIET_REMAINDER  + " TEXT "
             +");";
     //
 

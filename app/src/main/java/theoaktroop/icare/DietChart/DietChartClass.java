@@ -13,6 +13,15 @@ public class DietChartClass implements Serializable {
     private String foodMenu;
     private String dietTime;
     private String profileID;
+    private String checkRe;
+
+    public String getCheckRe() {
+        return checkRe;
+    }
+
+    public void setCheckRe(String checkRe) {
+        this.checkRe = checkRe;
+    }
 
     public long getId() {
         return Id;

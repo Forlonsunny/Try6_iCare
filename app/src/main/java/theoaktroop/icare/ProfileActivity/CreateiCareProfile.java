@@ -221,7 +221,8 @@ public class CreateiCareProfile extends Activity {
         getTxt_pAge.setText(age.getResult());
     }
   public void SetImagesBt(View view)
-  {
+  {   img.setImageResource(0);
+      img.setImageDrawable(null);
       Intent intent = new Intent();
       intent.setType("image/*");
       intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -229,6 +230,10 @@ public class CreateiCareProfile extends Activity {
   }
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
+            img.setImageBitmap(null);
+            img.destroyDrawingCache();
+            img.setImageResource(0);
+            img.setImageDrawable(null);
 //            if (requestCode == SELECT_PICTURE) {
             img.setImageURI(data.getData());
             BitmapDrawable d = (BitmapDrawable) img.getDrawable();
