@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,11 +47,15 @@ public class VacciCreateActivity extends Activity{
         }
 
     }
+    public void datePickerVaccination (View v)
+    {
+
+    }
 
     public void viewInitialize(){
 
         gettxtVacciName=(EditText)findViewById(R.id.etVname);
         gettxtVacciReason=(EditText)findViewById(R.id.etReason);
-        gettxtVacciDate=(EditText)findViewById(R.id.etDate);
+        gettxtVacciDate=(Button)findViewById(R.id.etDate);
     }
 }

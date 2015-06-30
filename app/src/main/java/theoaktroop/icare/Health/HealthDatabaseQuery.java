@@ -21,7 +21,7 @@ public class HealthDatabaseQuery {
     private Context mContext;
     private String[] allColumns={
             DbHelper.COLUMN_HEALTH_ID,
-            DbHelper.COLUMN_PROFILE_ID,
+
             DbHelper.COLUMN_HEALTH_HEIGHT,
             DbHelper.COLUMN_HEALTH_WEIGHT,
             DbHelper.COLUMN_HEALTH_BLOOD_GROUP,
