@@ -48,7 +48,7 @@ public class DoctorEditActivity extends Activity {
         profileID = Long.parseLong(intent.getStringExtra("profile_id"));
         insertID = Long.parseLong(intent.getStringExtra("doctor_id"));
 
-        doctorClass = mDoctorDatabaseQuery.getDoctorById(insertID);
+
 
         setter();
     }
@@ -81,13 +81,15 @@ public class DoctorEditActivity extends Activity {
     }
 
     private void setter(){
-
+        doctorClass = mDoctorDatabaseQuery.getDoctorById(insertID);
         getTxtdName.setText(doctorClass.getDoctorName().toString());
         getTxtdType.setText(doctorClass.getDoctorType().toString());
         getTxtdAddress.setText(doctorClass.getDoctorAddress().toString());
         getTxtdPhone.setText(doctorClass.getDoctorPhone().toString());
-        dateButton.setText(doctorClass.getAppointmentDate().toString());
-        timeButton.setText(doctorClass.getAppointmentTime().toString());
+        String daString=doctorClass.getAppointmentDate().toString();
+        dateButton.setText(daString);
+        String taString=doctorClass.getAppointmentTime().toString();
+        timeButton.setText(taString);
     }
 
     private void initilizationOfViews() {
