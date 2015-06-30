@@ -99,7 +99,7 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:id="@+id/addProfileBt"
-            android:text="Submit"
+            android:text="Update"
             android:layout_marginTop="20dp"
             android:onClick="editSaveVaccine"
             android:background="@drawable/button"

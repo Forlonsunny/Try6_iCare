@@ -86,7 +86,7 @@
             </TextView>
 
             <Button
-                android:id="@+id/etDate"
+                android:id="@+id/vacci_Bt_Date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SET DATE"
