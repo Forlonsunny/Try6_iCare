@@ -97,7 +97,7 @@ public class DoctorEditActivity extends Activity {
         getTxtdPhone=(EditText)findViewById(R.id.doctor_Phone_edit);
         timeButton = (Button) findViewById(R.id.doctor_AppTime_edit);
         dateButton = (Button) findViewById(R.id.doctor_AppDate_edit);
-//        getTxtdAppDate=(EditText)findViewById(R.id.doctor_AppDate);
+
     }
     public void datePickEdit(View view){
 
