@@ -173,13 +173,14 @@
 
     <Button
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/addDoctorBt"
         android:text="Submit"
         android:onClick="addDoctorBt"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/button"/>
 
 
 </RelativeLayout>

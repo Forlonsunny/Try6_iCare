@@ -133,7 +133,7 @@ public class DietEditActivity extends Activity {
                     AM_PM = "PM";
                 else
                     AM_PM = "AM";
-                timeString = String.valueOf(convertedHour) + ": " + minute + AM_PM;
+                timeString = String.valueOf(convertedHour) + ":" + minute + " " + AM_PM;
                 timeButton.setText(timeString);
             }
         }, hour, minute, false);//Yes 24 hour time

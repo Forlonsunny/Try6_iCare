@@ -2,7 +2,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#d2ecfb">
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
@@ -40,7 +41,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" Relation: "
+                    android:text="Identity: "
                     />
                 <EditText
                     android:layout_width="fill_parent"
@@ -58,13 +59,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DateOfBirth:"
+                    android:text="Date Of Birth:"
 
                     />
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="pick a date"
+                    android:text="Pick a date"
                     android:id="@+id/tv_for_datePiker"
                     android:inputType="text"
                     />
@@ -83,7 +84,8 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:id="@+id/et_p_age"
                     android:gravity="center"
 
@@ -96,6 +98,7 @@
                 android:layout_height="200dp">
 
                 <ImageView
+                    android:padding="20dp"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
@@ -106,11 +109,12 @@
             </LinearLayout>
 
             <Button
+                android:layout_marginTop="20dp"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:id="@+id/addProfileBt"
                 android:text="Add Profile"
-
+                android:background="@drawable/button"
                 />
 
         </LinearLayout>

@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Vaccination Info"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"/>
@@ -97,12 +97,12 @@
         </LinearLayout>
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:id="@+id/addProfileBt"
             android:text="Submit"
             android:layout_marginTop="20dp"
             android:onClick="editSaveVaccine"
-
+            android:background="@drawable/button"
             />
 
 

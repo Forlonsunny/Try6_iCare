@@ -20,11 +20,12 @@
         ></ListView>
     <Button
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Add Doctor"
         android:id="@+id/bt_add_dier"
         android:layout_weight="1"
-        android:onClick="AddDoctor" />
+        android:onClick="AddDoctor"
+        android:background="@drawable/button"/>
 
 
 
