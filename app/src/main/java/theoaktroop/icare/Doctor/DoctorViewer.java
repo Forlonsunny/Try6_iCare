@@ -98,11 +98,7 @@ public class DoctorViewer extends Activity {
 
 
 
-//        if (mDierchartclass != null && mDierchartclass.isEmpty()) {
-//            mAdapter = new ListDietAdapter(this, mDierchartclass);
-//            listViewDiet.setAdapter(mAdapter);
-//            System.out.println("From Viewer inside setListView "+profileID);
-//        }
+
 
     }
     public void AddDoctor(View view)
