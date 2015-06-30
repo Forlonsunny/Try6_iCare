@@ -217,7 +217,7 @@ public class CreateiCareProfile extends Activity {
         age.calcualteYear();
         age.calcualteMonth();
         age.calcualteDay();
-        //Toast.makeText(getBaseContext(), "click the resulted button"+age.getResult() , Toast.LENGTH_SHORT).show();
+
         getTxt_pAge.setText(age.getResult());
     }
   public void SetImagesBt(View view)
