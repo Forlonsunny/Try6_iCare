@@ -58,7 +58,7 @@ public class VaccineEditActivity extends Activity{
             finish();
         }
         catch (Exception e){
-            Toast.makeText(getApplicationContext(), "ALl field must fill!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "All field must fill!", Toast.LENGTH_SHORT).show();
         }
 
     }
