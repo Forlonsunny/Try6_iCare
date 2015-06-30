@@ -73,7 +73,7 @@ public class DietViewer extends Activity {
         mDietChartDatabaseQuery = new DietChartDatabaseQuery(this);
             mDietChartclass =mDietChartDatabaseQuery.getAllDietsById(profileID);
             if (mDietChartclass != null) {
-               // System.out.println("For setList" + mDietChartclass);
+
                 mAdapter = new ListDietAdapter(this, mDietChartclass);
                 listViewDiet.setAdapter(mAdapter);
             } else {
