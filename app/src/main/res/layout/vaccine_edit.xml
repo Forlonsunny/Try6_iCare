@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vaccination"
+            android:text="Edit Vaccination Info"
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
@@ -38,7 +38,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/etVname"
+                android:id="@+id/etVnameEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" >
@@ -64,7 +64,7 @@
             </TextView>
 
             <EditText
-                android:id="@+id/etReason"
+                android:id="@+id/etReasonEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -86,7 +86,7 @@
             </TextView>
 
             <Button
-                android:id="@+id/etDate"
+                android:id="@+id/etDateEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SET DATE"
@@ -101,10 +101,10 @@
             android:id="@+id/addProfileBt"
             android:text="Submit"
             android:layout_marginTop="20dp"
-            android:onClick="SubmitVacciBt"
-            
+            android:onClick="editSaveVaccine"
+
             />
-        
+
 
 
 

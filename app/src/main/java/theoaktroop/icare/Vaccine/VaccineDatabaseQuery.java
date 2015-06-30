@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 import theoaktroop.icare.DbHelper.DbHelper;
+import theoaktroop.icare.Doctor.DoctorClass;
+
 /**
  * Created by Hasan Abdullah on 21-Jun-15.
  */
@@ -65,6 +67,25 @@ public class VaccineDatabaseQuery {
 
     }
 
+    public void updateVaccine(long insertID, String mName, String mReason, String mDate){
+        open();
+        ContentValues values = new ContentValues();
+
+        values.put(DbHelper.COLUMN_VACCINE_ID, insertID);
+        values.put(DbHelper.COLUMN_VACCINE_NAME, mName);
+        values.put(DbHelper.COLUMN_VACCINE_REASON, mReason);
+        values.put(DbHelper.COLUMN_VACCINE_DATE, mDate);
+
+        mSqLiteDatabase.update(DbHelper.TABLE_VACCINE, values, DbHelper.COLUMN_VACCINE_ID + " = " + insertID, null);
+        close();
+    }
+
+    public void deleteVaccine(long insertID){
+        open();
+        mSqLiteDatabase.delete(DbHelper.TABLE_VACCINE, DbHelper.COLUMN_VACCINE_ID + " = " + insertID, null);
+        close();
+    }
+
 
     public List<VaccinationClass> getAllVaccines(){
         List<VaccinationClass>listVaccines=new ArrayList<VaccinationClass>();
@@ -110,7 +131,21 @@ public class VaccineDatabaseQuery {
         vaccine.setVaccineName(cursor.getString(2));
         vaccine.setReason(cursor.getString(3));
         vaccine.setVaccineDate(cursor.getString(4));
-System.out.println("From VaccineDataBasequery = "+cursor.getString(2));
+//        System.out.println("From VaccineDataBasequery = "+cursor.getString(2));
         return vaccine;
+    }
+
+    public VaccinationClass getVaccineById(long insertID) {
+        Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_VACCINE, allColumns,
+                DbHelper.COLUMN_VACCINE_ID + " = ?",
+                new String[]{String.valueOf(insertID)}, null, null, null);
+
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        VaccinationClass vaccinationClass = cursorToVaccine(cursor);
+        return vaccinationClass;
     }
 }

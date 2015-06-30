@@ -32,7 +32,6 @@ public class VacciCreateActivity extends Activity{
         Intent intent = getIntent();
         profileID = Long.parseLong(intent.getStringExtra("profile_id"));
 
-
     }
 
     public void SubmitVacciBt(View view){
@@ -40,10 +39,10 @@ public class VacciCreateActivity extends Activity{
         try {
 
             VaccinationClass createNewVacci = mVaccineDatabaseQuery.createNewVaccine(profileID.toString(), gettxtVacciName.getText().toString(), gettxtVacciReason.getText().toString(), gettxtVacciDate.getText().toString());
-       finish();
+            finish();
         }
         catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Input food menu",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"ALl field must fill!",Toast.LENGTH_SHORT).show();
         }
 
     }
