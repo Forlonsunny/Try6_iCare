@@ -111,7 +111,7 @@ public class DietChartDatabaseQuery {
 
     public List<DietChartClass> getAllDietsById(long id) {
         List<DietChartClass>listDiets=new ArrayList<DietChartClass>();
-
+open();
         Cursor cursor = mSqLiteDatabase.query(DbHelper.TABLE_DIET, allColumns,
                 DbHelper.COLUMN_PROFILE_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
@@ -126,6 +126,7 @@ public class DietChartDatabaseQuery {
             }
             cursor.close();
         }
+        close();
 
         return listDiets;
 

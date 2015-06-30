@@ -66,16 +66,22 @@ public class DietViewer extends Activity {
     }
     public void setListView()
     {
-        mDietChartclass =mDietChartDatabaseQuery.getAllDietsById(profileID);
-        if(mDietChartclass!=null) {
-            System.out.println("For setList" + mDietChartclass);
-            mAdapter = new ListDietAdapter(this, mDietChartclass);
-            listViewDiet.setAdapter(mAdapter);
-        }
-        else {
-            listViewDiet.setVisibility(View.GONE);
-        }
-        System.out.println("From Viewer inside setListView " + profileID);
+
+        //try {
+            mDietChartclass =mDietChartDatabaseQuery.getAllDietsById(profileID);
+            if (mDietChartclass != null) {
+                System.out.println("For setList" + mDietChartclass);
+                mAdapter = new ListDietAdapter(this, mDietChartclass);
+                listViewDiet.setAdapter(mAdapter);
+            } else {
+                listViewDiet.setVisibility(View.GONE);
+            }
+       // }
+      //  catch (Exception e)
+      //  {
+           // listViewDiet.setVisibility(View.GONE);
+       // }
+        //System.out.println("From Viewer inside setListView " + profileID);
 
 
         listViewDiet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -144,9 +150,6 @@ public class DietViewer extends Activity {
                 mDietChartDatabaseQuery.deleteDiet(dietID);
                 setListView();
                 break;
-
-
-
 
 
         }

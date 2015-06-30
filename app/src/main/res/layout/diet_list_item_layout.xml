@@ -25,6 +25,7 @@
         android:id="@+id/bt_add_dier"
         android:layout_weight="1"
         android:onClick="AddDiet"
+        android:textSize="@dimen/textsize"
         android:background="@drawable/button"/>
 
 

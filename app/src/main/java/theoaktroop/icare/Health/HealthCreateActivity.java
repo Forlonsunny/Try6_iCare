@@ -46,7 +46,7 @@ public class HealthCreateActivity extends Activity {
                     !TextUtils.isEmpty(prBlPre) || !TextUtils.isEmpty(prBlSl)) {
                 HealthClass createNewHealth = mHealthDatabaseQuery.createNewHealth(prHeight.toString(),prWeght.toString(),prBloodGropup.toString(),prBlPre.toString(),prBlSl.toString());
 //                Intent intent = new Intent();
-//                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
+//                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) createNewHealth);
 //                setResult(RESULT_OK, intent);
                 finish();
             } else {

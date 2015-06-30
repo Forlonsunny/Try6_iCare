@@ -107,7 +107,7 @@ public class ProfileDataBase {
         profile.setDateOfBirth(cursor.getString(3));
         profile.setAge(cursor.getString(4));
         profile.setFinalImages(cursor.getBlob(5));
-
+        System.out.println("ProfileDatabase " + cursor.getString(3));
         return profile;
     }
 

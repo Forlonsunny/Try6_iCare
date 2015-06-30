@@ -2,9 +2,14 @@ package theoaktroop.icare.ProfileActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayInputStream;
 
 import theoaktroop.icare.DietChart.DietViewer;
 import theoaktroop.icare.Doctor.DoctorViewer;
@@ -22,6 +27,7 @@ public class ProfileDetails extends Activity {
 
     String flag;
     long eMid;
+    private ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +46,22 @@ public class ProfileDetails extends Activity {
             getTxt_pName.setText(mProfile.getProfileName());
             getTxt_pRelation.setText("Identity: "+mProfile.getRelation());
             getTxt_pAge.setText("Age : "+mProfile.getAge());
+            if(mProfile.getFinalImages()!=null)
+            {
+                byte[] outImages=mProfile.getFinalImages();
+                ByteArrayInputStream imagesStream= new ByteArrayInputStream(outImages);
+                Bitmap theImages= BitmapFactory.decodeStream(imagesStream);
+                img.setImageBitmap(theImages);
+            }
+            else {
+                img.setImageResource(R.drawable.per_son);
+            }
 
         }
     }
 
     private void intilizationOfViews() {
+        img = (ImageView)findViewById(R.id.profile_pic_output);
         getTxt_pName=(TextView)findViewById(R.id.txt_profile_name);
         getTxt_pRelation=(TextView)findViewById(R.id.txt_relation);
         getTxt_pAge=(TextView)findViewById(R.id.txt_age);

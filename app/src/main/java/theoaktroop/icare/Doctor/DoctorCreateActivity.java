@@ -2,9 +2,12 @@ package theoaktroop.icare.Doctor;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -12,13 +15,9 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
-import theoaktroop.icare.DietChart.DietEditActivity;
 import theoaktroop.icare.R;
-
 /**
  * Created by Hasan Abdullah on 22-Jun-15.
  */
@@ -30,7 +29,9 @@ public class DoctorCreateActivity extends Activity {
     private String timeString;
     private Button timeButton;
     private Button dateButton;
-
+    private int startYear=1992;
+    private int startMonth=6;
+    private int startDay=15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,10 @@ public class DoctorCreateActivity extends Activity {
         setContentView(R.layout.doctor);
 
         initilizationOfViews();
+        Calendar cc=Calendar.getInstance();
+        startMonth=cc.get(Calendar.MONTH);
+        startDay=cc.get(Calendar.DAY_OF_MONTH);
+        startYear=cc.get(Calendar.YEAR);
 
         mDoctorDatabaseQuery=new DoctorDatabaseQuery(this);
         Intent intent = getIntent();
@@ -57,47 +62,62 @@ public class DoctorCreateActivity extends Activity {
     public void addDoctorBt(View view)
     {
         try {
-            dateString = "25/12/2015"; // for testx
-            DoctorClass newDoctorClass = mDoctorDatabaseQuery.createNewDoctor(profileID.toString(),getTxtdName.getText().toString(), getTxtdType.getText().toString(), getTxtdAddress.getText().toString(),getTxtdPhone.getText().toString(),dateString,timeString);
-            finish();
+           // dateString = "25/12/2015"; // for testx
+            Editable drName=getTxtdName.getText();
+            if(!TextUtils.isEmpty(drName)) {
+                DoctorClass newDoctorClass = mDoctorDatabaseQuery.createNewDoctor(profileID.toString(), getTxtdName.getText().toString(), getTxtdType.getText().toString(), getTxtdAddress.getText().toString(), getTxtdPhone.getText().toString(), dateString, timeString);
+                finish();
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "You Must Fill Doctor Name", Toast.LENGTH_SHORT).show();
+            }
         }
         catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Fill Requirement", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "You Must Fill Doctor Name", Toast.LENGTH_SHORT).show();
         }
     }
 
-//    public void datePick(View view){
-//
-//        final Calendar myCalendar = Calendar.getInstance();
-//
-//        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                  int dayOfMonth) {
-//                // TODO Auto-generated method stub
-//                myCalendar.set(Calendar.YEAR, year);
-//                myCalendar.set(Calendar.MONTH, monthOfYear);
-//                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                updateLabel();
-//            }
-//
-//        };
-//
-//        new DatePickerDialog(DoctorCreateActivity.this, date, myCalendar
-//                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//
-//        private void updateLabel() {
-//
-//            String myFormat = "MM/dd/yy"; //In which you need put here
-//            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-//
-//            dateString = sdf.format(myCalendar.getTime()).toString();
-//            edittext.setText(sdf.format(myCalendar.getTime()));
-//        }
-//
-//    }
+    public void datePick(View view){
+
+        try{
+            showDialog(1);
+
+
+
+        }
+        catch (Exception e)
+        {
+
+        }
+        }
+
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+
+
+            case 1:
+                return new DatePickerDialog(this,
+                        mDateSetListener,
+                        startYear, startMonth+1, startDay);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener mDateSetListener
+            = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+
+           dateButton.setText(""+selectedDay+"/"+(startMonth+1)+"/"+startYear);
+            dateString=""+selectedDay+"/"+(startMonth+1)+"/"+startYear;
+
+            // birthDate.setText(""+selectedDay+":"+(startMonth+1)+":"+startYear);
+
+        }
+    };
+
 
     public void timePick(View view){
         Calendar mcurrentTime = Calendar.getInstance();

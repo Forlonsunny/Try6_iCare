@@ -85,13 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Menu"
+                android:text="Menu :  "
                 android:id="@+id/menuTextView" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/menuEditText"
+                android:inputType="text"
                 android:hint="Enter food menu" />
         </LinearLayout>
 

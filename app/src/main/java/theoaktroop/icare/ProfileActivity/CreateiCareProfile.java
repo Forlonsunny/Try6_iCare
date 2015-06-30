@@ -31,7 +31,7 @@ import theoaktroop.icare.R;
 public class CreateiCareProfile extends Activity {
     EditText getTxt_pName,getTxt_pRelation;
     TextView getTxt_pAge;
-  Button  getBtForDate;
+ private Button  getBtForDate;
     private ProfileDataBase mProfileDataBase;
     private static final int SELECT_PICTURE = 1;
 
@@ -40,7 +40,7 @@ public class CreateiCareProfile extends Activity {
     private int startMonth=6;
     private int startDay=15;
 
-    private String selectedImagePath;
+    private String selectedDate;
     private ImageView img;
     byte[] finalImages;
     int  checkSelectedImage=0;
@@ -67,8 +67,12 @@ public class CreateiCareProfile extends Activity {
 
             getTxt_pName.setText(mProfile.getProfileName());
             getTxt_pRelation.setText(mProfile.getRelation());
-            getBtForDate.setText(mProfile.getDateOfBirth());
+            getBtForDate.setText(mProfile.getDateOfBirth().toString());
+            selectedDate=mProfile.getDateOfBirth().toString();
             getTxt_pAge.setText(mProfile.getAge());
+
+
+
 
             if(mProfile.getFinalImages()!=null)
             {
@@ -87,6 +91,10 @@ public class CreateiCareProfile extends Activity {
             public void onClick(View v) {
                 Button b=(Button)v;
                 String btText=b.getText().toString();
+
+
+
+
                 if(btText.equals("Add Profile"))
                 {
                     try {
@@ -98,7 +106,7 @@ public class CreateiCareProfile extends Activity {
                         String prAge=getTxt_pAge.getText().toString();
 
                         if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation)   ) {
-                            Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(),getBtForDate.toString(),prAge,finalImages);
+                            Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(),selectedDate.toString(),prAge,finalImages);
                             Intent intent = new Intent();
                             intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
                             setResult(RESULT_OK, intent);
@@ -126,7 +134,7 @@ public class CreateiCareProfile extends Activity {
                         if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation)
                                   ) {
 
-                            mProfileDataBase.upDateProfile( eMid,prName.toString(), prRelation.toString(),getBtForDate.getText().toString(), prAge,finalImages);
+                            mProfileDataBase.upDateProfile( eMid,prName.toString(), prRelation.toString(),selectedDate.toString(), prAge,finalImages);
                            // mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
 //                            Intent intent = new Intent();
 //                            intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
@@ -199,6 +207,7 @@ public class CreateiCareProfile extends Activity {
             startDay=selectedDay;
             age.setDateOfBirth(startYear, startMonth, startDay);
             getBtForDate.setText(""+selectedDay+"/"+(startMonth+1)+"/"+startYear);
+            selectedDate=""+selectedDay+"/"+(startMonth+1)+"/"+startYear;
            // birthDate.setText(""+selectedDay+":"+(startMonth+1)+":"+startYear);
             calculateAge();
         }
@@ -222,42 +231,16 @@ public class CreateiCareProfile extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
 //            if (requestCode == SELECT_PICTURE) {
-               img.setImageURI(data.getData());
-                BitmapDrawable d=(BitmapDrawable)img.getDrawable();
-                Bitmap image=d.getBitmap();
-                ByteArrayOutputStream stream=new ByteArrayOutputStream();
-                image.compress(Bitmap.CompressFormat.JPEG,10,stream);
-                finalImages=stream.toByteArray();
-                 checkSelectedImage=1;
+            img.setImageURI(data.getData());
+            BitmapDrawable d = (BitmapDrawable) img.getDrawable();
+            Bitmap image = d.getBitmap();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+            finalImages = stream.toByteArray();
+            checkSelectedImage = 1;
 
-
-//                Uri selectedImageUri = data.getData();
-//
-//                selectedImagePath = getPath(selectedImageUri);
-//                System.out.println("Image Path : " + selectedImagePath);
-//               // img.setImageURI(selectedImageUri);
-//                //img.setImageURI(Uri.parse(selectedImagePath));
-//                if(selectedImagePath!=null && selectedImagePath!="")// <--CHECK FILENAME IS NOT NULL
-//                {
-//                    File f = new File(selectedImagePath);
-//                    if(f.exists()) // <-- CHECK FILE EXISTS OR NOT
-//                    {
-//                        Drawable d = Drawable.createFromPath(selectedImagePath);
-//                        img.setImageDrawable(d);
-//
-//                    }
-//                }
-            //}
         }
     }
-
-//    public String getPath(Uri uri) {
-//        String[] projection = { MediaStore.Images.Media.DATA };
-//        Cursor cursor = managedQuery(uri, projection, null, null, null);
-//        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//        cursor.moveToFirst();
-//        return cursor.getString(column_index);
-//    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

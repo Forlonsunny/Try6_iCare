@@ -21,7 +21,6 @@ public class HealthDatabaseQuery {
     private Context mContext;
     private String[] allColumns={
             DbHelper.COLUMN_HEALTH_ID,
-
             DbHelper.COLUMN_HEALTH_HEIGHT,
             DbHelper.COLUMN_HEALTH_WEIGHT,
             DbHelper.COLUMN_HEALTH_BLOOD_GROUP,
@@ -51,7 +50,7 @@ public class HealthDatabaseQuery {
     }
 
     public HealthClass createNewHealth(String mHeight, String mWeight, String mBloodGroup, String mBloodPressure, String mBloodSugar) {
-        open();
+
         ContentValues values = new ContentValues();
 
         values.put(DbHelper.COLUMN_HEALTH_HEIGHT, mHeight);
@@ -66,7 +65,7 @@ public class HealthDatabaseQuery {
         cursor.moveToFirst();
         HealthClass newHealth = cursorToHealth(cursor);
         cursor.close();
-         close();
+
         return newHealth;
 
     }
