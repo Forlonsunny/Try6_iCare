@@ -19,6 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PROFILE_ID = "_id";
     public static final String COLUMN_PROFILE_NAME = "profile_name";
     public static final String COLUMN_PROFILE_RELATION = "relation";
+    public static final String COLUMN_PROFILE_DATEOFBIRTH = "dateofbirth";
     public static final String COLUMN_PROFILE_AGE = "age";
     public static final String COLUMN_PROFILE_PIC = "picture";
 
@@ -28,6 +29,7 @@ public class DbHelper extends SQLiteOpenHelper {
             + COLUMN_PROFILE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             +COLUMN_PROFILE_NAME+" TEXT NOT NULL, "
             +COLUMN_PROFILE_RELATION+" TEXT NOT NULL, "
+            +COLUMN_PROFILE_DATEOFBIRTH+" TEXT NOT NULL, "
             +COLUMN_PROFILE_AGE+" TEXT NOT NULL, "
             +COLUMN_PROFILE_PIC+" BLOB "
             +");";

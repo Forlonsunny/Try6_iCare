@@ -1,18 +1,24 @@
 package theoaktroop.icare.ProfileActivity;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 
@@ -23,9 +29,16 @@ import theoaktroop.icare.R;
  * Created by Sunny_PC on 6/10/2015.
  */
 public class CreateiCareProfile extends Activity {
-    EditText getTxt_pName,getTxt_pRelation,getTxt_pAge;
+    EditText getTxt_pName,getTxt_pRelation;
+    TextView getTxt_pAge;
+  Button  getBtForDate;
     private ProfileDataBase mProfileDataBase;
     private static final int SELECT_PICTURE = 1;
+
+    private AgeCalculation age;
+    private int startYear=1992;
+    private int startMonth=6;
+    private int startDay=15;
 
     private String selectedImagePath;
     private ImageView img;
@@ -45,7 +58,7 @@ public class CreateiCareProfile extends Activity {
         intilizationOfViews();
         Intent mEIntent = getIntent();
         flag = mEIntent.getStringExtra("id");
-
+        age=new AgeCalculation();
         if (flag != null) {
             eMid = Long.parseLong(flag);
             AddUpbuttProfile.setText("Update Profile");
@@ -54,7 +67,19 @@ public class CreateiCareProfile extends Activity {
 
             getTxt_pName.setText(mProfile.getProfileName());
             getTxt_pRelation.setText(mProfile.getRelation());
+            getBtForDate.setText(mProfile.getDateOfBirth());
             getTxt_pAge.setText(mProfile.getAge());
+
+            if(mProfile.getFinalImages()!=null)
+            {
+                byte[] outImages=mProfile.getFinalImages();
+                ByteArrayInputStream imagesStream= new ByteArrayInputStream(outImages);
+                Bitmap theImages= BitmapFactory.decodeStream(imagesStream);
+              img.setImageBitmap(theImages);
+            }
+            else {
+                img.setImageResource(R.drawable.per_son);
+            }
 
         }
         AddUpbuttProfile.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +94,11 @@ public class CreateiCareProfile extends Activity {
 
                         Editable prName=getTxt_pName.getText();
                         Editable prRelation=getTxt_pRelation.getText();
-                        Editable prAge=getTxt_pAge.getText();
 
-                        if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prAge)  ) {
-                            Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
+                        String prAge=getTxt_pAge.getText().toString();
+
+                        if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation)   ) {
+                            Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(),getBtForDate.toString(),prAge,finalImages);
                             Intent intent = new Intent();
                             intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
                             setResult(RESULT_OK, intent);
@@ -95,12 +121,12 @@ public class CreateiCareProfile extends Activity {
 
                         Editable prName=getTxt_pName.getText();
                         Editable prRelation=getTxt_pRelation.getText();
-                        Editable prAge=getTxt_pAge.getText();
+                        String prAge=getTxt_pAge.getText().toString();
 
-                        if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
-                                !TextUtils.isEmpty(prAge)  ) {
+                        if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation)
+                                  ) {
 
-                            mProfileDataBase.upDateProfile( eMid,prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
+                            mProfileDataBase.upDateProfile( eMid,prName.toString(), prRelation.toString(),getBtForDate.getText().toString(), prAge,finalImages);
                            // mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
 //                            Intent intent = new Intent();
 //                            intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
@@ -121,46 +147,71 @@ public class CreateiCareProfile extends Activity {
             }
         });
 
+
+      getBtForDate.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              try{
+                  showDialog(1);
+
+
+
+              }
+              catch (Exception e)
+              {
+
+              }
+          }
+      });
     }
 
     private void intilizationOfViews() {
+
         AddUpbuttProfile=(Button)findViewById(R.id.addProfileBt);
         img = (ImageView)findViewById(R.id.profile_pic_input);
         getTxt_pName=(EditText)findViewById(R.id.et_p_name);
         getTxt_pRelation=(EditText)findViewById(R.id.et_p_relation);
-        getTxt_pAge=(EditText)findViewById(R.id.et_p_age);
+        getBtForDate=(Button)findViewById(R.id.tv_for_datePiker);
+        getTxt_pAge=(TextView)findViewById(R.id.et_p_age);
 
 
     }
 
 
 
-//    public void AddbtAction(View view){
-//
-//         try {
-//
-//             Editable prName=getTxt_pName.getText();
-//             Editable prRelation=getTxt_pRelation.getText();
-//             Editable prAge=getTxt_pAge.getText();
-//
-//             if (!TextUtils.isEmpty(prName) && !TextUtils.isEmpty(prRelation) && !TextUtils.isEmpty(prRelation) &&
-//                !TextUtils.isEmpty(prAge)  ) {
-//                Profile creatNewProflie = mProfileDataBase.createNewProfile(prName.toString(), prRelation.toString(), prAge.toString(),finalImages);
-//                Intent intent = new Intent();
-//                intent.putExtra(ProfileListactivity.EXTRA_ADDED_PROFILE, (Serializable) creatNewProflie);
-//                setResult(RESULT_OK, intent);
-//                finish();
-//            }
-//            else {
-//                Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
-//            }
-//
-//         }
-//         catch (Exception e) {
-//            Toast.makeText(this, "You Must Fill all Fields!", Toast.LENGTH_LONG).show();
-//        }
-//
-//    }
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case 1:
+                return new DatePickerDialog(this,
+                        mDateSetListener,
+                        startYear, startMonth, startDay);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener mDateSetListener
+            = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int selectedYear,
+                              int selectedMonth, int selectedDay) {
+            startYear=selectedYear;
+            startMonth=selectedMonth;
+            startDay=selectedDay;
+            age.setDateOfBirth(startYear, startMonth, startDay);
+            getBtForDate.setText(""+selectedDay+"/"+(startMonth+1)+"/"+startYear);
+           // birthDate.setText(""+selectedDay+":"+(startMonth+1)+":"+startYear);
+            calculateAge();
+        }
+    };
+
+    private void calculateAge()
+    {   age.getCurrentDate();
+        age.calcualteYear();
+        age.calcualteMonth();
+        age.calcualteDay();
+        Toast.makeText(getBaseContext(), "click the resulted button"+age.getResult() , Toast.LENGTH_SHORT).show();
+        getTxt_pAge.setText(age.getResult());
+    }
   public void SetImagesBt(View view)
   {
       Intent intent = new Intent();

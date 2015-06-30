@@ -22,6 +22,16 @@ public class Profile implements Serializable {
     private String profileName;
     private String relation;
     private Long id;
+    private String dateOfBirth;
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     private String age;
 
 

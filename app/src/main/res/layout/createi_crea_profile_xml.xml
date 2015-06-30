@@ -50,7 +50,25 @@
 
                     />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DateOfBirth:"
 
+                    />
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="pick a date"
+                    android:id="@+id/tv_for_datePiker"
+                    android:inputType="text"
+                    />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -62,13 +80,14 @@
                     android:text="Age:        "
 
                     />
-                <EditText
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
 
                     android:id="@+id/et_p_age"
-                    android:inputType="number"
-                    />
+                    android:gravity="center"
+
+                    android:background="#ff25c6ff" />
             </LinearLayout>
             <LinearLayout
                 android:orientation="vertical"
