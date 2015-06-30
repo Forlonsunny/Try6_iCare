@@ -23,7 +23,7 @@ public class MainSplashScreen extends Activity {
 
                 try {
                     // Thread will sleep for 2000 seconds
-                    sleep(300);
+                    sleep(1500);
 
                     // After 5 seconds redirect to another intent
                     Intent i=new Intent(getBaseContext(),ProfileListactivity.class);

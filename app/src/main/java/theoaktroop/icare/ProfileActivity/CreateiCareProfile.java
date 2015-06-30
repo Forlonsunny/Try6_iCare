@@ -94,7 +94,7 @@ public class CreateiCareProfile extends Activity {
 
 
 
-                if(btText.equals("Add Profile"))
+                if(btText.equals("Save Profile"))
                 {
                     try {
                          System.out.println("From add ");

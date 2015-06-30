@@ -21,6 +21,8 @@ public class DoctorClass
     private String longitude;
     private String profileID;
     private long Id;
+
+
     public long getId() {
         return Id;
     }
@@ -84,19 +86,4 @@ public class DoctorClass
         this.appointmentTime = appointmentTime;
     }
 
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }
 }

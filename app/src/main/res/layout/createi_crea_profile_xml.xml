@@ -14,15 +14,24 @@
             android:orientation="vertical"
             android:layout_margin="15dp"
             >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                >
+                android:layout_marginTop="20dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="55dp"
                     android:layout_height="wrap_content"
-                    android:text="Name : "
+                    android:text="Name: "
                     />
                 <EditText
                     android:layout_width="fill_parent"
@@ -74,7 +83,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                >
+                android:gravity="center">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,15 +101,16 @@
                     android:background="#ff25c6ff" />
             </LinearLayout>
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_weight="3"
-                android:layout_height="200dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:padding="20dp"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_gravity="center"
                     android:id="@+id/profile_pic_input"
                     android:clickable="true"
@@ -113,7 +123,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:id="@+id/addProfileBt"
-                android:text="Add Profile"
+                android:text="Save Profile"
                 android:background="@drawable/button"
                 />
 

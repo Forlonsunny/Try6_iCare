@@ -81,6 +81,7 @@ public class VaciViewerActivity extends Activity{
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
                                 mVaccineDatabaseQuery.deleteVaccine(vaccineID);
+
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -92,7 +93,7 @@ public class VaciViewerActivity extends Activity{
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
 
-                return false;
+                return true;
             }
         });
 

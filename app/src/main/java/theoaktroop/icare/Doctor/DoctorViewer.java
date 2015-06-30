@@ -85,7 +85,7 @@ public class DoctorViewer extends Activity {
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
 
-                return false;
+                return true;
             }
         });
 

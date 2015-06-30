@@ -29,9 +29,9 @@ public class DoctorCreateActivity extends Activity {
     private String timeString;
     private Button timeButton;
     private Button dateButton;
-    private int startYear=1992;
-    private int startMonth=6;
-    private int startDay=15;
+    private int startYear=2015;
+    private int startMonth=7;
+    private int startDay=10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,8 @@ public class DoctorCreateActivity extends Activity {
         getTxtdPhone=(EditText)findViewById(R.id.doctor_Phone);
         timeButton = (Button) findViewById(R.id.doctor_AppTime);
         dateButton = (Button) findViewById(R.id.doctor_AppDate);
+        timeString = " ";
+        dateString = " ";
 //        getTxtdAppDate=(EditText)findViewById(R.id.doctor_AppDate);
     }
 

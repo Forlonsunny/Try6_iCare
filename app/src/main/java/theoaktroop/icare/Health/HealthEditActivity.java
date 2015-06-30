@@ -64,14 +64,14 @@ public class HealthEditActivity extends Activity {
             Editable prBlPre=getGetEtBlPl.getText();
             Editable prBlSl=getGetEtBlSl.getText();
 
-            if (!TextUtils.isEmpty(prHeight) && !TextUtils.isEmpty(prWeght) && !TextUtils.isEmpty(prBloodGropup) &&
-                    !TextUtils.isEmpty(prBlPre) && !TextUtils.isEmpty(prBlSl)) {
+            if (!TextUtils.isEmpty(prHeight) || !TextUtils.isEmpty(prWeght) || !TextUtils.isEmpty(prBloodGropup) ||
+                    !TextUtils.isEmpty(prBlPre) || !TextUtils.isEmpty(prBlSl)) {
 
 
                 mHealthDatabaseQuery.upDateHealth(eMid,prHeight.toString(),prWeght.toString(),prBloodGropup.toString(),prBlPre.toString(),prBlSl.toString());
                 finish();
             } else {
-                Toast.makeText(this, "You Must Fill all Fields", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "You Must Fill at least one Field", Toast.LENGTH_LONG).show();
             }
         }
         catch (Exception e)
