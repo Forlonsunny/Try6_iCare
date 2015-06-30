@@ -144,9 +144,8 @@
         android:text="Edit"
         android:background="@drawable/button"
         android:onClick="SubmitHeBt"
-        android:textSize="@dimen/textsize"
-
-        />
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"/>
 
 
 </LinearLayout>

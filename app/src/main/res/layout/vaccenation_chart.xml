@@ -103,7 +103,8 @@
             android:layout_marginTop="20dp"
             android:onClick="SubmitVacciBt"
             android:background="@drawable/button"
-            />
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"/>
         
 
 

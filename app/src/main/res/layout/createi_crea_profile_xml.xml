@@ -125,7 +125,8 @@
                 android:id="@+id/addProfileBt"
                 android:text="Save Profile"
                 android:background="@drawable/button"
-                />
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"/>
 
         </LinearLayout>
 

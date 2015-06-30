@@ -25,7 +25,9 @@
         android:id="@+id/bt_add_dier"
         android:layout_weight="1"
         android:onClick="AddDoctor"
-        android:background="@drawable/button"/>
+        android:background="@drawable/button"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"/>
 
 
 

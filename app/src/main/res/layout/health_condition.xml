@@ -149,7 +149,8 @@
             android:text="Submit"
             android:onClick="SubmitHeBt"
             android:background="@drawable/button"
-            />
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"/>
 
     </LinearLayout>
 

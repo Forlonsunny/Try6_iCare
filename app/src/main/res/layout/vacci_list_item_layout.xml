@@ -24,7 +24,9 @@
         android:text="Add Vaccine"
         android:background="@drawable/button"
         android:layout_weight="1"
-        android:onClick="AddVaccine" />
+        android:onClick="AddVaccine"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"/>
 
 
 

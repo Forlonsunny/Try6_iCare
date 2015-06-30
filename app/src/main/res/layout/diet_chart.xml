@@ -138,7 +138,9 @@
             android:onClick="saveDietChart"
             android:layout_marginTop="10dp"
             android:background="@drawable/button"
-            android:nestedScrollingEnabled="true" />
+            android:nestedScrollingEnabled="true"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"/>
 
         <!--<Button-->
             <!--android:layout_width="wrap_content"-->
