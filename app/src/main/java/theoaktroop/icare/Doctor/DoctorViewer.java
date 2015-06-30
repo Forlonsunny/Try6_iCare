@@ -43,10 +43,16 @@ public class DoctorViewer extends Activity {
     }
     public void setListView()
     {  mDoctorDatabaseQuery = new DoctorDatabaseQuery(this);
+
         mDoctorClassList =mDoctorDatabaseQuery.getAllDoctorsById(profileID);
        // System.out.println("For setList"+mDierchartclass);
-        mAdapter = new ListDoctorAdapter(this,mDoctorClassList);
-        listViewDoctor.setAdapter(mAdapter);
+        if(mDoctorClassList!=null && !mDoctorClassList.isEmpty()) {
+            listViewDoctor.setVisibility(View.VISIBLE);
+            mAdapter = new ListDoctorAdapter(this, mDoctorClassList);
+            listViewDoctor.setAdapter(mAdapter);
+        }else {
+            listViewDoctor.setVisibility(View.GONE);
+        }
         System.out.println("From Viewer inside setListView "+profileID);
 
 
@@ -74,6 +80,7 @@ public class DoctorViewer extends Activity {
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
                                 mDoctorDatabaseQuery.deleteDoctor(doctorID);
+                                setListView();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

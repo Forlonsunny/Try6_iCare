@@ -1,5 +1,7 @@
 package theoaktroop.icare.ProfileActivity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -161,13 +163,52 @@ public class ProfileListactivity extends ActionBarActivity {
                 startActivity(HIntent);
                 break;
             case R.id.action_DeleteP:
-                mprofileDataBase.deleteById(ePID);
-                forRefresh();
-                break;
+                new AlertDialog.Builder(ProfileListactivity.this)
+                        .setTitle("Delete Profile?")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                                mprofileDataBase.deleteById(ePID);
+                                forRefresh();
+
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+                return false;
+
             case R.id.action_DeleteAllP:
                mprofileDataBase.deleteTable();
                 forRefresh();
-                break;
+                new AlertDialog.Builder(ProfileListactivity.this)
+                        .setTitle("Delete Profile?")
+                        .setMessage("Are you sure you want to delete All entry?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                                mprofileDataBase.deleteTable();
+                                forRefresh();
+
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+                return false;
 
 
 

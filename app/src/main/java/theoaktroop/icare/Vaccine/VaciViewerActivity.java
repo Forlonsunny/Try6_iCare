@@ -12,8 +12,6 @@ import android.widget.ListView;
 import java.util.List;
 
 import theoaktroop.icare.DbHelper.DbHelper;
-import theoaktroop.icare.Doctor.DoctorEditActivity;
-import theoaktroop.icare.Doctor.DoctorViewer;
 import theoaktroop.icare.R;
 
 /**
@@ -47,11 +45,20 @@ public class VaciViewerActivity extends Activity{
 
     public void setListView()
     {
+        mVaccineDatabaseQuery = new VaccineDatabaseQuery(this);
         mVaccinationClasses =mVaccineDatabaseQuery.getAllVaccinesById(profileID);
-        System.out.println("For setList"+mVaccinationClasses);
-        mAdapter = new ListVacciAdapter(this, mVaccinationClasses);
-        listViewVacci.setAdapter(mAdapter);
-        System.out.println("From Viewer inside setListView "+profileID);
+        //System.out.println("For setList"+mVaccinationClasses);
+
+       if(mVaccinationClasses!=null && !mVaccinationClasses.isEmpty()) {
+
+           listViewVacci.setVisibility(View.VISIBLE);
+           mAdapter = new ListVacciAdapter(this, mVaccinationClasses);
+           listViewVacci.setAdapter(mAdapter);
+       }
+        else {
+           listViewVacci.setVisibility(View.GONE);
+       }
+        //System.out.println("From Viewer inside setListView "+profileID);
 //        if (mDierchartclass != null && mDierchartclass.isEmpty()) {
 //            mAdapter = new ListDietAdapter(this, mDierchartclass);
 //            listViewDiet.setAdapter(mAdapter);
@@ -81,7 +88,7 @@ public class VaciViewerActivity extends Activity{
                             public void onClick(DialogInterface dialog, int which) {
                                 // continue with delete
                                 mVaccineDatabaseQuery.deleteVaccine(vaccineID);
-
+                            setListView();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

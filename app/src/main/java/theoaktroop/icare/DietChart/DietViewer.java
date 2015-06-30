@@ -1,6 +1,8 @@
 package theoaktroop.icare.DietChart;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -68,9 +70,10 @@ public class DietViewer extends Activity {
     {
 
         //try {
+        mDietChartDatabaseQuery = new DietChartDatabaseQuery(this);
             mDietChartclass =mDietChartDatabaseQuery.getAllDietsById(profileID);
             if (mDietChartclass != null) {
-                System.out.println("For setList" + mDietChartclass);
+               // System.out.println("For setList" + mDietChartclass);
                 mAdapter = new ListDietAdapter(this, mDietChartclass);
                 listViewDiet.setAdapter(mAdapter);
             } else {
@@ -100,7 +103,27 @@ public class DietViewer extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 dietID = mDietChartclass.get(position).getId();
-                return false;
+
+                new AlertDialog.Builder(DietViewer.this)
+                        .setTitle("Delete Diet?")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                                mDietChartDatabaseQuery.deleteDiet(dietID);
+                                setListView();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
+                return true;
             }
         });
 
@@ -147,8 +170,7 @@ public class DietViewer extends Activity {
 
         switch(item.getItemId()){
             case R.id.action_deletDiet:
-                mDietChartDatabaseQuery.deleteDiet(dietID);
-                setListView();
+
                 break;
 
 
