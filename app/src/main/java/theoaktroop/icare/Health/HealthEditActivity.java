@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import theoaktroop.icare.R;
@@ -15,7 +17,8 @@ import theoaktroop.icare.R;
  * Created by Sunny_PC on 6/27/2015.
  */
 public class HealthEditActivity extends Activity {
-    EditText getEtHegith,getGetEtWeight,getGetEtBlGropup,getGetEtBlPl,getGetEtBlSl;
+    EditText getEtHegith,getGetEtWeight,getGetEtBlPl,getGetEtBlSl;
+    Spinner bloodGroupSpinnerEdit;
     private HealthDatabaseQuery mHealthDatabaseQuery;
 
     private HealthClass mHealthClass;
@@ -43,24 +46,38 @@ public class HealthEditActivity extends Activity {
         mHealthClass = mHealthDatabaseQuery.getAllHealthsById(eMid);
         getEtHegith.setText(mHealthClass.getHeight());
         getGetEtWeight.setText(mHealthClass.getWight());
-        getGetEtBlGropup.setText(mHealthClass.getBloodGroup());
+//        getGetEtBlGropup.setText(mHealthClass.getBloodGroup());
+
+        String[] bloodGroup = getResources().getStringArray(R.array.blood_group_arrays);
+        String instantBlood = mHealthClass.getBloodGroup() ;
+
+        for(int i=0; i<=7; i++){
+            if(instantBlood.equals(bloodGroup[i])){
+                bloodGroupSpinnerEdit.setSelection(i);
+                break;
+            }
+
+        }
+
         getGetEtBlPl.setText(mHealthClass.getBloodPressure());
         getGetEtBlSl.setText(mHealthClass.getBloodSugar());
     }
+
     private void intilizationOfViews() {
 
         getEtHegith=(EditText)findViewById(R.id.etHight);
         getGetEtWeight=(EditText)findViewById(R.id.etWeight);
-        getGetEtBlGropup=(EditText)findViewById(R.id.etBloodGroup);
+//        getGetEtBlGropup=(EditText)findViewById(R.id.etBloodGroup);
+        bloodGroupSpinnerEdit = (Spinner) findViewById(R.id.bloodGroupSpinner);
         getGetEtBlPl=(EditText)findViewById(R.id.etBloodPressure);
         getGetEtBlSl=(EditText)findViewById(R.id.etBloodSugar);
     }
     public void SubmitHeBt(View view){
-
+        String bloodGroupString = bloodGroupSpinnerEdit.getSelectedItem().toString();
         try {
             Editable prHeight=getEtHegith.getText();
             Editable prWeght=getGetEtWeight.getText();
-            Editable prBloodGropup=getGetEtBlGropup.getText();
+            Editable prBloodGropup=new SpannableStringBuilder(bloodGroupString);
             Editable prBlPre=getGetEtBlPl.getText();
             Editable prBlSl=getGetEtBlSl.getText();
 

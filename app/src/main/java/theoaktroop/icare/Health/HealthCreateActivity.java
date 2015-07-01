@@ -3,9 +3,11 @@ package theoaktroop.icare.Health;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import theoaktroop.icare.R;
@@ -15,7 +17,8 @@ import theoaktroop.icare.R;
  */
 
 public class HealthCreateActivity extends Activity {
-   EditText getEtHegith,getGetEtWeight,getGetEtBlGropup,getGetEtBlPl,getGetEtBlSl;
+    EditText getEtHegith,getGetEtWeight,getGetEtBlPl,getGetEtBlSl;
+    Spinner bloodGroupSpinner;
     private HealthDatabaseQuery mHealthDatabaseQuery;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +32,18 @@ public class HealthCreateActivity extends Activity {
 
         getEtHegith=(EditText)findViewById(R.id.etHight);
         getGetEtWeight=(EditText)findViewById(R.id.etWeight);
-        getGetEtBlGropup=(EditText)findViewById(R.id.etBloodGroup);
+        bloodGroupSpinner = (Spinner) findViewById(R.id.bloodGroupSpinner);
+//        getGetEtBlGropup=(EditText)findViewById(R.id.etBloodGroup);
         getGetEtBlPl=(EditText)findViewById(R.id.etBloodPressure);
         getGetEtBlSl=(EditText)findViewById(R.id.etBloodSugar);
     }
     public void SubmitHeBt(View view){
+        String bloodGroupString = bloodGroupSpinner.getSelectedItem().toString();
 
         try {
             Editable prHeight=getEtHegith.getText();
             Editable prWeght=getGetEtWeight.getText();
-            Editable prBloodGropup=getGetEtBlGropup.getText();
+            Editable prBloodGropup=new SpannableStringBuilder(bloodGroupString);
             Editable prBlPre=getGetEtBlPl.getText();
             Editable prBlSl=getGetEtBlSl.getText();
 
